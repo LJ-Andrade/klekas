@@ -1,0 +1,151 @@
+
+.btn:hover
+	filter: brightness(1.5)
+
+.btn-sm-round
+	height: 30px
+	padding: 0 7px
+	border-radius: 18px
+	font-size: 12px
+	line-height: 34px
+	width: 37px
+
+.btn-sm
+	padding: 2px 10px !important
+	height: 36px
+	line-height: 30px
+	font-size: 0.8rem
+
+.block-btn-hollow
+	background: transparent
+	width: 100%
+	font-size: .9rem
+	color: #616161
+	border: 1px solid #ccc
+	padding: 4px 10px
+	line-height: 30px
+	font-size: 0.9rem
+	@include transition(0.2s)
+	i
+		margin-right: 10px
+	&:hover
+		background-color: $main-color
+		color: #fff
+		cursor: pointer
+
+.btn-main
+	background-color: $main-color
+	color: #ffffff
+	@include transition(0.2s)
+	&:hover
+		filter: brightness(1.2)
+
+// Colors in Skin
+.btn-main-sm, .btn-main-sm-hollow, .btn-main-borderless
+	padding: 10px
+	height: 30px
+	margin-right: 0
+	line-height: 0.5rem
+	font-size: 0.7rem
+
+
+.button-radio-hidden
+	border: 1px solid $main-color
+	background: transparent
+	color: #000
+	font-size: 1rem
+	font-weight: 300
+	padding: 10px !important
+	height: 30px
+	margin-right: 0
+	line-height: 0.5rem
+	&:hover
+		cursor: pointer
+		background-color: $main-color
+		border: 1px solid $main-color
+		filter: brightness(1.2)
+		color: #fff
+
+.button-radio-hidden.active
+	background: $main-color
+	color: #fff
+
+
+.btn-green
+	background-color: $green
+	color: #000
+
+.btn-blue
+	background-color: $blue
+	color: #fff
+	&:hover
+		opacity: .9
+		color: #f9f9f9
+
+.button-and-loader
+	@include flex-center-left()
+
+.btn-wishlist
+	height: 36px
+
+.btn-bottom
+	position: fixed
+	bottom: -1px
+	left: 0
+	margin: 0
+	z-index: 9999
+
+.btnIcon
+	// background-color: $lblue
+	border: 1px solid #ccc
+	padding: 4px 14px 9px
+	margin-bottom: 2px
+	color: #383838
+	@include transition(0.2s)
+	i
+		font-size: 0.9rem
+		line-height: 1px
+	&:hover
+		opacity: .6
+
+.icon-only-btn
+	border: 0
+	background: 0
+	font-size: 1.2rem
+	@include transition(0.2s)
+	&:hover
+		filter: brightness(2)
+		font-size: 1.1rem
+		cursor: pointer
+
+.icon-btn-small
+	border: 0
+	background: 0
+	font-size: 1rem
+	@include transition(0.2s)
+	&:hover
+		filter: brightness(2)
+		cursor: pointer
+
+
+.small-btn-and-input
+	.quantity-input
+		margin-right: 0
+		width: 45px
+		height: 34px
+		border: 1px solid #8e8e8e
+		border-right: 0
+		border-radius: 0
+		box-shadow: 0 0 0
+		text-align: center
+		margin-right: -4px
+	.input-button
+		background: #fff
+		border: 1px solid #8e8e8e
+		padding: 6px 10px
+		height: 34px
+		border-radius: 0
+		@include transition(0.2s)
+		&:hover
+			background: $main-color
+			color: #fff

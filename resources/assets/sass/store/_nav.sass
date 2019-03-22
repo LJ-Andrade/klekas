@@ -1,0 +1,274 @@
+.navbar-sticky
+	.toolbar
+		.inner
+			.tools
+				.account
+					img
+						border-radius: 50%
+
+
+	
+.dropdown-product-item > .dropdown-product-info
+	max-width: 148px
+	width: 148px
+	padding-left: 0
+.dropdown-product-item > .dropdown-product-custom-thumb > img
+	border-radius: 0
+	max-width: 100%
+	max-height: 80px
+
+		
+.user-info-wrapper
+	padding-top: 20px
+	padding-bottom: 20px
+	.user-info .user-data
+		padding-top: 26px
+
+@media (max-width: 660px)
+	.checkout-steps
+		display: none
+
+.top-info
+	padding-bottom: 20px
+
+
+
+@media (max-width: 1070px)
+	.toolbar 
+		.tools
+			display: table-cell
+			vertical-align: middle
+			.account
+				display: block
+
+@media (max-width: 600px)
+	.toolbar
+		position: absolute
+
+.navbar
+	.site-logo-mobile
+		display: none
+
+@media (max-width: 481px)
+	.navbar
+		min-height: auto
+		.site-branding
+			display: none
+		.site-logo-mobile
+			display: block
+			margin-right: 10px
+		.toolbar .inner
+			padding: 5px
+			margin-bottom: 0
+	.toolbar .cart > .toolbar-dropdown
+		top: 100px
+
+
+// ------- Top Bar ---------
+.topbar 
+	.topbar-column
+		white-space: nowrap
+
+
+	
+@media (max-width: 490px)
+	.topbar .topbar-column
+		.e-mail-field
+			display: none !important
+
+
+.navbar
+	height: 65px
+	min-height: auto
+	border: 0
+
+.site-branding
+	text-align: center
+	position: relative
+	top: auto
+	left: auto
+	max-height: 60px
+	a
+		max-height: 60px
+		padding: 2px
+		img
+			max-height: 100%
+
+
+.left-nav-items
+	position: relative
+	height: 100%
+	z-index: 6
+	li
+		height: 30px
+		height: 100%
+		@include flex-center
+		a
+			padding: 20px
+
+@media (min-width: 768px)
+	.left-nav-items
+		padding-left: 50px
+		max-width: 280px
+
+
+.navbar-sticky	
+	.toolbar 
+		white-space: nowrap
+		.inner 
+			@include flex-center
+			padding: 5px
+			.tools
+				height: auto
+				display: inline-flex
+
+.toolbar .account > .toolbar-dropdown
+	margin-left: -170px
+	top: 53px
+	border-radius: 0 
+	border: 0
+	background-color: #fff
+	box-shadow: none
+	@include transition(0.2s)
+	li
+		&:hover,&:focus,&:active
+			background-color: $main-color
+			a
+				color: #fff
+			.dropdown-item
+				color: red
+	.sub-menu-title
+		&:hover
+			background-color: #f9f9f9
+@media (min-width: 481px)
+
+	.toolbar .cart > .toolbar-dropdown
+		width: 300px
+		padding-left: 18px !important
+		max-height: 400px
+		overflow-y: scroll
+		overflow-x: hidden
+		margin-left: -170px
+
+@media (max-width: 481px)
+	.toolbar-user-dropdown
+		position: fixed
+		top: 150px
+		left: 10px !important
+
+@media (max-width: 768px)
+	.site-branding
+		a img
+			max-height: 60px
+
+
+@media (max-width: 710px)
+	.navbar
+		min-height: auto
+		height: auto
+		.site-branding
+			position: relative
+			width: 100%
+			@include flex-center
+			.site-logo
+				padding: 0
+				padding-top: 20px
+				img
+					width: 150px
+		.toolbar
+			position: relative
+			@include flex-center
+			margin: 0
+			height: auto
+			left: auto
+			right: auto
+
+	.toolbar
+		position: relative
+		.access-buttons
+			display: none
+		.access-icons
+			display: block
+			position: absolute
+			right: 5px
+			top: 7px
+			i
+				color: $main-color
+			.icon-button
+				&:hover
+					cursor: pointer
+
+
+@media (min-width: 852px)
+	.toolbar
+		.text-links
+			display: block
+			margin-right: 10px
+			a
+				margin: 0 15px
+	.under-nav-container
+		display: none
+
+@media (max-width: 852px)
+	.under-nav-container
+		text-align: center
+		display: block
+		margin-bottom: 10px
+		.text-links
+			margin-right: 10px
+			a
+				margin: 0 15px
+				white-space: nowrap
+
+
+// USERBAR
+// -------------------------------------
+
+@media(min-width: 768px)
+	.cart-resume-details-mobile
+		display: none
+
+@media(max-width: 768px)
+	.cart-resumen-desktop
+		display: none
+	.toolbar-user-dropdown
+		// display: none !important
+	.cart-resumen-mobile
+		display: block
+
+.toolbar .cart>.toolbar-dropdown
+	top: 36px
+
+.toolbar
+	.text-links
+		display: none
+	.access-icons
+		display: none
+	.tools
+		.gen-menu
+			height: 44px
+			padding: 5px
+			@include flex-center
+			margin-right: 20px
+		.favs
+			@include flex-center
+			i
+				font-size: 1.2rem
+				&:hover
+					cursor: pointer
+
+@media (max-width: 768px)
+	.toolbar .tools .gen-menu
+		margin: 0
+
+.login-register-btn-mobile
+	display: none
+@media (max-width: 600px)
+	.login-register-btn-mobile
+		display: block
+
+@media (max-width: 400px)
+	.login-register-btn-mobile
+		.btn
+			margin: 0
+			margin-bottom: 6px

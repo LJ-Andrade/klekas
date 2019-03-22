@@ -1,0 +1,59 @@
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="170px" height="170px" viewBox="0 0 154.711 151.091" enable-background="new 0 0 154.711 151.091"
+	 xml:space="preserve">
+	<defs>
+		<style type="text/css">
+			<![CDATA[
+			.linea {
+				fill: transparent;
+				stroke-miterlimit: 10;
+				stroke-dasharray: 600;
+				stroke-dashoffset: 1;
+				animation: dash 5s ease infinite
+			}
+
+			.linea-izq {
+				stroke:#F9B7BD;
+				stroke-width: 1.2px;
+			}
+
+			.linea-der {
+				stroke:#F9B7BD;
+				stroke-width: 1.2px;
+			}
+
+			.linea-cent {
+				stroke:#F78B98;
+				stroke-width: 1.3px;
+			}
+
+			@keyframes dash {
+				0% {stroke-dashoffset: 600}
+				50% {stroke-dashoffset: 1}
+				100% {stroke-dashoffset: 600}
+			}
+
+			]]>
+		</style>
+	</defs>
+
+
+	<!-- Mitad izq-->
+	<polyline class="linea linea-izq"
+		fill="none"
+		stroke-miterlimit="10"
+		points="122.713,121.918 36.459,88.899 4,124.06 4,124.312
+		42.002,124.186 29.102,35.838 29.181,35.717 148.547,145.749 148.327,146.01 62.604,128.41 62.642,128.104 63.911,128.026
+		124.908,124.234"/>
+	<!-- Mitad Der -->
+	<polyline class="linea linea-der"
+		fill="none"
+		stroke-miterlimit="10"
+		points="124.113,120.398 84.287,37.07 115.776,2.932 116.228,2.932
+		118.975,40.113 30.693,33.984 30.639,34.107 150.034,144.327 150.226,144.145 125.906,60.436 125.473,60.438 126.699,122.603 	"/>
+	<!-- Centro -->
+	<polyline class="linea-cent" fill="none"
+		stroke-miterlimit="10"
+		points="45.698,125.66 124.25,121.822 121.013,43.536 82.411,40.15
+		39.023,87.167 45.698,125.66 "/>
+</svg>

@@ -1,0 +1,94 @@
+
+html, body
+	height: 100%
+	overflow-x: hidden
+	// min-height: 100vh !important
+
+.main-container,.main-wrapper
+	min-height: 100vh
+	&:first:child
+		padding-bottom: 100px
+
+	
+footer
+	position: relative
+
+a
+	text-decoration: none
+
+ul
+	padding-left: 0
+	list-style: none
+
+//////////////////////////////////////
+//                                  //
+//           HELPERS                //
+//                                  //
+//////////////////////////////////////
+
+.relative
+	position: relative
+.absolute-bottom
+	position: absolute
+	bottom: 5px
+.Hidden
+	display: none !important
+.brd
+  	border: 1px solid red
+.txtL
+  	text-align: left
+.txtR
+  	text-align: right
+.txtC
+ 	 text-align: center
+.mw-100
+	max-width: 100px
+.mw-150
+	max-width: 150px
+.mw-200
+	max-width: 200px
+.pad0
+  	padding: 0 !important
+.marg0
+	margin: 0 !important
+.margin-left-0
+	margin-left: 0 !important
+.dont-break
+	white-space: nowrap
+.dont-wrap
+	display: flex
+	flex-wrap: nowrap
+	
+.marg-top-25
+	margin-top: 25px
+.cursor-pointer
+	&:hover
+		cursor: pointer
+.anchor
+	display: block
+	position: relative
+	top: -50px
+	visibility: hidden
+
+.horizontal-list
+	ul
+		padding-left: 0
+		padding: 0
+		margin: 0
+		li
+			display: inline-block
+			list-style: none
+
+.flex-h-100
+	display: flex
+	.flex-h-inner
+		width: 100%
+
+.top-right-element
+	position: absolute
+	right: 10px
+	top: 10px
+
+@media (max-width: 768px)
+	.hide-768
+		display: none

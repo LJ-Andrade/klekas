@@ -1,0 +1,1058 @@
+//////////////////////////////////////
+//                                  //
+//            SLIDERS               //
+//                                  //
+//////////////////////////////////////
+
+.owl-carousel 
+	margin-bottom: 20px
+	.owl-dots 
+		display: none
+	
+//////////////////////////////////////
+//                                  //
+//       CONTAINERS / ITEMS         //
+//                                  //
+//////////////////////////////////////
+
+.white-container
+	background-color: #fff
+	padding: 20px
+	
+.grid-item
+	.product-card
+		padding: 0
+		a
+			text-decoration: none
+		.product-thumb
+			.inner
+				position: relative
+				img
+					min-width: 100%
+				.data
+					position: absolute
+					text-align: center
+					opacity: 0
+					width: 100%
+					height: 100%
+					background-color: rgba(241, 230, 226, 0.7)
+					@include transition(0.2s)
+					color: #383838
+					.text
+						font-size: 1rem
+						padding: 10px
+						padding-top: 25px
+						width: 100%	
+						hr
+							display: block
+							position: relative
+							padding: 0
+							margin: 2px auto
+							height: 0
+							width: 100%
+							max-height: 0
+							line-height: 0
+							clear: both
+							border: none
+							border-bottom: 1px solid #ffffff
+							max-width: 90px
+						span.item
+							font-size: 1.1rem
+							font-weight: 300
+				&:hover
+					.data
+						opacity: 1
+		.footer
+			height: 54px
+			position: relative
+			.product-buttons
+				position: absolute
+				bottom: 0
+				right: 6px
+				text-align: right
+				white-space: nowrap
+				@include flex-center()
+				.fav-btn
+					margin-right: 10px
+					font-size: 1.5rem
+			.price
+				position: absolute
+				bottom: 0
+				left: 0
+				width: 40%
+				padding-top: 6px
+				height: 100%
+				@include flex-center()
+
+.widget
+	.inline
+		ul
+			padding-left: 0
+			padding: 0
+			margin: 0
+			li
+				min-width: 60px
+				display: inline-block
+				list-style: none
+
+.login-box
+	background: #fff
+	margin-top: 20px
+	position: relative
+	padding-bottom: 50px
+	border-radius: 0
+	.bottom-text
+		position: absolute
+		width: 100%
+		text-align: center
+		bottom: 10px
+		left: 0
+	.top-left
+		position: absolute
+		left: 10px
+		top: 5px
+	.top-right
+		position: absolute
+		right: 10px
+		top: 5px
+	.error-active
+		padding: 10px
+		background: $red
+		color: #fff
+	input
+		border-radius: 0
+
+@media (max-width: 768px)
+	.login-box
+		margin: 0
+
+
+.custom-page-title
+	padding: 0
+	width: 100%
+@media (min-width: 768px)
+	.index-header
+		margin-bottom: 25px
+
+
+
+.user-info-wrapper .user-info .user-avatar>img
+	width: 150px
+	height: 120px
+
+.checkout-accordion
+	.card
+		border-radius: 0
+	.card-header
+		border-radius: 0
+		padding: 0.2rem 1rem
+
+.checkout-table
+	margin-bottom: 0
+	
+.full-loader
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	z-index: 9999
+	@include flex-column
+	.inner
+		width: 80px
+		height: 80px
+		border-radius: 4px
+		@include flex-column
+		@include box-shadow()
+		background-color: #ededed
+		img
+			width: 60px
+
+.info-container
+	background-color: #ffffff
+	border: 1px solid #ccc
+	border-top: 4px solid #ccc
+	padding: 20px 100px
+	margin-top: 50px
+	.centered-text
+		text-align: center
+		p
+			width: 100%
+		margin-bottom: 20px
+	.deco-title
+		width: 100%
+		text-align: center
+		margin-bottom: 20px
+		span
+			position: relative
+			font-family: $font2
+			font-style: italic
+			font-size: 2.2rem
+			.deco
+				position: absolute
+				top: -5px
+			.deco-left
+				left: -25px
+			.deco-right
+				right: -25px
+	.item
+		margin-bottom: 15px
+		i
+			font-size: 2rem
+			color: $main-color
+	.lone-item
+		@include flex-center()
+			
+//////////////////////////////////////
+//                                  //
+//             ELEMENTS             //
+//                                  //
+//////////////////////////////////////
+
+.main-overlay
+	display: none
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+	background-color: rgba(0, 0, 0, 0.5)
+	z-index: 9900
+	
+.custom-badge
+	display: inline-block
+	min-width: 10px
+	padding: 3px 7px
+	font-size: 12px
+	font-weight: 700
+	line-height: 1
+	text-align: center
+	white-space: nowrap
+	vertical-align: middle
+	border-radius: 10px
+	margin-bottom: 5px
+
+.hollow-white
+	border: 1px solid #fff
+	background-color: transparent
+	color: #383838
+	font-size: 1rem
+	border-radius: 50px
+	font-weight: 300
+	margin-top: 5px
+
+
+.sq-badge
+	border: 1px solid $grey
+	color: $grey
+	padding: 4px 10px
+	margin: 2px
+	white-space: 
+	min-width: 40px
+	text-align: center
+	font-size: 0.8rem
+	@include transition(0.2s)
+	&:hover
+		background: $main-color
+		border: 1px solid $main-color
+		span
+			color: #fff
+	
+.short-divisor
+	@include flex-center
+	.inner
+		width: 250px
+		border-bottom: 1px solid #ccc
+		text-align: center
+		margin-bottom: 10px
+		margin-top: 15px
+
+
+.floating-bottom-cta
+	display: none
+	position: fixed
+	left: 10px
+	bottom: 15px
+	z-index: 998
+	.inner
+		padding: 13px 14px
+		width: 50px
+		height: 50px
+		border-radius: 50%
+		background-color: #2cb742
+		i
+			color: #fff
+			font-size: 1.6rem
+
+@media (max-width: 800px)
+	.floating-bottom-cta
+		display: block
+
+.icon-button
+	background: 0
+	border: 0
+	font-size: 1.2rem
+
+
+.big-btn
+	background-color: $main-color
+	padding: 15px
+	color: #fff
+	@include box-shadow-soft2
+	@include transition(0.2s)
+	.icon-btn
+		font-size: 2rem
+		margin-bottom: 5px
+	.text-btn
+		font-size: 1.2rem
+		span.text-1
+			font-size: 1.1rem
+			font-weight: 300
+		span.text-2
+			font-size: 1.5rem
+			font-weight: 400
+			font-family: $font2
+	&:hover
+		cursor: pointer
+		filter: brightness(1.5)
+
+@media (max-width: 575px)
+	.registration-selector
+		.inner-col
+			@include flex-column
+		.big-btn
+			margin-bottom: 15px
+			max-width: 200px
+
+
+//////////////////////////////////////
+//                                  //
+//             FORMS                //
+//                                  //
+//////////////////////////////////////
+
+.centered-form
+	@include flex-column
+	margin-bottom: 15px
+	margin-top: 15px
+	.inner
+		max-width: 500px
+
+.form-group
+	margin-bottom: 10px
+
+// .form-control:not(textarea)
+// 	height: 30px
+
+// select.form-control:not([size]):not([multiple])
+// 	height: 30px
+
+
+select
+	option
+		line-height: 1rem
+		font-size: 1rem
+		font-weight: 300
+.bordered-box
+	border: 1px solid #cccccc
+	padding: 5px
+
+
+.input-with-btn
+	display: flex
+	position: relative
+	.input-field
+		flex: 1
+		border-radius: 5px 0px 0px 5px
+	.short-input
+		width: 100px
+	.input-btn
+		background: transparent
+		white-space: nowrap
+		border: 1px solid #383838
+		border-left: 0
+		border-radius: 0px 5px 5px 0px
+		margin: 0
+		&:hover
+			background-color: $main-color
+			color: #fff
+
+@media (max-width: 415px)
+	.input-with-btn-mobile
+		display: block
+		.small-input
+			width: 60px
+			text-align: center
+		.input-btn
+			background: transparent
+			border: 1px solid #383838
+			border-top: 0
+			border-radius: 0
+			width: 60px
+			height: 35px
+
+.small-input
+	width: 60px
+	max-width: 70px
+	padding: 5px 10px
+	border-radius: 0 
+	border: 1px solid $main-color 
+
+.under-input
+	position: absolute
+	bottom: -25px
+	left: 0
+
+.small-form
+	input,select
+		border: 1px solid #ccc
+		height: 35px !important
+		border-radius: 0
+		padding: 0 18px 3px 18px
+	label
+		margin-bottom: 1px
+		padding-left: 8px
+
+	
+//////////////////////////////////////
+//                                  //
+//           CHECKOUT               //
+//                                  //
+//////////////////////////////////////
+
+// Side Container fixed
+
+//.checkout-cart-fixed
+	// position: fixed
+	// top: 0
+	// right: 0
+	// width: 500px
+	//z-index: 9999
+	// .inner
+	// 	.item
+	// 		padding: 10px 5px
+	// 		padding-left: 65px
+	// 		padding-right: 20px
+	// 		margin-bottom: 5px
+	// 		position: relative
+	// 		.image
+	// 			position: absolute
+	// 			left: 10px
+	// 			padding: 0
+	// 			img
+	// 				max-width: 50px
+	// 		.details
+	// 			padding: 0 5px
+	// 			.input-with-btn
+	// 				.small-input
+	// 					padding: 0
+	// 					padding-left: 5px
+	// 		.quantity
+	// 			padding-top: 10px
+	// 			.small-input
+	// 				border: 0
+	// 		.delete-item
+	// 			position: absolute
+	// 			right: 0
+	// 			top: 0
+	// 			width: 25px
+	// 			height: 100%
+	// 			@include flex-center()
+	// 			i
+	// 				color: #9c9c9c
+	// 				@include transition(0.2s)
+	// 			&:hover
+	// 				cursor: pointer
+	// 				i
+	// 					color: #000
+	// 	.checkout-cart-error
+	// 		text-align: center
+	// 		margin-top: 15px
+	// 		padding: 15px
+	// 		font-size: 1.2rem
+	// 		font-family: $font2
+
+
+.checkout-cart-floating
+	position: absolute
+	right: 0
+	top: 120px
+	z-index: 998
+	.inner
+		background: #fff
+		box-shadow: -1px 2px 19px -7px rgba(0, 0, 0, 0.55)
+
+
+.no-articles
+		position: absolute
+		margin-top: 200px
+		width: 100%
+		left: 0
+		top: 0
+		@include flex-center()
+
+@media (max-width: 576px)
+	.no-articles
+		margin: 80px
+		position: relative
+		width: 100%
+		text-align: center
+
+//////////////////////////////////////
+//                                  //
+//           PAGINATION             //
+//                                  //
+//////////////////////////////////////
+
+ul.pagination
+	// border-color: #0da9ef
+	// background-color: #0da9ef
+	display: block
+	margin: 0
+	margin-top: 25px
+	padding: 0 15px 0 15px
+	list-style: none
+	border-top: 0
+	margin-bottom: 20px
+	li
+		display: inline-block
+		text-align: center
+		border-radius: 5px
+		font-size: 1rem
+		font-weight: bold
+		line-height: 24px
+		margin-bottom: 25px
+		a
+			padding: 10px 15px
+			text-decoration: none
+			margin-left: 2px
+			color: $main-color
+			font-weight: 600
+			font-size: 1.2rem
+			background-color: $main-color
+			color: #fff
+		span
+			color: #fff
+		&:hover
+			a
+				color: #fff
+		
+	li.disabled,li.active
+		font-weight: 300
+		color: #6b6161
+		span
+			padding: 10px 15px
+			background-color: $main-color
+			color: #fff
+		&:hover
+			cursor: not-allowed
+
+.pagination-results
+	padding: 0 15px 0 15px
+	margin-top: 20px
+	a
+		margin: 0 10px
+		font-size: 1.1rem
+
+//////////////////////////////////////
+//                                  //
+//       CART AND CATALOGUE         //
+//                                  //
+//////////////////////////////////////
+
+.articles-container
+	padding: 0
+	.article
+		padding: 10px
+		.inner
+			background-color: transparent
+			position: relative
+			.image
+				position: relative
+				.add-to-favs
+					position: absolute
+					left: 6px
+					top: 1px
+					font-size: 1.5rem
+					z-index: 600
+				.overlay
+					position: absolute
+					width: 100%
+					height: 100%
+					top: 0
+					left: 0
+					@include flex-center()
+					background-color: rgba($main-color,.9)
+					color: #ffffff
+					font-size: 1.5rem
+					font-weight: 300
+					opacity: 0
+					@include transition(0.5s)
+					z-index: 500
+					.overlay-button
+						border: 1px solid #fff
+						background: transparent
+						color: #fff
+				&:hover
+					.overlay
+						opacity: 1	
+			.content
+				position: relative
+				white-space: nowrap
+				.title
+					padding: 10px
+					font-size: 1rem
+					white-space: nowrap
+					text-overflow: ellipsis
+					text-align: left
+					width: 80%
+					max-width: 80%
+				.price
+					width: 20%
+					@include flex-center
+					position: absolute
+					right: 0
+					bottom: 0
+					height: 100%
+
+
+@media screen and (min-width: 1200px) and (max-width: 1640px)
+	.fix-column
+		.articles-container
+			.article
+				flex: 1 0 20.666667% !important
+				max-width: 30.666667% !important
+
+
+@media (max-width: 576px)
+	.articles-container
+		.article
+			.inner
+				.image
+				.content
+					height: auto
+					padding: 0 10px
+					.title-info h3
+						font-size: 1rem
+						font-weight: 300
+					.footer
+						display: block
+						position: relative
+						bottom: 10px
+						margin-top: 0
+						.btn
+							margin: 0
+						.col-price
+							display: block
+
+@media (max-width: 576px)
+	.articles-container
+		.col-sm-6
+			-webkit-box-flex: 0
+			-webkit-flex: 0 0 50%
+			-ms-flex: 0 0 50%
+			flex: 0 0 50%
+			max-width: 50%
+
+@media (max-width: 768px)
+	.articles-container
+		.article
+			min-width: 250px
+
+@media (max-width: 520px)
+	.articles-container
+		.article
+			min-width: auto
+
+@media (min-width: 1199px) and (max-width: 1340px)
+	.articles-container .article .inner .content .footer
+		.fa-icon
+			margin: 0
+		.btn
+			padding: 1px 5px
+			font-size: 0.7rem
+
+@media (max-width: 400px)
+	.articles-container
+		.article
+			min-width: 100%
+
+.top-right-ribbon
+	position: absolute
+	right: 0
+	top: 0
+	width: 100px
+	height: 100px
+	overflow: hidden
+	.triangle
+		position: absolute
+		right: 0
+		left: 0
+		text-align: center
+		padding: 10px
+		padding-top: 50px
+		background-color: $main-color
+		transform: rotate(45deg)
+		width: 150px
+		z-index: 50
+	.text
+		font-family: $font1
+		position: absolute
+		font-weight: 700
+		top: 8px
+		right: 10px
+		z-index: 100
+		color: #fff
+
+.bottom-left-ribbon
+	position: absolute
+	left: 0
+	bottom: 0
+	width: 100px
+	height: 100px
+	overflow: hidden
+	.triangle
+		position: absolute
+		bottom: 0
+		left: -50px
+		text-align: center
+		padding: 10px
+		padding-top: 50px
+		background-color: rgba($main-color,.5)
+		transform: rotate(45deg)
+		width: 150px
+		z-index: 50
+	.text
+		font-family: $font1
+		position: absolute
+		font-weight: 700
+		top: 58px
+		right: 50px
+		line-height: 14px
+		z-index: 100
+		color: #fff
+		transform: rotate(45deg)
+		text-align: center
+
+
+.product-gallery
+	padding: 0
+	border: 0
+	.product-carousel .owl-stage-outer .owl-stage .owl-item img
+		width: 100% 
+
+.product-gallery .gallery-item 
+	z-index: 50
+	position: absolute
+	top: 8px
+	right: 9px
+	margin-bottom: 0
+	background: #fff
+	border-radius: 50%
+	
+.product-show
+	.title-mobile
+		display: none
+	.products-details
+		padding: 44px 40px 40px 15px
+		position: relative
+		min-height: 430px
+		.title-desktop
+			h2
+				margin-bottom: 0
+		.fav-container
+			position: absolute
+			right: 33px
+			top: 37px
+			font-size: 1.5rem
+			i
+				color: $red
+		// .back-btn
+		// 	position: absolute
+		// 	bottom: -30px
+		// 	right: 12px
+		// 	font-size: 1rem
+		// 	color: #000
+		h2
+			padding-top: 0
+		form
+			label
+				margin: 0
+			.form-row
+				margin-bottom: 10px
+		.action-info-container
+			background-color: #f9f9f9
+			margin: 15px 0 0 15px
+			padding: 5px 10px
+	.back-btn
+		padding-left: 10px
+		margin-bottom: 10px
+	.descriptions
+		font-size: 1.1rem
+		.item
+			white-space: nowrap
+			.title
+				float: left
+				min-width: 60px
+				font-family: $font2
+
+			.prop
+	.price-and-stock
+
+@media (max-width: 575px)
+	.product-show
+		.title-mobile
+			display: block
+		.products-details
+			.title-desktop
+				display: none
+
+@media (max-width: 1190px)
+	.product-show .products-details
+		.fav-container
+			right: 20px
+
+// FAVOURITES 
+.fa-icon
+	&:before
+	font-family: $fa-icon
+	font-weight: 900
+	display: inline-block
+	font-style: normal
+	font-variant: normal
+	text-rendering: auto
+	-webkit-font-smoothing: antialiased
+	&:hover
+		cursor: pointer
+
+.fav-icon-nofav::before
+	color: #f1f1f1
+	content: "\f004"
+
+.fav-icon-isfav::before
+	color: $red
+	content: "\f004"
+
+
+.review-bottom
+	background: #f9f9f97d
+	
+.back-to-store
+	margin-bottom: 10px
+	a
+		text-decoration: none
+		font-size: 1rem
+
+.checkout-container 
+	> .row	
+		background-color: #fff
+		padding-top: 10px
+	.warning
+		margin-bottom: 15px
+		span
+			border: 1px solid #ccc
+			padding: 5px
+			i
+				margin-right: 10px
+	.sub-title
+		border-bottom: 1px solid #ccc
+		font-size: 1.1rem
+		margin-bottom: 10px
+		i
+			margin-right: 10px
+			color: $main-color
+
+
+@media (max-width: 991px)
+	.checkout-container
+		> .row	
+			padding-left: 0px
+		aside
+			border: 1px solid #e1e7ec
+			padding: 10px
+	.back-to-store
+		display: none
+
+.checkout-sidebar
+	.top-info-cs
+		padding: 0.75rem
+		padding-top: 0
+
+
+.shopping-cart
+	.product-item
+		.product-thumb
+			max-width: 80px
+
+
+
+.coupon-message
+	.inner
+		padding: 10px
+		border: 1px solid #ccc
+		text-align: center
+		.small
+			font-size: 1.2rem
+		.big
+			font-size: 2rem
+			color: green
+			
+// ------------- whislist --------------- //
+.wishlist-table
+	.product-item 
+		.product-title
+			margin-top: 0
+			padding-top: 0
+		.stock-title
+			margin-right: 5px
+
+@media (min-width: 854px)
+	.wishlist-table
+		.product-item 
+			.small-btn-and-input
+				margin-top: 15px !important
+
+
+// ------------- Show --------------- //
+
+.product-show
+	.product-gallery
+		.images-container
+
+		.product-thumbnails
+			padding-top: 0
+			margin-top: 0
+
+@media (min-width: 768px)
+	.product-show .top-action
+		padding-left: 12px
+		margin-bottom: 10px
+
+.gallery-item
+	a
+		padding: 8px 12px
+		@include transition(0.2s)
+		i
+			color: #797575
+			font-size: 1.3rem
+			@include transition(0.2s)
+		&:hover
+			a
+				padding: 7px 10px
+			i
+				font-size: 1.5rem
+
+
+@media (max-width: 575px)
+	.product-show
+		.product-gallery
+		.product-thumbnails
+			display: none
+
+
+
+//////////////////////////////////////
+//                                  //
+//             ALERTS               //
+//                                  //
+//////////////////////////////////////
+// Izi Toast Alerts
+.iziToast-wrapper 
+	.iziToast-message
+		font-size: 1.2rem !important
+	
+	.iziToast.iziToast-color-red
+		background-color: $main-color !important
+		border: 0 
+		p
+			color: #fff
+		.iziToast-close
+			color: #fff
+			background-image: none
+			&:before
+				content: 'x'
+				font-size: 1.2rem
+
+// Bootstrap Alerts
+.alert
+	position: absolute
+	right: -100px
+	// right: 1px
+	top: 106px
+	z-index: 9000
+	padding: 14px 55px
+	color: #fff !important
+	-webkit-animation: slide 0.5s forwards
+	-webkit-animation-delay: 2s
+	animation: slide 0.5s forwards
+	animation-delay: 2s
+	span
+		color: #fff !important
+	ul 
+		li
+			list-style: outside none none
+	.text
+		font-weight: 400
+			
+@-webkit-keyframes slide
+	100%
+		right: -2px
+
+@keyframes slide
+	100%
+		right: -2px
+
+
+.alert-success
+	background-color: #D12F59
+	color: #fff
+	margin-top: 20px 
+
+.alert-danger
+	background-color: #D12F59
+	color: #fff
+	margin-top: 20px 
+	
+
+.alert-success > :not(.text-white), .alert-success > :not(.text-light), .alert-success h1:not(.text-white), .alert-success h1:not(.text-light), .alert-success h2:not(.text-white), .alert-success h2:not(.text-light), .alert-success h3:not(.text-white), .alert-success h3:not(.text-light), .alert-success h4:not(.text-white), .alert-success h4:not(.text-light), .alert-success h5:not(.text-white), .alert-success h5:not(.text-light), .alert-success h6:not(.text-white), .alert-success h6:not(.text-light), .alert-success p:not(.text-white), .alert-success p:not(.text-light), .alert-success ul:not(.text-white), .alert-success ul:not(.text-light), .alert-success ol:not(.text-white), .alert-success ol:not(.text-light), .alert-success a:not(.text-white), .alert-success a:not(.text-light)
+	color: #000
+
+.centered-notification
+	text-align: center
+	margin-top: 100px
+	font-size: 1.5rem
+	.content
+		padding: 10px
+		background: #f9f9f9
+	.bottom
+		margin-top: 50px
+
+//////////////////////////////////////
+//                                  //
+//            OTHERS                //
+//                                  //
+//////////////////////////////////////
+
+.error-page
+	@include flex-center
+	text-align: center
+	height: 100vh
+
+#Error
+	position: fixed
+	padding-top: 150px
+	bottom: 0
+	left: 0
+	z-index: 9999
+	// width: 100%
+	max-height: 100%
+	background-color: #ccc
+
+
+.site-footer
+	padding: 15px 5px
+	text-align: center
+	border: 0
+	background: #383838
+	.footer-copyright
+		padding: 0

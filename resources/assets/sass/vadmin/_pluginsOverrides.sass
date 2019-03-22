@@ -1,0 +1,312 @@
+.content-wrapper
+	min-height: 90vh
+.card
+	border-radius: 0px
+	box-shadow: 8px 4px 13px 1px rgba(0, 0, 0, 0.05)
+
+.card .card-title
+	text-transform: none
+.custom-card
+	.card-title
+		p
+			font-size: 1rem
+	.form-actions
+		padding: 20px 0 0
+
+.custom-list
+    thead
+        th
+            padding: 0.75rem 1rem
+    tbody
+        th, td
+            padding: 5px 1rem
+        th
+            font-size: 1rem
+        td
+            font-size: 0.9rem
+
+.table-striped tbody tr:nth-of-type(odd)
+    background-color: rgb(253, 253, 253)
+
+.breadcrumb
+    padding-bottom: 0
+
+.content-wrapper
+	padding-top: 0 !important    
+	.list-wrapper
+		//margin-top: 136px
+		//margin-top: 110px
+//     .inner-wrapper
+
+.top-space
+	height: 120px
+
+.top-space-small
+	height: 120px
+  
+@media (max-width: 765px)
+	.content-wrapper
+		.list-wrapper
+			//margin-top: 50px
+
+//////////////////////////////////////
+//                                  //
+//           BOOTSTRAP              //
+//                                  //
+//////////////////////////////////////
+
+form .form-actions
+	padding-bottom: 0
+
+//////////////////////////////////////
+//                                  //
+//            DECO                  //
+//                                  //
+//////////////////////////////////////
+
+.tag[class*="tag-"] span
+	bottom: 0
+	
+.tooltip-inner
+	background-color: #1D2B36
+
+.tooltip.top .tooltip-arrow
+	border-top-color: #1D2B36
+
+.tooltip.right .tooltip-arrow
+	border-right-color: #1D2B36
+
+.tooltip.bottom .tooltip-arrow
+	border-bottom-color: #1D2B36
+
+.tooltip.left .tooltip-arrow
+	border-left-color: #1D2B36
+
+//////////////////////////////////////
+//                                  //
+//            CARDS                 //
+//                                  //
+//////////////////////////////////////
+
+.card-header
+	.list-actions
+		padding-top: 3px
+
+//////////////////////////////////////
+//                                  //
+//             PLUGINS              //
+//                                  //
+//////////////////////////////////////
+
+$phvColor: #000
+$phvFsize: 0.9rem
+
+// Textaerea trumbowyg
+.trumbowyg-button-pane
+	background-color: #f3f3f3
+	button
+		color: #000
+	
+.trumbowyg-button-group 
+	color: #383838
+	&:hover
+		color: #525252
+.trumbowyg-box .trumbowyg-editor
+	background-color: #fff
+	border: 1px solid #ccc
+	&:hover
+		color: #383838
+
+.trumbowyg-box 
+	margin: 5px auto !important
+	border: 0
+
+
+//////////////////////////////////////
+//                                  //
+//             FORMS                //
+//                                  //
+//////////////////////////////////////
+
+.input-group
+    position: relative
+    display: -webkit-box
+    display: -ms-flexbox
+    display: flex
+    -ms-flex-wrap: wrap
+    flex-wrap: wrap
+    -webkit-box-align: stretch
+    -ms-flex-align: stretch
+    align-items: stretch
+    width: 100%
+.input-group > .custom-file, .input-group > .custom-select, .input-group > .form-control
+	position: relative
+	-webkit-box-flex: 1
+	-ms-flex: 1 1 auto
+	flex: 1 1 auto
+	width: 1%
+	margin-bottom: 0
+
+.input-group-append, .input-group-prepend
+	display: flex
+	
+.input-group > .form-control:not(:last-child)
+    border-top-right-radius: 0
+    border-bottom-right-radius: 0
+
+.input-group-append .btn, .input-group-prepend .btn
+	position: relative
+	z-index: 2
+
+.input-group-text
+	display: -webkit-box
+	display: -ms-flexbox
+	display: flex
+	-webkit-box-align: center
+	-ms-flex-align: center
+	align-items: center
+	padding: .375rem .75rem
+	margin-bottom: 0
+	font-size: 1rem
+	font-weight: 400
+	line-height: 1.5
+	color: #495057
+	text-align: center
+	white-space: nowrap
+	background-color: #f3f3f3
+	border: 1px solid #f3f3f3
+	border-right: 0
+	border-radius: .25rem 0 0 .25rem
+	
+
+
+.form-control
+	@include transition(0.2s)
+.form-control:focus
+	box-shadow: none
+	border: 1px solid #4B4568
+
+/// Multiple Select Chosen
+.chosen-container-single .chosen-single
+	background: #fff
+	box-shadow: none
+	border-radius: 0
+	padding: 6px 0px 0px 15px
+	height: 36px
+.chosen-container-multi .chosen-choices
+	background: #fff
+	box-shadow: none
+	border-radius: 0
+	padding: 3px 5px 3px 15px
+	li.search-choice
+		border: 0
+		background-image: none
+		box-shadow: none
+		background-color: #7A83CA
+		color: #fff
+		a
+			color: #fff
+
+.chosen-container-multi .chosen-choices
+	border: 1px solid #d4d4d4
+/// Image File Upload Input (JQuery Filer)
+.jFiler-theme-default .jFiler-input-caption,.jFiler-theme-default .jFiler-input-button
+	padding-top: 5px
+.jFiler-theme-default .jFiler-input
+	box-shadow: none
+.jFiler-items-default .jFiler-item
+	background-color: #fff
+
+.fileuploader
+	margin-top: 0
+
+//////////////////////////////////////
+//                                  //
+//             ALERT                //
+//                                  //
+//////////////////////////////////////
+
+.alert
+	margin-top: 15px
+	
+.alert-success
+    background-color: $green
+
+.swal2-confirm
+	margin: 3px
+
+//////////////////////////////////////
+//                                  //
+//           NAV MESSAGES           //
+//                                  //
+//////////////////////////////////////
+
+.dropdown-notification .close-this
+	position: absolute
+	right: 15px
+	top: 6px
+	background-color: #b3b3b3
+	width: 19px
+	border-radius: 50%
+	color: aliceblue
+	height: 19px
+	padding: 0px 5px 2px 6px
+	@include transition(0.2s)
+	&:hover
+		color: red
+// .navbar 
+// 	.dropdown-menu .dropdown-menu-media .dropdown-menu-right
+// 		.list-group
+// 			a.list-group-item
+// 				position: relative
+// 				.close-this
+// 					position: absolute
+// 					right: 0
+// 					top: 0
+
+//////////////////////////////////////
+//                                  //
+//              THEME               //
+//                                  //
+//////////////////////////////////////
+
+.main-menu.menu-dark
+	background: $dark-main
+.header-navbar.navbar-dark
+	background: $dark-main
+.main-menu.menu-dark .navigation
+	background: transparent
+.main-menu-content
+	background: $dark-main
+	background: url(../images/gral/menu-background.jpg) no-repeat center
+	-webkit-background-size: cover
+	-moz-background-size: cover
+	-o-background-size: cover
+	background-size: cover
+
+.main-menu.menu-dark .navigation > li.active > a
+    background-color: $dark-detail1
+
+// Hover
+.main-menu.menu-dark .navigation > li.hover > a, .main-menu.menu-dark .navigation > li:hover > a, .main-menu.menu-dark .navigation > li.active > a
+    background-color: $dark-detail3
+	
+// Active Section
+.main-menu.menu-dark .navigation > li.open > a
+	background-color: rgba($dark-detail3,.7)
+
+// Active Selected
+.main-menu.menu-dark .navigation > li.open > ul
+	background-color: rgba($dark-detail4,.7)
+
+// Menu Icons
+body.vertical-layout.vertical-menu.menu-expanded .main-menu .navigation > li > a > i
+	color: $dark-detail5
+
+#main-menu-navigation .navigation-header
+	color: #ffffff
+	font-weight: 600
+	border-bottom: 1px solid #f9f9f91a
+
+.content-wrapper
+	padding-bottom: 60px !important

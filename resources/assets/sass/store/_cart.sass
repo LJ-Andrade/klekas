@@ -1,0 +1,176 @@
+
+
+.cart-sidebar
+	overflow-y: auto
+	overflow-x: hidden
+	position: fixed
+	width: 30%
+	height: 100%
+	top: 0
+	right: 0
+	padding: 15px
+	@include transition(0.2s)
+	z-index: 9999
+	.inner
+		padding: 25px 15px
+		.top
+			margin-bottom: 20px
+			@include flex-center
+			.title
+				font-size: 1.2rem
+				margin-bottom: 10px	
+				i
+					font-size: 1rem
+					margin-right: 6px
+			.items
+				display: flex
+				width: 100%
+				text-align: right
+				padding: 0 15px
+				.text
+					font-size: 1rem
+					font-weight: 300
+					text-align: left
+					width: 50%
+				.button
+					float: right
+					width: 50%
+					padding-top: 10px
+					.main-btn-sm
+						padding: 9px 10px
+		.total-price-bottom
+			text-align: right
+			padding: 15px 0
+			font-size: 1.2rem
+			font-weight: 300
+			.inner-text
+				max-width: 50%
+				white-space: nowrap
+		.empty-cart
+			padding: 15px
+			padding-top: 60px
+			text-align: center
+			font-family: $font1
+			font-size: 1.2rem
+		.close
+			position: absolute
+			right: 20px
+			top: 15px
+			z-index: 998
+		.item
+			padding: 0 65px 0 75px
+			position: relative
+			min-height: 75px
+			margin-bottom: 10px
+			img
+				position: absolute
+				left: 15px
+				padding: 0
+				height: 75px
+				max-height: 100%
+			.details-1
+				width: 100%
+				@include flex-center-left
+			.details-2
+				width: 100%
+				max-height: 30px
+				.column-1
+					font-weight: 900
+					text-align: left
+					font-size: 1rem
+			.delete-item
+				position: absolute
+				right: 6px
+				top: 6px
+				height: 25px
+				padding: 10px
+				padding: 3px 5px
+				i
+					font-size: 1rem
+				&:hover
+					cursor: pointer
+					i
+						font-size: 1rem
+			.quantity
+				position: absolute
+				bottom: 5px
+				right: 10px
+				.small-input
+					border: 1px solid #ccc
+					padding: 2px
+					padding-left: 10px
+		.update-btn
+			margin-bottom: 10px	
+		.checkout-cart-error
+			text-align: center
+			margin-top: 15px
+			padding: 15px
+			font-size: 1.2rem
+			font-family: $font2
+
+@media screen and (min-width: 930px) and (max-width: 1210px)
+	.fix-column-small
+		flex: 0 0 70%
+		max-width: 70%
+	.cart-sidebar
+		flex: 1 0 25%
+		max-width: 30%
+
+@media (min-width: 930px)
+	.cart-sidebar.scrolled
+		@include transition(0.2s)
+		position: fixed
+		right: 7px
+		top: 89px
+
+.cart-sidebar
+	display: none
+	@include transition(0.2s)
+
+.cart-sidebar.active
+	display: block
+
+.allow-sidebar
+	width: 71%
+
+@media (min-width: 1500px)
+	.allow-sidebar
+		width: 81% 
+	.cart-sidebar
+		width: 20%
+
+@media (max-width: 1200px)
+	.allow-sidebar
+		width: 71%
+	.cart-sidebar
+		width: 30%
+
+@media (max-width: 930px)
+	.allow-sidebar
+		width: 60%
+	.cart-sidebar
+		width: 40%
+
+@media (max-width: 930px)
+	.allow-sidebar
+		width: 100%
+	.cart-sidebar
+
+@media (max-width: 768px)
+	.cart-sidebar
+		width: auto
+		max-width: 300px
+		
+@media (max-width: 500px)
+	.cart-sidebar		
+		width: 100%
+		max-width: 100%
+
+.mobile-finish-button
+	display: none
+
+@media (max-width: 768px)
+	.mobile-finish-button
+		display: block
+		height: 60px
+	

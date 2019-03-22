@@ -1,0 +1,182 @@
+html
+	min-height: 100%
+	position: relative
+	font-size: 100%
+
+@media (max-width: 768px)
+	html
+		overflow-x: hidden 
+    
+body
+	height: 100%
+	overflow-x: hidden
+	font-size: 16.5px
+	background-color: #fcfcfc
+	// background-color: #fff
+	color: #383838
+	font-family: $fv
+	line-height: 22px
+	// padding-top: 50px
+a
+	text-decoration: none
+	color: #383838
+	&:hover
+		text-decoration: none
+		color: #383838
+p
+  	font-size: 1rem 
+  	font-family: $fv
+  	font-weight: $fvw1
+h1
+ 	 font-size: 1.8rem
+  	font-weight: $fvw2
+h2
+ 	 font-size: 1.1rem
+  	font-weight: $fvw3
+hr
+  	border-top: 1px solid $dark2
+
+.brd
+  	border: 1px solid red
+.txtL
+  	text-align: left
+.txtR
+  	text-align: right
+.txtC
+ 	 text-align: center
+.pad0
+  	padding: 0
+
+@media (max-width: 765px)
+  	.pad0765
+    	padding: 0
+.mar0
+  	margin: 0
+.margTop0
+  margin-top: 0 !important
+.padTop0
+  	padding-top: 0 !important
+.mb
+  	margin-bottom: 10px 
+.short-input
+  	max-width: 100px
+.w-20
+  	width: 20px
+.w-50
+	width: 50px
+.width-100
+	width: 100px
+.mw-50
+	max-width: 50px
+.mw-70
+	max-width: 50px
+.mw-80
+  	max-width: 80px
+.mw-90
+  	max-width: 90px
+.mw-100
+  	max-width: 100px
+.mw-150
+  	max-width: 150px
+.w-200
+  	width: 
+	  width: 200px
+.mw300
+	max-width: 300px	  
+.mw450
+  	max-width: 450px
+.minWidth150
+	min-width: 150px
+
+.ellipsis
+	overflow: hidden
+	white-space: nowrap
+	text-overflow: ellipsis
+  
+@media (max-width: 765px)
+  	.hide765
+    	display: none
+
+@media (max-width: 900px)
+	.hideMobile900
+		display: none !important
+.Hidden
+	display: none !important
+.floatRight
+	float: right
+.floatLeft
+	float: left
+.centered
+	text-align: center
+.dont-wrap
+	white-space: nowrap
+.inline-flex,.same-line
+	display: inline-flex
+
+//////// BROWSER FIXES ///////
+// Disable arrows in input number fields
+input[type=number]
+	-moz-appearance: textfield
+select
+    -moz-appearance: none
+
+/////////// FLEXBOX ////////////
+.flexCentVert
+	display: -webkit-box
+	display: -ms-flexbox
+	display: flex
+	-webkit-box-align: center
+	-ms-flex-align: center
+	-ms-grid-row-align: center
+	align-items: center
+	-webkit-box-pack: center
+	-ms-flex-pack: center
+	align-self: center
+	align-content: center
+
+.flexSameH
+	display: flex
+	flex-wrap: wrap
+
+.flexEqual
+	display: -webkit-box
+	display: -ms-flexbox
+	display: flex
+	height: auto
+
+.flexW
+	display: -webkit-box
+	display: -ms-flexbox
+	display: flex
+	-ms-flex-wrap: wrap
+	flex-wrap: wrap
+	align-items: center
+
+.flexV
+	display: -webkit-box
+	display: -ms-flexbox
+	display: flex
+	-webkit-box-align: center
+	-ms-flex-align: center
+	-ms-grid-row-align: center
+	align-items: center
+	-webkit-box-pack: center
+	-ms-flex-pack: center
+	justify-content: center
+	-webkit-box-orient: vertical
+	-webkit-box-direction: normal
+	-ms-flex-direction: column
+	flex-direction: column
+
+.flexCenter
+	display: -webkit-box
+	display: -ms-flexbox
+	display: flex
+	-webkit-box-align: center
+	-ms-flex-align: center
+	-ms-grid-row-align: center
+	align-items: center
+	-webkit-box-pack: center
+	-ms-flex-pack: center
+	justify-content: center
+

@@ -1,0 +1,213 @@
+
+// ------------- Horizontal Filters --------------- //
+
+.search-filters
+	display: flex
+	flex-wrap: nowrap
+	height: 55px
+	max-width: 100%
+	width: 100%
+	margin: 0
+	margin-bottom: 15px
+	.column
+		padding: 0
+		flex-grow: 1
+		input,select,select.form-control:not([size]):not([multiple])
+			border: 1px solid blue
+			height: 55px
+			border: 1px solid #ccc
+			border-radius: 0
+	.filter-button
+		border: 1px solid #ccc
+		text-align: center
+		padding: 10px
+		height: 55px
+		line-height: 2rem
+	.trigger-mobile-inner
+		display: none
+	.back-to-list-desktop
+		border: 0
+		a
+			border: 0
+			background-color: $main-color
+			line-height: 1.1rem
+			color: #fff
+@media (max-width: 930px) and (min-width: 768px)
+	.search-filters .filter-button
+		padding: 10px 0 0 
+		line-height: 1rem
+
+
+// Triggers outsite filters to open in mobile
+.trigger-column
+	.trigger-btn
+		display: none
+
+.trigger-filter-mobile
+
+	padding: 15px 30px 0
+	display: none
+	flex-wrap: nowrap
+	.inner
+		width: 100%
+		.form-control
+			height: 45px
+		input, select
+		form
+			border-radius: 0
+			width: 80%
+			float: left
+			height: 45px
+		a
+			@include flex-center
+			height: 45px
+			width: 20%
+			&:hover
+				cursor: pointer
+
+
+@media (max-width: 768px)
+	.trigger-filter-mobile
+		display: flex
+	.search-filters
+		display: none
+		padding: 15px
+		height: auto
+		.trigger-column
+			display: flex
+			flex-wrap: nowrap
+			display: inline
+			.trigger-btn
+				display: block
+			select
+				width: 80%
+				float: left
+			a
+				@include flex-center
+				height: 45px
+				&:hover
+					cursor: pointer
+		.column
+			input,select,select.form-control:not([size]):not([multiple]),.filter-button
+				line-height: 1.5rem
+				height: 45px
+			
+
+	
+	.search-filters.active
+		display: block
+
+@media (min-width: 768px)
+	.search-filters
+		display: none
+// .header-with-banner
+// 	background: url("../images/web/home-banner.jpg") no-repeat top center
+// 	-webkit-background-size: cover
+// 	-moz-background-size: cover
+// 	-o-background-size: cover
+// 	// background-size: cover
+// 	background-size: 100%
+// 	height: 450px
+// 	position: relative
+// 	margin-bottom: 15px
+// 	// margin-top: -80px
+
+.filter-container
+	width: 100%
+	position: absolute
+	bottom: 0
+	left: 0
+	.form-control
+		background: rgba(255,255,255,0.70)
+		color: #000
+	.search-filters
+		margin: 0
+		.column
+		.column input,  .column select
+			border: 1px solid rgba(0,0,0,.4)
+			color: #000
+		::placeholder
+			color: #000
+		:-ms-input-placeholder
+			color: #000
+		::-ms-input-placeholder
+			color: #000
+
+// @media (max-width: 768px)
+// 	.header-with-banner
+// 		margin-top: -110px
+
+// @media (max-width: 768px)
+// 	.header-with-banner
+// 		margin-top: -130px
+
+// .header-with-banner .filter-container .search-filters .column input, .header-with-banner .filter-container .search-filters .column select
+// 	padding: .5rem .75rem
+
+
+.filter-sidebar
+	padding-top: 10px
+	.sub-title
+		font-weight: 700
+		margin-bottom: 5px
+		border-bottom: 1px solid $grey2
+		color: #383838
+	input
+		border: 1px solid $grey2
+		background: transparent
+	input, select
+		border-radius: 0
+		margin-bottom: 10px
+	.filter-button
+		line-height: 2.5rem
+	.featured-text
+		margin: 20px 0
+		.text
+			font-size: 1.2rem
+			font-weight: 900
+			@include transition(0.2s)
+			&:hover
+				text-decoration: line-through
+		.text-1 a
+			color: #000
+		.text-2 a
+			color: #383838
+	.filter-item
+		margin-bottom: 40px
+		position: relative
+		.badge
+			border: 1px solid $main-color
+			padding: 5px 10px
+			border-radius: 20px
+			color: $main-color
+			margin-bottom: 5px
+		.collapse-icon
+			position: absolute
+			right: 0
+			top: 0
+			width: 24px
+			// border: 1px solid red
+			font-size: 1.2rem
+			text-align: center
+			&:hover
+				cursor: pointer
+		// ul.collapsed
+		// 	display: none
+		ul 
+			li a
+				color: #000
+				@include transition(0.2s)
+				&:hover
+					font-weight: 600
+
+
+@media (min-width: 768px)
+	.filter-container
+		border: 1px solid red
+		display: none
+
+@media (max-width: 768px)
+	.filter-sidebar
+		display: none
+	.filter-container
+		display: block

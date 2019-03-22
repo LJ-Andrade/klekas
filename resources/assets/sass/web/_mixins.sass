@@ -1,0 +1,350 @@
+//////////////////////////////////////////
+///////////////// MIXINS /////////////////
+//////////////////////////////////////////
+
+
+////////////////////////////////////////
+//                                    //
+//            TRANSITIONS             //
+//                                    //
+////////////////////////////////////////
+
+// Transitions
+@mixin transition($segs)
+  -webkit-transition: all $segs ease 0s
+  transition: all $segs ease 0s
+  
+
+////////////////////////////////////////
+//                                    //
+//             SHADOWS                //
+//                                    //
+////////////////////////////////////////
+
+// BOX-SHADOW //
+// box-shadow: [horizontal offset] [vertical offset] [blur radius] [optional spread radius] [color]
+
+@mixin box-shadow( $horiz : 5px , $vert : 2px , $blur : 8px , $spread : -5px , $color : rgba(0,0,0,0.55) )
+  -webkit-box-shadow: $horiz $vert $blur $spread $color
+  -moz-box-shadow: $horiz $vert $blur $spread $color
+  box-shadow: $horiz $vert $blur $spread $color
+
+@mixin box-shadow-up( $horiz : 7px , $vert : -4px , $blur : 5px , $spread : -6px , $color : rgba(0,0,0,0.75) )
+  -webkit-box-shadow: $horiz $vert $blur $spread $color
+  -moz-box-shadow: $horiz $vert $blur $spread $color
+  box-shadow: $horiz $vert $blur $spread $color
+
+@mixin box-shadow-down( $horiz : 7px , $vert : 6px , $blur : 5px , $spread : -6px , $color : rgba(0,0,0,0.75) )
+  -webkit-box-shadow: $horiz $vert $blur $spread $color !important
+  -moz-box-shadow: $horiz $vert $blur $spread $color !important
+  box-shadow: $horiz $vert $blur $spread $color !important
+
+@mixin box-shadow-soft( $horiz : 1px , $vert : 3px , $blur : 5px , $spread : -5px , $color : rgba(0,0,0,0.75))
+  -webkit-box-shadow: $horiz $vert $blur $spread $color
+  -moz-box-shadow: $horiz $vert $blur $spread $color
+  box-shadow: $horiz $vert $blur $spread $color
+
+@mixin box-shadow-soft2( $horiz : 4px , $vert : 3px , $blur : 11px , $spread : -5px , $color : rgba(0,0,0,0.75))
+  -webkit-box-shadow: $horiz $vert $blur $spread $color
+  -moz-box-shadow: $horiz $vert $blur $spread $color
+  box-shadow: $horiz $vert $blur $spread $color
+
+@mixin box-shadow-floor( $horiz : 0px , $vert : 25px , $blur : 14px , $spread : -24px , $color : rgba(0, 0, 0, 0.4))
+  -webkit-box-shadow: $horiz $vert $blur $spread $color
+  -moz-box-shadow: $horiz $vert $blur $spread $color
+  box-shadow: $horiz $vert $blur $spread $color
+
+@mixin box-shadow-floor-big( $horiz : -3px , $vert : 19px , $blur : 11px , $spread : -14px , $color : rgba(0, 0, 0, 0.4))
+  -webkit-box-shadow: $horiz $vert $blur $spread $color
+  -moz-box-shadow: $horiz $vert $blur $spread $color
+  box-shadow: $horiz $vert $blur $spread $color
+
+@mixin box-shadow-big( $horiz : 6px , $vert : 10px , $blur : 17px , $spread : -4px , $color : rgba(0, 0, 0, 0.75) )
+  -webkit-box-shadow: $horiz $vert $blur $spread $color !important
+  -moz-box-shadow: $horiz $vert $blur $spread $color !important
+  box-shadow: $horiz $vert $blur $spread $color !important
+
+@mixin box-shadow-big-mid( $horiz : 1px , $vert : 10px , $blur : 17px , $spread : -4px , $color : rgba(0, 0, 0, 0.75) )
+  -webkit-box-shadow: $horiz $vert $blur $spread $color !important
+  -moz-box-shadow: $horiz $vert $blur $spread $color !important
+  box-shadow: $horiz $vert $blur $spread $color !important
+
+@mixin box-shadow-inner( $where: inset , $horiz : 2px , $vert : 2px , $blur : 5px , $spread : -2px , $color : rgba(0, 0, 0, 0.75) )
+  -webkit-box-shadow: $where $horiz $vert $blur $spread $color
+  -moz-box-shadow: $where $horiz $vert $blur $spread $color
+  box-shadow: $where $horiz $vert $blur $spread $color
+
+@mixin box-shadow-li( $horiz : 3px , $vert : -2px , $blur : 6px , $spread : -2px , $color : rgba(0, 0, 0, 0.50))
+  -webkit-box-shadow: $horiz $vert $blur $spread $color
+  -moz-box-shadow: $horiz $vert $blur $spread $color
+  box-shadow: $horiz $vert $blur $spread $color
+
+@mixin box-shadow-down2( $horiz : 5px , $vert : 3px , $blur : 11px , $spread : 3px , $color : rgba(0, 0, 0, 0.55) )
+  -webkit-box-shadow: $horiz $vert $blur $spread $color !important
+  -moz-box-shadow: $horiz $vert $blur $spread $color !important
+  box-shadow: $horiz $vert $blur $spread $color !important
+
+@mixin box-shadow-center( $horiz : -1px , $vert : 0px , $blur : 13px , $spread : -7px , $color : rgba(0, 0, 0, 0.55) )
+  -webkit-box-shadow: $horiz $vert $blur $spread $color !important
+  -moz-box-shadow: $horiz $vert $blur $spread $color !important
+  box-shadow: $horiz $vert $blur $spread $color !important
+   
+
+@mixin obscure-back
+  background: -moz-radial-gradient(center, ellipse cover, rgba(36,44,51,0) -1%, rgba(36,44,51,0.01) 0%, rgba(32,39,47,0.2) 22%, rgba(19,19,35,0.65) 100%)
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(36,44,51,0) -1%,rgba(36,44,51,0.01) 0%,rgba(32,39,47,0.2) 22%,rgba(19,19,35,0.65) 100%)
+  background: radial-gradient(ellipse at center, rgba(36,44,51,0) -1%,rgba(36,44,51,0.01) 0%,rgba(32,39,47,0.2) 22%,rgba(19,19,35,0.65) 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00242c33', endColorstr='#a6131323',GradientType=1 )
+
+////////////////////////////////////////
+//                                    //
+//            TEXT SHADOW             //
+//                                    //
+////////////////////////////////////////
+
+
+
+//1. value = The X-coordinate - 2. value = The Y-coordinate - 3. value = The blur radius - 4. value = The color of the shadow
+
+//  @include tShadow(5px,5px,5px, rgb(46, 46, 46))
+@mixin text-shadow($x, $y, $blur, $color)
+  -webkit-text-shadow: $x $y $blur $color
+  -moz-text-shadow: $x $y $blur $color
+  -moz-text-shadow: $x $y $blur $color
+  -o-text-shadow: $x $y $blur $color
+  text-shadow: $x $y $blur $color
+
+
+@mixin tx-shadow()
+  text-shadow: 1px 0px 2px #969696
+
+@mixin tx-shadow-white()
+  text-shadow: 0px 1px 5px #fff
+  -webkit-text-shadow: 0px 1px 5px #fff
+  -moz-text-shadow: 0px 1px 5px #fff
+  -moz-text-shadow: 0px 1px 5px #fff
+  -o-text-shadow: 0px 1px 5px #fff
+
+////////////////////////////////////////
+//                                    //
+//             FLEXBOX                //
+//                                    //
+////////////////////////////////////////
+@mixin flex-column
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -webkit-box-align: center
+  -ms-flex-align: center
+  -ms-grid-row-align: center
+  align-items: center
+  -webkit-box-pack: center
+  -ms-flex-pack: center
+  justify-content: center
+  -webkit-box-orient: vertical
+  -webkit-box-direction: normal
+  -ms-flex-direction: column
+  flex-direction: column
+
+@mixin flex-column-left
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -webkit-box-align: center
+  -ms-flex-align: center
+  -ms-grid-row-align: center
+  justify-content: center
+  -webkit-box-orient: vertical
+  -webkit-box-direction: normal
+  -ms-flex-direction: column
+  flex-direction: column
+
+
+@mixin flex-center
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -webkit-box-align: center
+  -ms-flex-align: center
+  -ms-grid-row-align: center
+  align-items: center
+  -webkit-box-pack: center
+  -ms-flex-pack: center
+  justify-content: center
+
+@mixin flex-center-left
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -webkit-box-align: center
+  -ms-flex-align: center
+  -ms-grid-row-align: center
+  align-items: center
+
+
+@mixin flex-center-grow
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -webkit-box-align: center
+  -ms-flex-align: center
+  -ms-grid-row-align: center
+  align-items: center
+  -webkit-box-pack: center
+  -ms-flex-pack: center
+  justify-content: center
+  -ms-flex-wrap: nowrap
+  flex-wrap: nowrap
+  flex-grow: 1
+
+@mixin flex-inline-centered
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -webkit-box-align: center
+  -ms-flex-align: center
+  -ms-grid-row-align: center
+  align-items: center
+  -webkit-box-pack: center
+  -ms-flex-pack: center
+  justify-content: center
+  flex-grow: 1
+
+@mixin flex-row-cent-wrap
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -webkit-box-align: center
+  -ms-flex-align: center
+  -ms-grid-row-align: center
+  align-items: center
+  -webkit-box-pack: center
+  -ms-flex-pack: center
+  justify-content: center
+  flex-wrap: wrap
+
+@mixin flex-justify-center
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -webkit-box-align: center
+  -ms-flex-align: center
+  -ms-grid-row-align: center
+  align-items: center
+  -webkit-box-pack: center
+  -ms-flex-pack: center
+  -webkit-box-pack: center
+  -ms-flex-pack: center
+  justify-content: center
+
+
+////////////////////////////////////////
+//                                    //
+//            TRANSFORMS              //
+//                                    //
+////////////////////////////////////////
+
+
+// TRANSLATE //
+//@include translate(0,-20px)
+@mixin translate( $x , $y )
+  -ms-transform: translate($x, $y)
+  -webkit-transform: translate($x, $y)
+  transform: translate($x, $y)
+
+  // SCALE //
+// @include scale(1.1 , 1.1)
+
+@mixin scale($x , $y)
+  -ms-transform: scale($x, $y)
+  -webkit-transform: scale($x, $y)
+  transform: scale($x, $y)
+
+////////////////////////////////////////
+//                                    //
+//              ARROWS                //
+//                                    //
+////////////////////////////////////////
+
+@mixin arrow-left($top,$right,$bottom,$color)
+  width: 0
+  height: 0
+  border-top: $top solid transparent
+  border-right: $right solid $color
+  border-bottom: $bottom solid transparent
+
+@mixin arrow-right($top,$left,$bottom,$color)
+  width: 0
+  height: 0
+  border-top: $top solid transparent
+  border-bottom: $bottom solid transparent
+  border-left: $left solid $color
+
+@mixin arrow-down($top,$right,$left,$color)
+  width: 0
+  height: 0
+  border-top: 10px solid $color
+  border-right: 10px solid transparent
+  border-left: 10px solid transparent
+
+@mixin  arrow-up($bottom,$right,$left,$color)
+  height: 0
+  border-right: $right solid transparent
+  border-left: $left solid transparent
+  border-bottom: $bottom solid $color
+
+////////////////////////////////////////
+//                                    //
+//            GRADIENTS               //
+//                                    //
+////////////////////////////////////////
+
+@mixin grad-radial($color1,$color2)
+  background: $color1
+  background: -moz-radial-gradient(center, ellipse cover, $color1 0%, $color2 100%)
+  background: -webkit-radial-gradient(center, ellipse cover, $color1 0%,$color2 100%)
+  background: radial-gradient(ellipse at center, $color1 0%,$color2 58%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$color1, endColorstr=$color2,GradientType=1 )
+
+
+@mixin grad-radial2($color1,$color2,$color3,$color4)
+  background: $color1
+  background: -moz-radial-gradient(center, ellipse cover, $color1 0%, $color2 35%, $color3 67%, $color4 100%)
+  background: -webkit-radial-gradient(center, ellipse cover, $color1 0%,$color2 35%,$color3 67%,$color4 100%)
+  background: radial-gradient(ellipse at center, $color1 0%,$color2 35%,$color3 67%,$color4 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$color1, endColorstr=$color4,GradientType=1 )
+
+
+@mixin grad-background()
+  background: rgba(235,233,249,1)
+  background: -moz-radial-gradient(center, ellipse cover, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 49%, rgba(206,199,236,1) 67%, rgba(193,191,234,1) 100%)
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(235,233,249,1)), color-stop(49%, rgba(216,208,239,1)), color-stop(67%, rgba(206,199,236,1)), color-stop(100%, rgba(193,191,234,1)))
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 49%, rgba(206,199,236,1) 67%, rgba(193,191,234,1) 100%)
+  background: -o-radial-gradient(center, ellipse cover, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 49%, rgba(206,199,236,1) 67%, rgba(193,191,234,1) 100%)
+  background: -ms-radial-gradient(center, ellipse cover, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 49%, rgba(206,199,236,1) 67%, rgba(193,191,234,1) 100%)
+  background: radial-gradient(ellipse at center, rgba(235,233,249,1) 0%, rgba(216,208,239,1) 49%, rgba(206,199,236,1) 67%, rgba(193,191,234,1) 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebe9f9', endColorstr='#c1bfea', GradientType=1 )
+
+@mixin gradCustom-background($c1,$c2,$c3,$c4)
+  background: $c1
+  background: -moz-radial-gradient(center, ellipse cover, $c1 0%, $c2 49%, $c3 67%, $c4 100%)
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, $c1), color-stop(49%, $c2), color-stop(67%, $c3), color-stop(100%, $c4))
+  background: -webkit-radial-gradient(center, ellipse cover, $c1 0%, $c2 49%, $c3 67%, $c4 100%)
+  background: -o-radial-gradient(center, ellipse cover, $c1 0%, $c2 49%, $c3 67%, $c4 100%)
+  background: -ms-radial-gradient(center, ellipse cover, $c1 0%, $c2 49%, $c3 67%, $c4 100%)
+  background: radial-gradient(ellipse at center, $c1 0%, $c2 49%, $c3 67%, $c4 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$c1', endColorstr='$c4', GradientType=1 )
+// Use like this
+//$transp: .8
+//@include gradCustom-background(rgba(177, 177, 177,$transp), rgba(120, 116, 116,$transp) , rgba(105, 105, 105,$transp), rgba(86, 86, 86,$transp) )
+
+////////////////////////////////////////
+//                                    //
+//             MISC                   //
+//                                    //
+////////////////////////////////////////
+
+@mixin border-radius($radio)
+  -webkit-border-radius: $radio
+  -moz-border-radius: $radio
+  border-radius: $radio

@@ -1,0 +1,147 @@
+//-------------------------------------------------
+//      Store Skin
+//--------------------------------------------------
+
+
+body
+	background-color: $grey
+
+
+h1,h2,h3,h4,h5,h6
+	font-family: $font2
+
+// Cart sidebar
+.cart-sidebar
+	box-shadow: 7px 2px 13px 5px rgba(0, 0, 0, 0.55)
+	background: rgba(243,194,173,1);
+	background: -moz-linear-gradient(top, rgba(243,194,173,1) 0%, rgba(234,101,115,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(243,194,173,1)), color-stop(100%, rgba(234,101,115,1)));
+	background: -webkit-linear-gradient(top, rgba(243,194,173,1) 0%, rgba(234,101,115,1) 100%);
+	background: -o-linear-gradient(top, rgba(243,194,173,1) 0%, rgba(234,101,115,1) 100%);
+	background: -ms-linear-gradient(top, rgba(243,194,173,1) 0%, rgba(234,101,115,1) 100%);
+	background: linear-gradient(to bottom, rgba(243,194,173,1) 0%, rgba(234,101,115,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3c2ad', endColorstr='#ea6573', GradientType=0 );
+	color: #fff
+	.item,a
+		color: #fff
+		font-weight: 300
+	a
+		font-weight: 600
+	.title,.values
+		color: #383838
+	.total-price-bottom
+		.inner-text
+			color: #383838
+	.inner
+		.item
+			.delete-item
+				color: #f9f9f9
+				&:hover
+					color: red
+
+
+// Index
+.topbar
+	background: #000
+	color: #fff
+	a
+		margin: 5px
+	span,i,p,a
+		color: #fff
+	.topbar-column
+		color: #fff
+		a
+			color: #fff !important
+
+.toolbar .cart
+	border: 0
+
+// UserBan
+.dropdown-item.active, .dropdown-item
+	&:hover
+		color: #fff
+	&:active,&:focus
+		background-color: $main-color
+		color: #fff
+
+.btn-outline-primary
+	border-radius: 4px
+	border: 1px solid #D12F59
+	color: #383838
+	padding-left: 10px
+	padding-right: 10px
+	&:hover,&:focus,&:active
+		background-color: #D12F59
+		color: #fff
+
+.product-show .products-details
+	background: #fff
+
+.product-card .discount-badge
+	.triangle
+		background-color: #D12F59
+	.text
+		color: #fff
+
+
+// UserBar
+.toolbar .cart
+	border: 1px solid #fff
+	&:hover
+		background-color: #ffffff
+		border: 1px solid #ccc
+		border-radius: 0 
+
+
+// BUTTONS
+.btn
+	border-radius: 0
+	border: 1px solid $main-color
+
+.btn-main-sm
+	background-color: $main-color
+	color: #fff
+	&:hover
+		border: 1px solid $main-color
+		background-color: transparent
+		color: #000
+
+.btn-main-borderless
+	background-color: transparent
+	border: 1px solid transparent
+	&:hover,&:active,&:focus
+		border: 1px solid transparent
+		background-color: transparent
+		color: #000
+
+.btn-main-sm-hollow
+	border: 1px solid $main-color
+	background-color: transparent
+	color: #383838
+	&:hover
+		background-color: $main-color
+		color: #000
+
+// FORMS
+.form-control
+	border-radius: 5px
+	border: 1px solid $grey
+
+
+.input-with-btn
+	.form-control:not(textarea)
+		height: 34px
+	.input-field
+		border-radius: 0
+		max-width: 90px
+		height: 34px
+	.input-btn
+		border-radius: 0
+		background-color: $main-color
+		color: #fff
+		height: 34px
+		line-height: 1rem
+		@include transition(0.2s)
+		&:hover
+			background-color: $main-color
+			color: #fff

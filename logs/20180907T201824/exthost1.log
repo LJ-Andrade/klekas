@@ -1,0 +1,72 @@
+[2018-09-07 20:18:28.154] [exthost1] [info] extension host started
+[2018-09-07 20:18:28.181] [exthost1] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:28.181] [exthost1] [info] ExtensionService#loadCommonJSModule /snap/vscode/53/usr/share/code/resources/app/extensions/debug-auto-launch/out/extension
+[2018-09-07 20:18:28.189] [exthost1] [info] ExtensionService#_doActivateExtension vscode.emmet {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:28.189] [exthost1] [info] ExtensionService#loadCommonJSModule /snap/vscode/53/usr/share/code/resources/app/extensions/emmet/dist/extension
+[2018-09-07 20:18:28.241] [exthost1] [info] ExtensionService#_doActivateExtension vscode.git {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:28.241] [exthost1] [info] ExtensionService#loadCommonJSModule /snap/vscode/53/usr/share/code/resources/app/extensions/git/dist/main
+[2018-09-07 20:18:28.470] [exthost1] [info] ExtensionService#_doActivateExtension vscode.merge-conflict {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:28.470] [exthost1] [info] ExtensionService#loadCommonJSModule /snap/vscode/53/usr/share/code/resources/app/extensions/merge-conflict/out/extension
+[2018-09-07 20:18:28.484] [exthost1] [info] ExtensionService#_doActivateExtension vscode.search-rg {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:28.484] [exthost1] [info] ExtensionService#loadCommonJSModule /snap/vscode/53/usr/share/code/resources/app/extensions/search-rg/out/extension
+[2018-09-07 20:18:28.492] [exthost1] [info] ExtensionService#_doActivateExtension alefragnani.Bookmarks {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:28.492] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/alefragnani.bookmarks-9.0.3/out/src/extension
+[2018-09-07 20:18:28.505] [exthost1] [info] ExtensionService#_doActivateExtension codingyu.laravel-goto-view {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:28.505] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/codingyu.laravel-goto-view-1.2.1/out/src/extension
+[2018-09-07 20:18:28.509] [exthost1] [info] ExtensionService#_doActivateExtension Equinusocio.vsc-material-theme {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:28.509] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/equinusocio.vsc-material-theme-2.4.2/extensions/material.theme.config.js
+[2018-09-07 20:18:28.521] [exthost1] [info] ExtensionService#_doActivateExtension formulahendry.auto-close-tag {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:28.521] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/formulahendry.auto-close-tag-0.5.6/out/src/extension
+[2018-09-07 20:18:28.522] [exthost1] [info] ExtensionService#_doActivateExtension formulahendry.auto-rename-tag {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:28.522] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/formulahendry.auto-rename-tag-0.0.15/out/src/extension
+[2018-09-07 20:18:28.524] [exthost1] [info] ExtensionService#_doActivateExtension lihui.vs-color-picker {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:28.524] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/lihui.vs-color-picker-0.7.0/out/src/extension
+[2018-09-07 20:18:28.526] [exthost1] [info] ExtensionService#_doActivateExtension naumovs.color-highlight {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:28.526] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/naumovs.color-highlight-2.3.0/dist/extension
+[2018-09-07 20:18:28.570] [exthost1] [info] ExtensionService#_doActivateExtension oderwat.indent-rainbow {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:28.570] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/oderwat.indent-rainbow-7.2.4/out/extension
+[2018-09-07 20:18:28.571] [exthost1] [info] ExtensionService#_doActivateExtension stef-k.laravel-goto-controller {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:28.571] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/stef-k.laravel-goto-controller-0.0.4/out/extension
+[2018-09-07 20:18:28.574] [exthost1] [info] ExtensionService#_doActivateExtension vincaslt.highlight-matching-tag {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:28.574] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/vincaslt.highlight-matching-tag-0.4.4/out/src/extension
+[2018-09-07 20:18:28.575] [exthost1] [info] ExtensionService#_doActivateExtension Zignd.html-css-class-completion {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:28.575] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/zignd.html-css-class-completion-1.17.1/out/src/extension
+[2018-09-07 20:18:28.956] [exthost1] [info] eager extensions activated
+[2018-09-07 20:18:44.937] [exthost1] [info] extension host started
+[2018-09-07 20:18:44.968] [exthost1] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:44.968] [exthost1] [info] ExtensionService#loadCommonJSModule /snap/vscode/53/usr/share/code/resources/app/extensions/debug-auto-launch/out/extension
+[2018-09-07 20:18:44.976] [exthost1] [info] ExtensionService#_doActivateExtension vscode.emmet {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:44.976] [exthost1] [info] ExtensionService#loadCommonJSModule /snap/vscode/53/usr/share/code/resources/app/extensions/emmet/dist/extension
+[2018-09-07 20:18:45.023] [exthost1] [info] ExtensionService#_doActivateExtension vscode.git {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:45.023] [exthost1] [info] ExtensionService#loadCommonJSModule /snap/vscode/53/usr/share/code/resources/app/extensions/git/dist/main
+[2018-09-07 20:18:45.220] [exthost1] [info] ExtensionService#_doActivateExtension vscode.merge-conflict {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:45.221] [exthost1] [info] ExtensionService#loadCommonJSModule /snap/vscode/53/usr/share/code/resources/app/extensions/merge-conflict/out/extension
+[2018-09-07 20:18:45.232] [exthost1] [info] ExtensionService#_doActivateExtension vscode.search-rg {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:45.232] [exthost1] [info] ExtensionService#loadCommonJSModule /snap/vscode/53/usr/share/code/resources/app/extensions/search-rg/out/extension
+[2018-09-07 20:18:45.238] [exthost1] [info] ExtensionService#_doActivateExtension alefragnani.Bookmarks {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:45.238] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/alefragnani.bookmarks-9.0.3/out/src/extension
+[2018-09-07 20:18:45.250] [exthost1] [info] ExtensionService#_doActivateExtension codingyu.laravel-goto-view {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:45.250] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/codingyu.laravel-goto-view-1.2.1/out/src/extension
+[2018-09-07 20:18:45.253] [exthost1] [info] ExtensionService#_doActivateExtension Equinusocio.vsc-material-theme {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:45.253] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/equinusocio.vsc-material-theme-2.4.2/extensions/material.theme.config.js
+[2018-09-07 20:18:45.264] [exthost1] [info] ExtensionService#_doActivateExtension formulahendry.auto-close-tag {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:45.264] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/formulahendry.auto-close-tag-0.5.6/out/src/extension
+[2018-09-07 20:18:45.265] [exthost1] [info] ExtensionService#_doActivateExtension formulahendry.auto-rename-tag {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:45.265] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/formulahendry.auto-rename-tag-0.0.15/out/src/extension
+[2018-09-07 20:18:45.267] [exthost1] [info] ExtensionService#_doActivateExtension lihui.vs-color-picker {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:45.267] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/lihui.vs-color-picker-0.7.0/out/src/extension
+[2018-09-07 20:18:45.268] [exthost1] [info] ExtensionService#_doActivateExtension naumovs.color-highlight {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:45.268] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/naumovs.color-highlight-2.3.0/dist/extension
+[2018-09-07 20:18:45.307] [exthost1] [info] ExtensionService#_doActivateExtension oderwat.indent-rainbow {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:45.307] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/oderwat.indent-rainbow-7.2.4/out/extension
+[2018-09-07 20:18:45.309] [exthost1] [info] ExtensionService#_doActivateExtension stef-k.laravel-goto-controller {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:45.309] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/stef-k.laravel-goto-controller-0.0.4/out/extension
+[2018-09-07 20:18:45.311] [exthost1] [info] ExtensionService#_doActivateExtension vincaslt.highlight-matching-tag {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:45.311] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/vincaslt.highlight-matching-tag-0.4.4/out/src/extension
+[2018-09-07 20:18:45.312] [exthost1] [info] ExtensionService#_doActivateExtension Zignd.html-css-class-completion {"startup":true,"activationEvent":"*"}
+[2018-09-07 20:18:45.312] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/zignd.html-css-class-completion-1.17.1/out/src/extension
+[2018-09-07 20:18:46.145] [exthost1] [info] ExtensionService#_doActivateExtension felixfbecker.php-intellisense {"startup":true,"activationEvent":"workspaceContains:**/*.php"}
+[2018-09-07 20:18:46.145] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/felixfbecker.php-intellisense-2.3.5/out/extension
+[2018-09-07 20:18:46.242] [exthost1] [info] ExtensionService#_doActivateExtension bmewburn.vscode-intelephense-client {"startup":true,"activationEvent":"workspaceContains:**/*.php"}
+[2018-09-07 20:18:46.242] [exthost1] [info] ExtensionService#loadCommonJSModule /home/javzero/.vscode/extensions/bmewburn.vscode-intelephense-client-0.8.8/out/src/extension
+[2018-09-07 20:18:46.350] [exthost1] [info] eager extensions activated

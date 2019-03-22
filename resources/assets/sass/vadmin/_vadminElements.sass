@@ -1,0 +1,1173 @@
+//////////////////////////////////////
+//                                  //
+//           BACKGROUNDS            //
+//                                  //
+//////////////////////////////////////
+
+.blue-back
+	background-color: $blue
+
+.green-back
+	background-color: $green
+
+.red-back
+	background-color: $red
+	color: #fff
+
+.grey-back
+	background-color: #f3f3f3
+
+
+.yellow-back
+	background-color: #08dc2e
+	
+//////////////////////////////////////
+//                                  //
+//           CONTAINERS             //
+//                                  //
+//////////////////////////////////////
+
+.inner-wrapper
+	margin-bottom: 45px
+
+.test-box
+	background-color: #ffffff
+	border-radius: 5px
+	padding: 10px
+	margin-bottom: 10px
+	margin-top: 10px
+
+.narrow-card
+	max-width: 400px
+	margin-bottom: 20px
+	.inner
+		min-width: 400px
+		border: 2px solid #f9f9f9
+		.card-content
+			border: 1px solid #f9f9f9
+			border-top: 0
+			padding: 15px
+			width: 100%
+
+.round-image-card
+	max-width: 400px
+	margin-bottom: 20px
+	.inner
+		border: 2px solid #f9f9f9
+		.update-image
+			position: relative
+			padding: 25px 5px
+			background-color: #f9f9f9
+			text-align: center
+			.over-text
+				position: absolute
+				width: 100%
+				left: 0
+				top: 130px
+				color: #fff
+				font-weight: 600
+				font-size: 1.2rem 
+				opacity: 0
+				@include transition(0.2s)
+			&:hover
+				.over-text
+					opacity: 1
+					pointer-events: none
+		.image
+			padding: 25px 5px
+			text-align: center
+			position: relative
+			max-height: 320px
+			@include flex-center()
+			.over-text
+				position: absolute
+				left: 0
+				top: 0
+				width: 100%
+				height: 100%
+				@include flex-center()
+				background: rgba(#000,.8)
+				opacity: 0
+				@include transition(0.2s)
+			&:hover
+				opacity: 1
+				cursor: pointer
+		.update-image img, .image img
+				border-radius: 50%
+				max-width: 100%
+				max-height: 100%
+				@include transition(0.2s)
+				&:hover
+					cursor: pointer
+					opacity: 0.9
+		button, html [type="button"], [type="reset"], [type="submit"]
+			-webkit-appearance: none
+		.card-content
+			border: 1px solid #f9f9f9
+			border-top: 0
+			padding: 15px
+			width: 100%
+
+// CONTENT-HEADER
+
+.content-header
+	padding-bottom: 9px
+	margin-bottom: 5px
+	.inner-header
+		background-color: #F3F3F3
+		padding-top: 15px
+		padding-bottom: 15px
+	.list-actions
+		.float-buttons
+			position: fixed
+			bottom: 30px
+			right: 20px
+			z-index: 999
+		.results
+			margin-top: 10px
+			margin-left: 10px
+
+@media (max-width: 548px)
+	.content-header-fixed
+		width: 92%
+
+
+.content-header-inner
+	background-color: #F3F3F3
+	padding-top: 10px
+	padding-bottom: 9px
+	margin-bottom: 5px
+	margin-top: 10px
+
+.header-space
+	height: 150px
+
+@media (max-width: 366px)
+	.content-header
+		.list-actions
+			.btn
+				padding: 5px 10px
+		
+@media (max-width: 1400px)
+	.content-header
+		margin-bottom: 1px
+
+.centered-content
+	@include flex-center()
+
+.info-container
+	background-color: #f9f9f9
+	padding: 10px
+	position: relative
+	p
+		text-indent: 20px
+		font-size: 1rem
+		margin-bottom: 0
+	.icon
+		position: absolute
+		top: 10px
+		left: 8px
+		i
+			color: #8e8ef9
+
+@media (max-width: 765px)
+	.info-container
+		margin-top: 10px
+		max-width: 450px
+
+.documentation
+	p
+		font-size: 1.1rem
+		font-weight: 300
+		line-height: 23px
+
+.show-item
+	.custom-badge
+		font-size: 1.1rem
+		font-weight: 400
+		margin-top: 10px
+	.muted
+		color: #ccc
+		font-size: 0.9rem		
+
+.inline-links
+	margin-bottom: 15px
+	a
+		white-space: nowrap
+		margin: 0 10px 5px 7px
+		border-right: 1px solid #383838
+		padding-right: 18px 
+		&:last-child
+			border: 0
+
+
+@media (max-width: 768px)
+	.inline-links
+		line-height: 2rem
+
+
+.column-data
+	.item
+		white-space: nowrap
+		display: inline-flex
+		.label
+			width: 200px
+			margin: 2px 0
+			margin-right: 15px
+			border-bottom: 1px solid #f9f9f9
+		.data
+			border-bottom: 1px solid #f9f9f9
+
+
+//////////////////////////////////////
+//                                  //
+//            SEARCH                //
+//                                  //
+//////////////////////////////////////
+
+// ------- FILTERS -------- //
+	
+.search-filters
+	display: none
+	position: relative
+	margin-bottom: 10px
+	padding: 15px
+	background-color: #fff
+	border: 0
+	border-radius: 5px
+	color: #383838
+	@include box-shadow-floor-big
+	z-index: 999
+	.form-control
+		background: transparent
+		border: 0
+		padding: 2px
+		input,select
+			background: #fff
+			border: 1px solid #ccc
+	input.form-control,select.form-control
+		background: #fff
+	
+	.col
+		float: left
+		width: auto
+	form
+		margin-left: 10px
+	input,select
+		background: #fff
+		border: 1px solid #ccc
+	label
+		font-weight: 400
+		margin: 0
+		margin-bottom: 2px
+		color: #383838
+	.hide-desk
+		display: none
+	.actionBtn
+		margin-left: 10px
+		margin-top: 20px
+	.searchBtn
+		margin-right: 5px
+		margin-bottom: 5px
+	.appendBtn
+		border-radius: 0 2px 2px 0 
+	.loneBtn
+		margin-left: 10px
+		margin-top: 25px
+
+@media (max-width: 765px)
+	.search-filters
+		form
+			.form-group
+				margin-bottom: 10px
+		.actionBtn
+			margin-left: 0
+
+.search-results
+	margin-bottom: 15px
+	span
+		font-weight: 600
+
+//////////////////////////////////////
+//                                  //
+//             LISTS                //
+//                                  //
+//////////////////////////////////////
+///// Vertical List ///
+.vertical-list
+	ul
+		padding-left: 0
+		padding: 0
+		margin: 0
+		list-style: none
+		li
+			list-style: none
+			display: block
+			// float: left
+			// width: 100px
+			// line-height: 80px
+			// vertical-align: middle
+
+//// Grid View /////
+.horizontal-list
+	ul
+		padding-left: 0
+		padding: 0
+		margin: 0
+		li
+			display: inline-block
+			list-style: none
+
+
+
+//////////////////////////////////////
+//                                  //
+//            FORMS                 //
+//                                  //
+//////////////////////////////////////
+input,select
+	color: #000
+
+.big-form
+	padding: 10px
+	background-color: #fff
+	@include box-shadow
+	padding: 20px
+	.form-group 
+		margin-bottom: .8rem
+	label
+		font-size: 1rem
+		font-weight: 700
+	.no-label
+		padding-top: 32px
+	.box-container
+		position: relative
+		padding: 10px 20px
+		border: 1px solid #ccc
+		margin-top: 10px
+		.box-inner
+			padding: 10px
+	.sub-title
+		.inner-sub-title
+			margin-top: 15px
+			padding: 7px 6px 3px
+			padding-left: 6px
+			background-color: #f5f5f5
+			span
+				font-size: 1rem
+				font-weight: 700
+			i.icon
+				padding-top: 4px
+				font-size: 1.5rem
+				margin-right: 8px
+				margin-left: 8px
+	.multiple-items
+		position: relative
+		.add-another
+			margin-top: 10px
+			position: absolute
+			bottom: -30px
+			left: 0
+			font-size: 1rem
+	.variants
+		.variants-selectors
+			margin-bottom: 15px
+			.inner
+				padding: 10px
+				border: 1px solid #f9f9f9
+				margin-bottom: 15px
+			.sub-title
+				margin-right: 15px
+				margin-bottom: 5px
+				font-weight: 600
+			.items
+				margin-right: 10px
+		.inner-table
+			.table-title
+			table
+				border: 1px solid #f9f9f9
+
+
+@media (max-width: 768px)
+	.big-form
+		.no-label
+			padding-top: 0
+			margin-bottom: 20px
+
+/// Image thumnbail with delete icon
+.featured-image
+	.inner
+		position: relative
+		img
+			max-width: 100%
+		.overlay
+			@include flex-column
+			background-color: rgba(0,0,0,.7)
+			opacity: 0
+			position: absolute
+			text-align: center
+			width: 100%
+			height: 100%
+			top: 0
+			left: 0
+			@include transition(0.2s)
+			p
+				color: #fff
+			i
+				background-color: #fff
+				border-radius: 50%
+				color: #383838
+				font-size: 1.5rem
+				padding: 6px
+			&:hover
+				opacity: 1
+				cursor: pointer
+.is-featured
+	border: 5px solid $dark-main
+
+.actual-images
+	ul 
+		li
+			position: relative
+			margin-right: 5px
+			margin-bottom: 5px
+			&:hover
+				.overlayItemCenter
+					opacity: 1
+					cursor: pointer
+	img
+		width: 150px
+		max-width: 100%
+
+
+.overlayItemCenter
+	position: absolute
+	height: 100%
+	width: 100%
+	top: 0
+	left: 0	
+	@include flex-center
+	@include transition(0.2s)
+	background-color: rgba(0,0,0,0.5)
+	opacity: 0
+	i
+		background-color: #fff
+		padding: 10px
+		border-radius: 50%
+		font-size: 1.4rem 
+		margin: 2px
+	i.delete-img
+		&:hover
+			@include transition(0.2s)
+			background-color: $red
+			color: #fff
+	i.icon-star
+		&:hover
+			@include transition(0.2s)
+			background-color: #3fea34
+			color: #000
+
+	
+.modificable-input
+	padding: 2px
+	padding-right: 36px !important;
+	white-space: nowrap
+	> input
+		display: inline-block
+		max-width: 120px
+		float: left
+	> div
+		display: inline-block
+	.action-button
+		background-color: $green
+		border-radius: 50%
+		padding: 4px 6px
+		width: 25px
+		height: 25px
+		color: #fff
+		margin-left: 5px
+		@include transition(0.2s)
+		&:hover
+			cursor: pointer
+			background-color: $greenH
+
+
+.display-input-disabled
+	border: 0 !important
+	background: transparent !important
+	padding: 0
+	padding-top: 5px
+
+
+.custom-list
+	.row-selected
+		background-color: #fff1e8 !important
+		&:hover
+			background-color: #ece1d9 !important 
+	th
+		white-space: nowrap
+	tr
+		@include transition(0.2s)
+		&:hover
+			background-color: #ececec !important
+			.show-link a
+				color: $green
+		td.max-text
+			max-width: 200px
+			overflow: hidden
+			white-space: nowrap
+			text-overflow: ellipsis
+		td.thumb
+			padding: 0
+			width: 70px
+			text-align: center
+			img
+				width: 70px
+				max-width: 100%
+		td.with-notification
+			padding-left: 24px
+		td
+			white-space: nowrap
+			vertical-align: middle
+			position: relative
+			.cell-notification
+				position: absolute
+				height: 100%
+				left: 6px
+				top: 0
+				@include flex-column()
+				i
+					color: red
+			.editable-input
+				padding-left: 3px
+				border: 0
+				background: transparent
+				&:focus
+					border: 1px solid #b1b1da
+			.percent
+				white-space: nowrap
+			.percent::before
+				content: "%"
+				padding: 0 5px
+				text-align: center
+			.money::before
+				content: "$"
+				padding: 0 5px
+				text-align: center
+			// Hide arrows in number inputs
+			input[type='number']
+				-moz-appearance:textfield
+			input::-webkit-outer-spin-button
+			input::-webkit-inner-spin-button
+				-webkit-appearance: none
+			.label
+				margin: 0
+	.show-link a
+		color: $blue
+		font-weight: 600
+	.delete-icon i
+		color: $red
+		@include transition(0.2s)
+		&:hover
+			cursor: pointer
+			color: red
+
+.list-checkbox
+	padding-left: 0 !important
+	margin-bottom: 0
+
+
+.invisible-input
+	border: 0
+	padding-left: 10px
+	&:active,&:focus
+		border: 1px solid #ccc
+
+
+
+.info-label
+	padding: 5px
+	margin-top: 10px
+	background-color: #f9f9f9
+	position: relative
+	.right-info
+		position: absolute
+		right: 10px
+		top: 5px
+		color: #64a4cc !important
+		&:hover
+			color: $red
+
+.greyed-row-form
+	padding: 20px 10px 0;
+	background-color: rgba(249,249,249,.50)
+	margin-bottom: 20px
+
+//////////////////////////////////////
+//                                  //
+//            BUTTONS               //
+//                                  //
+//////////////////////////////////////
+
+.btn
+	// margin-bottom: 15px
+	@include transition(0.2s)
+	border-radius: 2px
+	padding: 5px 15px
+
+.btnSquare
+	border-radius: 5px
+
+.btnSm
+	display: inline-block
+	font-weight: normal
+	line-height: 1.25
+	text-align: center
+	white-space: nowrap
+	vertical-align: middle
+	cursor: pointer
+	user-select: none
+	border: 1px solid transparent
+	padding: 4px 12px
+	font-size: 1rem
+	border-radius: 0.18rem
+	transition: all 0.2s ease-in-out
+
+.btn-close
+	position: absolute
+	right: 5px
+	top: 5px
+	font-size: 1.5rem
+	&:hover
+		cursor: pointer
+		color: #ccc
+
+.btnGreen
+	background-color: $green
+	color: #fff
+	&:hover
+		background-color: $greenH
+		color: #fff
+
+.btnRed
+	background-color: $red
+	color: #fff
+	&:hover
+		background-color: $redH
+		color: #fff
+
+.btnYellow
+	background-color: $orange
+	color: #fff
+	&:hover
+		background-color: $orangeH
+		color: #fff
+
+.btnBlue
+	background-color: $blue
+	color: #fff
+	&:hover
+		background-color: $blueH
+		color: #fff
+	&:active,&:focus
+		color: #fff
+
+
+.btnGrey
+	background-color: #ccc
+	color: #000
+	&:hover
+		background-color: #f9f9f9
+	&:active,&:focus
+		color: #000
+
+.btnMain
+	background-color: $dark-main
+	color: #fff
+	&:hover
+		background-color: rgba($dark-main, 0.8)
+		color: #fff
+	&:active,&:focus
+		color: #fff
+
+
+.iconSquare
+	padding: 10px 13px
+	width: 15px
+	height: 15px
+	font-size: 1.2rem
+	// border-radius: 50%
+
+.icon-container
+	padding: 10px
+	font-size: 1.2rem
+
+.circle-alert
+	background-color: $blue
+	padding: 4px 7px
+	border-radius: 50%
+	margin-left: 5px
+
+.fixed-if-scroll.false
+	position: relative
+	top: auto
+	right: auto
+
+.fixed-if-scroll.true
+	position: fixed
+	top: 80px
+	right: 20px
+	z-index: 9998
+//////////////////////////////////////
+//                                  //
+//            CHECKBOXES            //
+//                                  //
+//////////////////////////////////////
+
+/* The switch - the box around the slider */
+.switch
+	position: relative
+	display: inline-block
+	width: 40px
+	height: 26px
+
+/* Hide default HTML checkbox */
+.switch input
+	display:none
+
+/* The slider */
+.slider
+	position: absolute
+	cursor: pointer
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	background-color: #ccc
+	-webkit-transition: .4s
+	transition: .4s
+
+.slider:before
+	position: absolute
+	content: ""
+	height: 20px
+	width: 18px
+	left: 2px
+	bottom: 3px
+	background-color: white
+	-webkit-transition: .4s
+	transition: .4s
+
+input:checked + .slider
+	background-color: #2196F3
+
+input:focus + .slider
+	box-shadow: 0 0 1px #2196F3
+
+input:checked + .slider:before
+	-webkit-transform: translateX(16px)
+	-ms-transform: translateX(16px)
+	transform: translateX(16px)
+
+/* Rounded sliders */
+.slider.round
+	border-radius: 34px
+
+.slider.round
+	&:before
+		border-radius: 50%
+
+// Examples
+
+// Rectangular switch
+//<label class="switch">
+//  <input type="checkbox">
+//  <span class="slider"></span>
+//</label>
+
+// Rounded switch
+//<label class="switch">
+//  <input type="checkbox">
+//  <span class="slider round"></span>
+//</label>
+
+
+//////////////////////////////////////
+//                                  //
+//              DECO                //
+//                                  //
+//////////////////////////////////////
+
+
+.custom-badge
+	display: inline-block
+	min-width: 10px
+	padding: 3px 7px
+	font-size: 12px
+	font-weight: 700
+	line-height: 1
+	color: #fff
+	text-align: center
+	white-space: nowrap
+	vertical-align: middle
+	border-radius: 10px
+	margin-bottom: 5px
+
+.small-badge-with-data
+	position: relative
+	margin-bottom: 5px
+	border-radius: 20px
+	border: 1px solid $blue
+	white-space: nowrap
+	padding: 0
+	margin-right: 10px
+	float: left
+	color: #383838
+	white-space: nowrap
+	max-height: 33px
+	.detail-data
+		padding: 5px 0
+		margin-right: 10px
+		padding-left: 10px
+		float: left
+		p
+			font-size: .9rem
+			margin: 0
+	.value-data
+		padding: 5px 0
+		// margin-right: 10px 
+		float: left
+		width: auto
+		min-width: 25px
+		height: 100%
+		border-radius: 0
+		text-align: center
+		border-left: 1px solid #5d76c95e
+		.editable-input
+			padding: 0
+		input
+			width: 100%
+			max-width: 40px
+			text-align: center
+	// .inner
+	// 	position: absolute
+	// 	height: 100%
+	// 	right: 3px
+	// 	top: 0
+	// 	@include flex-center()
+	// 	.inner-data
+	// 		height: 25px
+	// 		width: auto
+	// 		border-radius: 50%
+	// 		padding: 1px 2px
+	// 		border: 1px solid $blue
+	// 		color: #383838
+	// 		text-align: center
+
+.badge
+	border-radius: 5px
+	color: #fff
+	padding: 5px
+	margin-left: 2px
+	margin-right: 2px
+	@include transition(0.2s)
+	&:hover
+		cursor: pointer
+		filter: brightness(1.1)
+.badge-blue
+	background-color: $blue
+.badge-green
+	background-color: $green
+	
+.softhr
+	border-top: 1px solid #E4E4E4
+
+
+//////////////////////////////////////
+//                                  //
+//           COLOR PICKER           //
+//                                  //
+//////////////////////////////////////
+
+.colors-container
+	position: relative
+	.color-picker-list
+		padding-top: 5px
+		@include flex-center-left
+		>div
+			float: left
+			margin-right: 5px
+	.picked-color
+		border: 0
+		border-radius: 50%
+		margin: 2px
+		width: 40px
+		height: 40px
+		padding: 5px
+		@include box-shadow-soft2	
+	.ColorPickerLi
+		margin: 2px
+		width: 100px
+		height: 40px
+		position: relative
+
+// ColorPicker Style
+.sp-replacer
+	background-color: $dark
+	border: 0
+	color: #fff
+.sp-replacer.sp-active
+	color: #fff
+.sp-preview-inner
+	border: 1px solid #fff
+.sp-container
+	border: 0
+	background-color: $dark
+	color: #fff
+	@include box-shadow-big
+.sp-cancel
+	color: #fff
+	&:hover
+		color: #a1c1f6
+.sp-choose
+	border-radius: 0
+	background-color: #fff
+
+
+//////////////////////////////////////
+//                                  //
+//           PAGINATION             //
+//                                  //
+//////////////////////////////////////
+
+.page-item.active .page-link, .page-item.active .page-link:focus
+	background-color: $dark
+	border: $dark
+
+// ul.pagination
+// 	margin-top: 2px
+
+// ul.pagination li
+// 	display: inline
+// 	font-size: 1rem
+// 	font-weight: bold
+
+// ul.pagination li a
+// 	padding: 8px 12px
+// 	background-color: #fff
+
+// ul.pagination li a
+// 	color: black
+// 	text-decoration: none
+// 	transition: background-color .3s
+// 	border: 1px solid #ddd
+
+// ul.pagination li a.active
+// 	background-color: #4CAF50
+// 	color: white
+
+// ul.pagination li.active
+// 	/*background-color: #4CAF50;*/
+// 	background-color: #1D2B36
+// 	padding: 8px 12px
+// 	color: white
+
+// ul.pagination li.disabled
+// 	background-color: #f9f9f9
+// 	&:hover	
+// 		cursor: not-allowed
+	
+
+// /*ul.pagination li a:hover:not(.active) {background-color: #ddd;}*/
+// ul.pagination li a:hover
+// 	background-color: #1D2B36
+// 	color: #fff
+
+// ul.pagination li.disabled
+//     /*background-color: #cccccc;*/
+//     color: #ddd
+//     padding: 8px 12px
+//     border: 1px solid #ddd
+//     margin: 4px
+
+//////////////////////////////////////
+//                                  //
+//              ALERTS              //
+//                                  //
+//////////////////////////////////////
+
+.alert-success
+	color: #fff
+	background-color: $green
+	border: 0
+	.close
+		opacity: 1
+		color: #fff
+		text-shadow: none
+	ul
+		margin-bottom: 0
+
+.alert-error
+	color: #fff
+	background-color: $red
+	border: 0
+	.close
+		opacity: 1
+		color: #fff
+	ul
+		margin-bottom: 0
+
+//////////////////////////////////////
+//                                  //
+//            BACKGROUNDS           //
+//                                  //
+//////////////////////////////////////
+
+.blue-back
+	background-color: $lightBlue
+	color: #fff
+	span
+		color: #fff
+
+.green-back
+	background-color: $greenD	
+	color: #fff
+	span
+		color: #fff
+
+.light-green-back
+	background-color: #dae2d4
+	color: #383838
+
+.light-grey-back
+	background-color: #eaeaea
+.inner-grey-back
+	background-color: rgb(247, 247, 247)
+
+//////////////////////////////////////
+//                                  //
+//              LOGIN               //
+//                                  //
+//////////////////////////////////////
+
+.login-page
+	background-color: $dark-detail1
+
+.login-container
+	@include flex-center
+	.inner
+		@include box-shadow-soft
+		border-radius: 0
+		width: 500px
+		max-width: 100%
+		margin-top: 80px
+		.card
+			border-radius: 2px
+		.card-header
+			padding: 0
+			background-color: transparent
+			padding-top: 15px
+			.app-logo
+				img
+					width: 150px
+			.card-subtitle
+				margin-bottom: 10px
+				margin-top: 20px
+		.card-body
+			.forgot-pasword
+				text-align: right
+				a
+					font-weight: 300
+			.card-block
+				padding-bottom: 0
+		.vadmin-logo
+			text-align: center
+			img
+				width: 100px
+			.text
+				font-weight: 300
+		.rememberme-box
+			margin-top: 10px
+		.card-footer
+			font-size: 0.8rem
+			background-color: transparent
+		.register
+			margin-top: 15px
+		fieldset
+			margin-bottom: 10px
+		input
+			margin-bottom: 5px
+		input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill
+			background-color: #fff !important
+
+@media (max-width: 500px)
+	.login-container
+		.inner
+			margin-top: 80px
+
+@media (max-width: 768px)
+	.login-container .inner .card-body .forgot-pasword
+		text-align: center
+		margin-top: 15px 
+
+.login-messages
+	text-align: center
+	padding: 15px
+	background-color: #f9f9f9
+	margin-bottom: 15px
+	position: relative
+	
+//////////////////////////////////////
+//                                  //
+//              LOADER              //
+//                                  //
+//////////////////////////////////////
+
+.full-loader
+	position: fixed
+	z-index: 9999
+	background-color: rgba(255, 255, 255, 0.82)
+	width: 100%
+	height: 100%
+	@include flex-column
+	color: #383838
+	.loader-text
+		width: 90px
+
+//////////////////////////////////////
+//                                  //
+//              OTHERS              //
+//                                  //
+//////////////////////////////////////
+
+.main-copyright
+	// position: absolute
+	// bottom: 0
+	// right: 0
+	width: 100%
+	background-color: #ececec
+	padding: 5px
+	z-index: 10
+	.inner
+		@include flex-center-right
+		.text
+			padding-top: 4px
+			font-style: italic
+			font-size: 1rem
+			font-weight: 600
+		a
+			color: $blue
+			margin-right: 10px
+	
+@media (max-width: 400px)
+	.main-copyright
+		// position: absolute
+		// left: 10px
+		text-align: center
+		padding: 0
+		.inner
+			.text
+				float: none
+				margin-bottom: 10px
+			img
+				padding-top: 5px
