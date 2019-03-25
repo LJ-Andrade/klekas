@@ -2,7 +2,7 @@
 
 Auth::routes();
 
-Route::get('testDelete', ['as' => 'testDelete', 'uses' => 'Store\CartsController@testDelete']);
+// Route::get('testDelete', ['as' => 'testDelete', 'uses' => 'Store\CartsController@testDelete']);
 /*
 |--------------------------------------------------------------------------
 | STORE LOGIN / REGISTER :: ROUTES
@@ -28,7 +28,6 @@ Route::group(['prefix'=> 'tienda', 'middleware' => 'active-customer'], function(
 });
 
 // After
-
 Route::get('registro-completo', function(){ return view('store.register-success'); })->middleware('active-customer');
 Route::get('registro-en-proceso', function(){ return view('store.register-in-process'); })->middleware('active-customer');
 
@@ -85,7 +84,14 @@ Route::post('mail_sender', 'WebController@mail_sender');
 | Store
 |--------------------------------------------------------------------------
 */
-Route::get('/', 'Store\StoreController@index')->middleware('active-customer');
+
+// Route::get('/', 'Store\StoreController@index')->middleware('active-customer');
+
+Route::get('/', function(){ 
+    return redirect("https://namastetejidos.mitiendanube.com/");
+});
+
+
 Route::get('tienda', ['as' => 'store', 'uses' => 'Store\StoreController@index'])->middleware('active-customer');
 Route::get('politica-de-exclusividad', function(){ return view('store.reseller-policy'); });
 Route::get('condiciones-de-compra', function(){ return view('store.buy-conditions'); });
