@@ -43,7 +43,13 @@
 				@slot('title', 'marcas')
 					@if(!$items->count() == '0')
 					@slot('tableTitles')
-						<th></th>
+						<th>
+							<label class="custom-control custom-checkbox list-checkbox">
+								<input type="checkbox" class="Select-All-To-Delete custom-control-input row-checkbox">
+								<span class="custom-control-indicator"></span>
+								<span class="custom-control-description"></span>
+							</label>
+						</th>
 						<th>Nombre</th>
 						<th>Fecha de Creación</th>
 					@endslot

@@ -111,8 +111,11 @@ class PaymentsController extends Controller
 
     public function destroy(Request $request)
     {   
-        $ids = json_decode('['.str_replace("'",'"',$request->id).']', true);
-    
+        $ids = json_decode('['.str_replace("'",'"',$request->id).']', true);    
+        
+        if(in_array('7', $ids))
+            return response()->json([ 'error' => false, 'message' => 'No puede eliminar Mercado Pago. Si desea desactivar este método de pago debe solicitarselo a el programador']);
+        
         try {
             foreach ($ids as $id) {
                 $item = Payment::find($id);

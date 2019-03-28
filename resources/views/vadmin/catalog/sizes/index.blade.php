@@ -14,7 +14,7 @@
 		@slot('actions')
 			{{-- Actions --}}
 			<div class="list-actions">
-				<a href="{{ route('cat_sizes.create') }}" class="btn btnBlue"><i class="icon-plus-round"></i>  Nuevo Talle</a>
+				<a href="{{ route('cat_sizes.create') }}" class="btn btnMain"><i class="icon-plus-round"></i>  Nuevo Talle</a>
 				{{-- <button id="SearchFiltersBtn" class="btn btnBlue"><i class="icon-ios-search-strong"></i></button> --}}
 				{{-- Edit --}}
 				<button class="EditBtn btn btnGreen Hidden"><i class="icon-pencil2"></i> Editar</button>
@@ -50,7 +50,13 @@
 				@slot('title', 'Talles')
 					@if(!$size->count() == '0')
 					@slot('tableTitles')
-						<th></th>
+						<th>
+							<label class="custom-control custom-checkbox list-checkbox">
+								<input type="checkbox" class="Select-All-To-Delete custom-control-input row-checkbox">
+								<span class="custom-control-indicator"></span>
+								<span class="custom-control-description"></span>
+							</label>
+						</th>
 						<th>Nombre</th>
 						<th>Fecha de Creación</th>
 					@endslot

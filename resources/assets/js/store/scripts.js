@@ -146,7 +146,6 @@ window.sumDivs = function (origins, target) {
 // Check product variant stock
 // -------------------------------------------
 window.checkVariantStock = function() {
-    
     let form = $('#AddToCartForm');
     let data = form.serialize();
     let allowSubmit = false;
@@ -162,18 +161,18 @@ window.checkVariantStock = function() {
             if(data.response == true)
             {
                 if(data.message == '0')
-                    {
-                        $('.AvailableStock').html("No hay stock disponible");
-                        submitButton.prop('disabled', true);
-                    }
-                    else
-                    {
-                        console.log(data);
-                        $('.AvailableStock').html("Stock disponible: " + data.message);
-                        submitButton.prop('disabled', false);
-                        allowSubmit = true;
-                        console.log("Entro en SUCCESS");
-                    }
+                {
+                    $('.AvailableStock').html("No hay stock disponible");
+                    submitButton.prop('disabled', true);
+                }
+                else
+                {
+                    console.log(data);
+                    $('.AvailableStock').html("Stock disponible: " + data.message);
+                    submitButton.prop('disabled', false);
+                    allowSubmit = true;
+                    console.log("Entro en SUCCESS");
+                }
                 $('#MaxQuantity').prop("max", data.message);
             }
             else
@@ -185,12 +184,12 @@ window.checkVariantStock = function() {
             }
         },
         error: function (data) {
-            $('#Error').html(data.responseText);
+            //$('#Error').html(data.responseText);
             // location.reload();
             allowSubmit = false;
             submitButton.prop('disabled', true);
             console.log(data);
-            console.log("Entro en error 2");
+            console.log("Error en CheckVariantStock() - store/scripts.js");
         }
     });
     return allowSubmit;

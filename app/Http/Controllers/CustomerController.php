@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Customer;
+use App\GeoProv;
 use Auth;
 use Image;
 use File;
@@ -156,17 +157,19 @@ class CustomerController extends Controller
 
     public function create()
     {
-        return view('vadmin.customers.create');
+        $geoprovs = GeoProv::pluck('name','id');
+        
+        return view('vadmin.customers.create')
+            ->with('geoprovs',$geoprovs);
     }
 
     public function store(Request $request)
     {
-        $Customer = new Customer($request->all());
+        $customer = new Customer($request->all());
         $this->validate($request,[
             'name'           => 'required',
             'email'          => 'min:3|max:250|required|unique:customers,email',
-            'password'       => 'min:4|max:12listado-usuarios0|required|',
-            
+            'password'       => 'min:4|max:12listado-usuarios0|required|'   
         ],[
             'email.required' => 'Debe ingresar un email',
             'email.unique'   => 'El email ya existe',
@@ -175,13 +178,13 @@ class CustomerController extends Controller
 
         if($request->file('avatar') != null){
             $avatar   = $request->file('avatar');
-            $filename = $Customer->Customername.'.jpg';
+            $filename = $customer->username.'.jpg';
             Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/customers/'.$filename));
-            $Customer->avatar = $filename;
+            $customer->avatar = $filename;
         }
 
-        $Customer->password = bcrypt($request->password);
-        $Customer->save();
+        $customer->password = bcrypt($request->password);
+        $customer->save();
 
         return redirect('vadmin/customers')->with('message', 'Cliente creado correctamente');
     }
@@ -193,43 +196,63 @@ class CustomerController extends Controller
     */
     public function edit($id)
     {
-        $Customer = Customer::findOrFail($id);
-        return view('vadmin.customers.edit', compact('Customer'));
+        $geoprovs = GeoProv::pluck('name','id');
+        $customer = Customer::findOrFail($id);
+        
+        return view('vadmin.customers.edit')
+        ->with('geoprovs',$geoprovs)
+        ->with('customer',$customer);
     }
 
     public function update(Request $request, $id)
     {
-        $Customer = Customer::findOrFail($id);
-        $this->validate($request,[
-            'name' => 'required|max:255',
-            'Customername' => 'required|max:20|unique:customers,Customername,'.$Customer->id,
-            'email' => 'required|email|max:255|unique:customers,email,'.$Customer->id,
-            'password' => 'required|min:6|confirmed',
-            
-        ],[
-            'name.required' => 'Debe ingresar un nombre',
-            'Customername.required' => 'Debe ingresar un nombre de usuario',
-            'Customername.unique' => 'El nombre de usuario ya está siendo utilizado',
-            'email.required' => 'Debe ingresar un email',
-            'email.unique' => 'El email ya existe',
-            'password.min' => 'El password debe tener al menos :min caracteres',
-            'password.required' => 'Debe ingresar una contraseña',
-            'password.confirmed' => 'Las contraseñas no coinciden',
-        ]);
-
-        $Customer->fill($request->all());
-
-        $Customer->password = bcrypt($request->password);
-        if($request->file('avatar') != null){
-            $avatar   = $request->file('avatar');
-            $filename = $Customer->Customername.'.jpg';
-            Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/customers/'.$filename));
-            $Customer->avatar = $filename;
-        }
-
-        $Customer->save();
-
-        return redirect('vadmin/customers')->with('Message', 'Usuario '. $Customer->name .'editado correctamente');
+             // dd($request->all());
+             if($request->dni != NULL)
+             {
+                 $this->validate($request,[
+                     'dni' => 'digits:8|unique:customers,dni,'.$id
+                 ]);
+             }
+             
+             if($request->cuit != null )
+             {
+                 $this->validate($request,[
+                     'cuit' => 'digits:11|unique:customers,cuit,'.$id
+                 ]);
+             }
+                 
+             
+             $customer = Customer::findOrFail($id);
+             $this->validate($request,[
+                 'name' => 'required|max:255',
+                 'username' => 'required|max:20|unique:customers,username,'.$customer->id,
+                 'email' => 'required|email|max:255|unique:customers,email,'.$customer->id,
+                 // 'cuit' => 'digits:11|int|unique:customers,cuit,'.$customer->id,
+                 // 'password' => 'required|min:6|confirmed',
+             ],[
+                 'name.required' => 'Debe ingresar un nombre',
+                 'username.required' => 'Debe ingresar un nombre de usuario',
+                 'username.unique' => 'El nombre de usuario ya está siendo utilizado',
+                 'email.required' => 'Debe ingresar un email',
+                 'email.unique' => 'El email ya existe',
+                 'password.min' => 'El password debe tener al menos :min caracteres',
+                 'password.required' => 'Debe ingresar una contraseña',
+                 // 'password.confirmed' => 'Las contraseñas no coinciden',
+             ]);
+     
+             $customer->fill($request->all());
+             // $customer->password = bcrypt($request->password);
+     
+             if($request->file('avatar') != null){
+                 $avatar   = $request->file('avatar');
+                 $filename = $customer->username.'.jpg';
+                 Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save(public_path('images/customers/'.$filename));
+                 $customer->avatar = $filename;
+             }
+     
+             $customer->save();
+     
+             return redirect('vadmin/customers')->with('Message', 'Cliente '. $customer->name .'editado correctamente');
     }
 
     // ---------- Update Avatar --------------- //

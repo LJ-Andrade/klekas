@@ -224,7 +224,7 @@
 				{{-- ===============================  --}}
 
 				{{-- Seasons --}}
-				<li class="has-sub is-shown {{ Menu::activeMenu('cat_brands') }}">
+				{{-- <li class="has-sub is-shown {{ Menu::activeMenu('cat_brands') }}">
 					<a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">
 						Marcas
 					</a>
@@ -240,7 +240,7 @@
 							</a>
 						</li>
 					</ul>
-				</li>
+				</li> --}}
 				{{-- Categories --}}
 				<li class="has-sub is-shown">
 					<a href="#" data-i18n="nav.menu_levels.second_level_child.main" class="menu-item">
@@ -337,16 +337,21 @@
 					</a>
 				</li>
 				<li class="is-shown {{ Menu::activeMenu('orders') }}">
-					<a href="{{ route('orders.index', ['status' => 'Process']) }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> 
-						Nuevos
+						<a href="{{ route('orders.index', ['status' => 'Process']) }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> 
+							Nuevos
 						@if($newOrders > 0)
-							<span class="green">&bull;</span>
+						<span class="green">&bull;</span>
 						@endif
 					</a>
 				</li>
 				<li class="is-shown {{ Menu::activeMenu('orders') }}">
-						<a href="{{ route('orders.index', ['status' => 'Finished']) }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> 
-							Finalizados
+					<a href="{{ route('orders.index', ['status' => 'Approved']) }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> 
+						Aprobados
+					</a>
+				</li>
+				<li class="is-shown {{ Menu::activeMenu('orders') }}">
+					<a href="{{ route('orders.index', ['status' => 'Finished']) }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> 
+						Finalizados
 					</a>
 				</li>
 				<li class="is-shown {{ Menu::activeMenu('orders') }}">
@@ -363,11 +368,11 @@
 						@endif
 					</a>
 				</li>
-				<li class="is-shown {{ Menu::activeMenu('orders') }}">
+				{{-- <li class="is-shown {{ Menu::activeMenu('orders') }}">
 					<a href="{{ route('orders.index', ['status' => 'All']) }}" data-i18n="nav.menu_levels.second_level_child.third_level" class="menu-item"><i class="icon-list"></i> 
 						Ver Todos
 					</a>
-				</li>
+				</li> --}}
 			</ul>
 		</li>
 		<li class="has-sub is-shown {{ Menu::activeMenu('customers') }}">

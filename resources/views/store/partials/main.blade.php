@@ -39,7 +39,7 @@
 			</div>
 			
 			@yield('modal')
-			@include('store.partials.topbar')
+			{{-- @include('store.partials.topbar') --}}
 			@include('store.partials.nav') {{-- ToolBar is inside this nav include --}}
 			@include('store.partials.alerts')
 			
@@ -51,6 +51,25 @@
 			<div class="content"> @yield('content') </div>
 		</div>	
 			<!-- Site Footer-->
+			<div class="container-fluid widgets-footer">
+				<div class="row">
+					<div class="col-md-4 item">
+						<h4>Contacto</h4>
+						<p>15-5445-5454</p>
+					</div>
+					<div class="col-md-4 item">
+						<h4>Redes</h4>
+						<ul>
+							<li><i class="fab fa-facebook"></i></li>
+							<li><i class="fab fa-instagram"></i></li>
+							<li><i class="fab fa-twitter-square"></i></li>
+						</ul>
+					</div>
+					<div class="col-md-4 item">
+						<h4>Otros</h4>
+					</div>
+				</div>
+			</div>
 			<footer class="site-footer">
 				<div class="container">
 					<p class="footer-copyright">
@@ -62,7 +81,7 @@
 			{{-- Whats App Cta--}}
 			<div class="floating-bottom-cta">
 				<div class="inner">
-					<a href="https://wa.me/5491133212292" target="_blank"><i class="fab fa-whatsapp"></i></a>
+					<a href="https://wa.me/54912121212" target="_blank"><i class="fab fa-whatsapp"></i></a>
 				</div>
 			</div>
 		

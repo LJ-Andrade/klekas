@@ -36,53 +36,52 @@
         <div class="col-xs-12 col-md-6 form-group">
             {{--  Normal Client Price  --}}
             {!! Form::label('price', 'Precio Minorísta') !!}
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">$</span>
-                    </div>
-                    {!! Form::number('price', null, ['class' => 'form-control', 'min' => '0', 'step' => 'any', 'required' => '']) !!}
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
                 </div>
+                {!! Form::number('price', null, ['class' => 'form-control', 'min' => '0', 'step' => 'any', 'required' => '']) !!}
             </div>
-            {{-- Reseller Discount --}}
-            <div class="col-xs-12 col-md-6 form-group">
-                {!! Form::label('discount', 'Oferta') !!}
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">%</span>
-                    </div>
-                    {!! Form::number('discount', null, ['class' => 'form-control',
-                    'min' => '0', 'max' => '100', 'data-parsley-type' => 'integer', 'required' => '']) !!}
+        </div>
+        {{-- Reseller Discount --}}
+        <div class="col-xs-12 col-md-6 form-group">
+            {!! Form::label('discount', 'Oferta') !!}
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">%</span>
                 </div>
+                {!! Form::number('discount', null, ['class' => 'form-control',
+                'min' => '0', 'max' => '100', 'data-parsley-type' => 'integer', 'required' => '']) !!}
             </div>
+        </div>
          {{-- Season --}}
-         <div class="col-xs-12 col-sm-12 col-md-6">
+         {{-- <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="form-group">
                 {!! Form::label('brand_id', 'Marca') !!}
                 {!! Form::select('brand_id', $brands, null, ['class' => 'Select-Brand form-control']) !!}
             </div>
-        </div>
-        {{-- Category --}}
-        <div class="col-xs-12 col-sm-12 col-md-6">
-            <div class="form-group">
-                {!! Form::label('category_id', 'Categoría') !!}
-                {!! Form::select('category_id', $categories, null, ['class' => 'form-control Select-Category', 'placeholder' => 'Seleccione una opcion',
-                'required' => '']) !!}
-            </div>
-        </div> 
-         {{-- Tags--}}
-         <div class="col-xs-12 col-md-6">
-            <div class="form-group">
-                {!! Form::label('tags', 'Etiquetas') !!}
-                {!! Form::select('tags[]', $tags, null, ['class' => ' Select-Tags form-control', 'multiple', 'required' => '']) !!}
-            </div>
-        </div>
+        </div> --}}
         {{--  Textile  --}}
         <div class="col-xs-12 col-md-6 form-group">
             {!! Form::label('textile', 'Textil') !!}
             {!! Form::text('textile', null, ['class' => 'form-control', 'placeholder' => 'Tipo de tela', 
-            'required' => '', 'maxlength' => '50']) !!}
-        </div>           
-        
+            'required' => '', 'maxlength' => '50']) !!} 
+        </div>  
+        <div class="row">
+            <div class="col-md-12">
+                {{-- Category --}}
+                <div class="col-xs-12 col-md-6 form-group">
+                    {!! Form::label('category_id', 'Categoría') !!}
+                    {!! Form::select('category_id', $categories, null, ['class' => 'form-control Select-Category', 'placeholder' => 'Seleccione una opcion',
+                    'required' => '']) !!}
+                </div> 
+                {{-- Tags--}}
+                <div class="col-xs-12 col-md-6 form-group">
+                        {!! Form::label('tags', 'Etiquetas') !!}
+                        {!! Form::select('tags[]', $tags, null, ['class' => ' Select-Tags form-control', 'multiple', 'required' => '']) !!}
+                </div>
+            </div>
+        </div>
         <div class="col-xs-12 variants">
             <div class="variants-selectors">
                 {!! Form::label('description', 'Variantes') !!} 

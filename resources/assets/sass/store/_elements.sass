@@ -369,13 +369,10 @@ select
 	.input-btn
 		background: transparent
 		white-space: nowrap
-		border: 1px solid #383838
+		border: 1px solid #ccc
 		border-left: 0
 		border-radius: 0px 5px 5px 0px
 		margin: 0
-		&:hover
-			background-color: $main-color
-			color: #fff
 
 @media (max-width: 415px)
 	.input-with-btn-mobile
@@ -681,20 +678,11 @@ ul.pagination
 	position: absolute
 	right: 0
 	top: 0
-	width: 100px
-	height: 100px
+	width: 100%
+	height: 37px
 	overflow: hidden
-	.triangle
-		position: absolute
-		right: 0
-		left: 0
-		text-align: center
-		padding: 10px
-		padding-top: 50px
-		background-color: $main-color
-		transform: rotate(45deg)
-		width: 150px
-		z-index: 50
+	background-color: rgba($main-color,0.5)
+	z-index: 100
 	.text
 		font-family: $font1
 		position: absolute
@@ -949,6 +937,24 @@ ul.pagination
 		.product-thumbnails
 			display: none
 
+//////////////////////////////////////
+//                                  //
+//             ALERTS               //
+//                                  //
+//////////////////////////////////////
+.widgets-footer
+	background-color: $main-color
+	text-align: center
+	padding: 25px 10px
+	.item
+		h4,p
+			color: #fff
+		ul
+			display: inline-flex
+			li
+				font-size: 1.2rem
+				color: #fff
+				padding: 0 10px
 
 
 //////////////////////////////////////

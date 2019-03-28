@@ -91,36 +91,9 @@
 			<div class="row">
 				<div class="col-sm-12 descriptions">
 					{!! Form::open(['id' => 'AddToCartForm', 'class' => 'form-group price', 'onchange' => 'checkVariantStock()', 
-					'data-route' => (url('tienda/checkVariantStock')) ]) !!}
+					'data-route' => (url('tienda/checkVariantStock'))]) !!}
 						<input type="hidden" name="article_id" value="{{ $article->id }}">
 						<div class="row">
-							{{-- AUGUSTA --}}
-							{{-- <div class="col-xs-4 col-sm-4 col-md-4">
-								<div class="form-group">
-									<select name="color_id" class="form-control" placeholder="Color" required>
-										<option value="" selected disabled>Color</option>
-										@foreach($colors as $id => $name)
-											<option value="{{ $id }}">{{ $name }}</option>
-										@endforeach
-									</select>
-								</div>
-							</div>
-							<div class="col-xs-4 col-sm-4 col-md-4">
-								<div class="form-group">
-									<select name="size_id" class="form-control" placeholder="Talle" required>
-											<option selected disabled>Talle</option>
-										@foreach($sizes as $id => $name)
-											<option value="{{ $id }}">{{ $name }}</option>
-										@endforeach
-									</select>
-								</div>
-							</div> --}}
-							{{-- <div class="col-xs-4 col-sm-4 col-md-4">
-								<div class="form-group">
-									{!! Form::number('quantity', null, ['id' => 'MaxQuantity', 'class' => 'form-control', 'min' => '0', 'required' => '', 'placeholder' => 'Cantidad']) !!}
-								</div>
-							</div> --}}
-							{{-- SIZES --}}
 							<div class="col-md-12 form-row">
 								<label class="margin-left-0 pad0" for="">Talles: </label>
 								<br>
@@ -161,6 +134,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="input-with-btn">
+									
 									<input id="MaxQuantity" class="form-control input-field short-input" name="quantity" type="number" 
 									min="1" max="{{ $article->stock }}" value="1" placeholder="1" required>
 									<input type="submit" id="AddToCartFormBtn" class="btn input-btn"" value="Agregar al carro" disabled>

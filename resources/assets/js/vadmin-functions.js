@@ -177,7 +177,12 @@ deleteRecord = function(id, route, bigtext, smalltext) {
 					console.log(data);
 					return true;
 				} else {
-					alert_error('Ups!','Ha ocurrido un error (Puede que este registro tenga relación con otros items en el sistema). Debe eliminar primero los mismos.');
+					console.log(data.error);
+					if(data.message != '')
+						alert_error('Ups!', data.message);	
+					else
+						alert_error('Ups!','Ha ocurrido un error (Puede que este registro tenga relación con otros items en el sistema). Debe eliminar primero los mismos.');
+
 					console.log(data);
 					return false;
 				}
@@ -224,7 +229,11 @@ deleteAndReload = function(id, route, bigtext, smalltext) {
 					// alert_ok('Ok!','Eliminación completa');
 					location.reload();
 				} else {
-					alert_error('Ups!','Ha ocurrido un error (Puede que este registro tenga relación con otros items en el sistema). Debe eliminar primero los mismos.');
+					if(data.message != '')
+						alert_error('Ups!', data.message);	
+					else
+						alert_error('Ups!','Ha ocurrido un error (Puede que este registro tenga relación con otros items en el sistema). Debe eliminar primero los mismos.');
+					// alert_error('Ups!','Ha ocurrido un error (Puede que este registro tenga relación con otros items en el sistema). Debe eliminar primero los mismos.');
 					console.log(data);
 					return false;
 				}

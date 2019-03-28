@@ -57,8 +57,7 @@
 								{{-- ====================================== --}}
 								@if($article->reseller_discount > 0)
 									<div class="overlay-ribbon top-right-ribbon">
-										<div class="triangle"></div>
-										<div class="text">	%{{ $article->reseller_discount }} <br> off !!</div>
+										<div class="text">	%{{ $article->reseller_discount }} off !!</div>
 									</div>
 								@endif
 								{{-- Reseller Discount --}}

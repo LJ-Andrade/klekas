@@ -12,18 +12,11 @@ h1,h2,h3,h4,h5,h6
 
 // Cart sidebar
 .cart-sidebar
-	box-shadow: 7px 2px 13px 5px rgba(0, 0, 0, 0.55)
-	background: rgba(243,194,173,1);
-	background: -moz-linear-gradient(top, rgba(243,194,173,1) 0%, rgba(234,101,115,1) 100%);
-	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(243,194,173,1)), color-stop(100%, rgba(234,101,115,1)));
-	background: -webkit-linear-gradient(top, rgba(243,194,173,1) 0%, rgba(234,101,115,1) 100%);
-	background: -o-linear-gradient(top, rgba(243,194,173,1) 0%, rgba(234,101,115,1) 100%);
-	background: -ms-linear-gradient(top, rgba(243,194,173,1) 0%, rgba(234,101,115,1) 100%);
-	background: linear-gradient(to bottom, rgba(243,194,173,1) 0%, rgba(234,101,115,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3c2ad', endColorstr='#ea6573', GradientType=0 );
-	color: #fff
+	box-shadow: 7px 2px 13px 5px rgba(0, 0, 0, 0.10)
+	background-color: #fff
+	color: #000
 	.item,a
-		color: #fff
+		color: #000
 		font-weight: 300
 	a
 		font-weight: 600
@@ -35,11 +28,13 @@ h1,h2,h3,h4,h5,h6
 	.inner
 		.item
 			.delete-item
-				color: #f9f9f9
+				color: #984624
 				&:hover
 					color: red
-
-
+		.bottom-actions
+			.cart-btn
+				border: 1px solid red
+			
 // Index
 .topbar
 	background: #000
@@ -144,4 +139,4 @@ h1,h2,h3,h4,h5,h6
 		@include transition(0.2s)
 		&:hover
 			background-color: $main-color
-			color: #fff
+			color: #000

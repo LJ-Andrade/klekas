@@ -106,13 +106,14 @@ Route::group(['prefix'=> 'tienda', 'middleware' => 'active-customer'], function(
     Route::get('articulo/{id}', 'Store\StoreController@show');
     
     // Customer Actions
+    Route::get('checkVariantStock', 'Store\StoreController@checkVariantStock');
+    Route::post('addToCartLive', ['as' => 'store.addToCartLive', 'uses' => 'Store\CartItemController@store']);
+
     Route::group(['middleware'=> 'customer'], function() {
         // User Avatar
         Route::post('updateCustomerAvatar', 'CustomerController@updateCustomerAvatar');
         // Cart
         Route::post('addtocart', ['as' => 'store.addtocart', 'uses' => 'Store\CartItemController@store']);
-        Route::get('checkVariantStock', 'Store\StoreController@checkVariantStock');
-        Route::post('addToCartLive', ['as' => 'store.addToCartLive', 'uses' => 'Store\CartItemController@store']);
         Route::post('addQtoCart', ['as' => 'store.addQtoCartItem', 'uses' => 'Store\CartItemController@addQtoCartItem']);
         Route::post('removeFromCart', ['as' => 'store.removeFromCart', 'uses' => 'Store\CartItemController@destroy']);
         Route::post('removeFromCartLive', ['as' => 'store.removeFromCartLive', 'uses' => 'Store\CartItemController@liveDestroy']);

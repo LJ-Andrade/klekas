@@ -16,18 +16,26 @@ class CartItemController extends Controller
 
     public function store(Request $request)
     {   
-        $combination = $request->size_id;
-        // This come from Customer Model getCartAttribute()
-        $activeCartId = auth()->guard('customer')->user()->cart->id;
-        $customerGroup = auth()->guard('customer')->user()->group;
+        // dd("CartItem | Store");
 
+        $anonCustomer = !auth()->guard('customer')->check(); 
+        // $combination = $request->size_id;
+        // This come from Customer Model getCartAttribute()
         // Find article
         $article = CatalogArticle::where('id', $request->article_id)->first();
         // Find variant
         $variant = CatalogVariant::where('article_id', $request->article_id)->where('color_id', $request->color_id)->where('size_id', $request->size_id)->first();
-        // Check if variant is already stored as cartItem
-        $existingCartItem = CartItem::where('cart_id', $activeCartId)->where('variant_id', $variant->id)->first();
 
+        $existingCartItem = NULL;
+        if(!$anonCustomer)
+        {
+            $activeCartId = auth()->guard('customer')->user()->cart->id;
+            $customerGroup = auth()->guard('customer')->user()->group;
+            // Check if variant is already stored as cartItem
+            $existingCartItem = CartItem::where('cart_id', $activeCartId)->where('variant_id', $variant->id)->first();
+        }
+
+        dd("hao");
         if(!$existingCartItem)
         {
             // Create New Cart Item
@@ -45,8 +53,11 @@ class CartItemController extends Controller
                 return response()->json(['response' => 'warning', 'message' => 'Seleccionó una cantidad mayor al stock disponible']);
             
             // Calc Item Price   
-            // if($customerGroup == '3');
-            $cartItem->final_price = $this->calcArticlePrice($article->reseller_price, $article->reseller_discount);
+            if($customerGroup == '3')
+                $cartItem->final_price = $this->calcArticlePrice($article->reseller_price, $article->reseller_discount);
+            else
+                $cartItem->final_price = $this->calcArticlePrice($article->price, $article->discount);
+
             $cartItem->article_name = $article->name;
             $cartItem->combination = $variant->color->name.'/'.$variant->size->name;
             $cartItem->color = $variant->color->name;
@@ -134,7 +145,7 @@ class CartItemController extends Controller
         } 
         catch (\Exception $e) 
         {
-            dd($e);
+            dd($e->getMessage());
             return redirect()->back()->with('message', 'Error al eliminar. '. $e->getMessage());
         }
         // If last article is deleted also delete activecart

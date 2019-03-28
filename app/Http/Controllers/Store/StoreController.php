@@ -261,6 +261,7 @@ class StoreController extends Controller
 
     public function checkVariantStock(Request $request)
     {
+        
         if($request->color_id == null)
             return response()->json(['response' => false, 'message' => 'Seleccione un color']);
         if($request->size_id == null)
@@ -385,11 +386,11 @@ class StoreController extends Controller
             try
             {
                 // Notify Bussiness
-                Mail::to(APP_EMAIL_1)->send(new SendMail('Compra Recibida', 'Checkout', $cart));
+                // Mail::to(APP_EMAIL_1)->send(new SendMail('Compra Recibida', 'Checkout', $cart));
                 // Notify Customer
                 $customerEmail = auth()->guard('customer')->user()->email;
                 //$customerEmail = 'javzero1@gmail.com';
-                Mail::to($customerEmail)->send(new SendMail('Bruna Indumentaria - Compra recibida !', 'CustomerCheckout', ''));
+                // Mail::to($customerEmail)->send(new SendMail('Bruna Indumentaria - Compra recibida !', 'CustomerCheckout', ''));
             } catch (\Exception $e) {
                 //
             }
