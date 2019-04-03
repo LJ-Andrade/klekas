@@ -1,0 +1,58 @@
+.article-show
+    padding: 20px 0
+    margin-top: 80px
+    position: relative
+    .article-images
+        max-width: 60%
+        ul li
+            margin-bottom: 20px
+            img
+                max-width: 100%
+    .article-images-mobile
+        display: none
+        ul li img
+            max-width: 100%
+    .article-details
+        padding: 20px
+        padding-top: 0
+        position: relative
+        .details-container
+            position: fixed
+            left: 0
+            top: 115px
+            margin-left: 48%
+            .title
+                margin: 0
+                font-family: $font1
+            .code
+                font-size: .8rem
+            .price
+                margin-top: 20px
+                font-size: 1.2rem
+                font-weight: 300
+                .original-price
+                    font-size: 1rem
+                    font-weight: 300
+                    color: #a2a2a2
+            .description
+                margin-top: 10px
+.article-show-top
+
+
+@media (max-width: 1095px)   
+    .article-show .article-details .details-container
+        margin-left: 520px
+
+@media (max-width: 991px)
+    .article-show
+        .article-images
+            display: none
+        .article-images-mobile
+            display: block
+        .article-details
+            text-align: center
+            .details-container
+                position: relative
+                top: auto
+                left: auto
+                margin-left: auto

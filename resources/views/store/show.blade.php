@@ -1,96 +1,73 @@
 @extends('store.partials.main')
 
-@section('content')
-{{--@if(Auth::guard('customer')->check())
- <div class="CheckoutCart checkout-cart checkout-cart-floating">
-    @include('store.partials.checkout-cart')
-</div> 
-@endif--}}
-<div class="container padding-bottom-3x mb-1 marg-top-25">
-	<div class="row product-show">
-		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 col-xl-6 col-xs-pull-12 image">
-			{{-- Title Mobile --}}
-			<div class="title-mobile">
-				<span class="text-medium">Categoría:&nbsp;</span>
-				<a class="navi-link" href="#">{{ $article->category->name }}</a>
-				{{--  Article Name  --}}
-				<h2 class="text-normal">{{ $article->name }}</h2>
-			</div>
-			<a href="{{ url('tienda') }}" class="top-action">
-				<button  class="btn btn-main-sm">
-					<i class="icon-arrow-left"></i>&nbsp;Volver a la tienda
-				</button>
-			</a>
-			<div class="row product-gallery">
-				<div class="col-xs-12 col-sm-3 col-md-3 pad0">
-					<ul class="product-thumbnails">
-						@foreach($article->images as $image)
-						<li>
-							<a href="#{{ $image->id }}">
-									<img src="{{ asset('webimages/catalogo/'. $image->name) }}" class="CheckCatalogImg" alt="Producto Bruna">
-								</a>
-							</li>
-							@endforeach
-						</ul>
-					</div>
-					<div class="col-xs-12 col-sm-9 col-md-9 images-container pad0">
-						<div class="gallery-wrapper">
-							@foreach($article->images as $index => $image)
-							<div class="gallery-item {{ $index == 0 ? 'active' : '' }}">
-							<a href="{{ asset('webimages/catalogo/'. $image->name) }}" data-hash="{{ $image->id }}" data-size="500x750"><i class="icon-zoom-in"></i></a>
-						</div>
-						@endforeach
-					</div>
-					<div class="product-carousel owl-carousel">
-						@if(!$article->images->isEmpty())
-						@foreach($article->images as $image)
-						<div data-hash="{{ $image->id }}"><img class="CheckCatalogImg" src="{{ asset('webimages/catalogo/'. $image->name) }}" alt="Product"></div>
-						@endforeach
-						@else
-						<img src="{{ asset($article->featuredImageName()) }}" class="CheckCatalogImg" alt="Producto del Catálogo">
-						@endif
-					</div>
-				</div>
-			</div>
-		</div>
+@section('styles')
+	<link rel="stylesheet" href="{{ asset('plugins/owl/assets/owl.carousel.min.css') }}">
+@endsection
 
-		<div class="padding-top-2x hidden-md-up"></div>
-		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-7 col-xl-6 products-details">
-			{{-- Favs --}}
-			<div class="fav-container">
-				@if(Auth::guard('customer')->check())
-					<a class="AddToFavs fa-icon fav-icon-nofav @if($isFav) fav-icon-isfav @endif"
-					data-id="{{ $article->id }}" data-toggle="tooltip" title="Agregar a Favoritos">
-					</a>
-					@else
-					<a href="{{ url('tienda/login') }}" class="fa-icon fav-icon-nofav"></a>
-				@endif
-			</div>
-			{{-- Title Desktop --}}
-			<div class="title-desktop">
-				<span class="text-medium">Categoría:&nbsp;</span>
-				<a class="navi-link" href="#">{{ $article->category->name }}</a>
-				{{--  Article Name  --}}
-				<h2 class="text-normal">{{ $article->name }}</h2>
-				<div class="mb-3"> #{{ $article->code }}</div>
-			</div>
-			{{-- PRICE --}}
-			@if($article->reseller_discount > 0)
-				DESCUENTO % {{ $article->reseller_discount }}!!
-				<span class="h2 d-block">
-					<del class="text-muted text-small">$ {{ $article->reseller_price }}</del>
-					&nbsp; ${{ calcValuePercentNeg($article->reseller_price, $article->reseller_discount) }}
-				</span>
-			@else
-				<span class="h2 d-block">$ {{ $article->reseller_price }}</span>
-			@endif
-			{{-- Article Description --}}
-			<p>{{ strip_tags($article->description) }}</p>
-			<div class="item"><div class="title">Tela: <b>{{ $article->textile }}</b></div> <br></div>
-			@if(Auth::guard('customer')->check())
-			<div class="row">
-				<div class="col-sm-12 descriptions">
-					{!! Form::open(['id' => 'AddToCartForm', 'class' => 'form-group price', 'onchange' => 'checkVariantStock()', 
+@section('content')
+<div class="container article-show">
+    <div class="row top-article-bar">
+        <span class="text-medium">Categoría:&nbsp;</span>
+        <a class="navi-link" href="#">{{ $article->category->name }}</a>
+    </div>
+    <div class="row">
+        {{-- Mobile --}}
+        <div class="article-images-mobile">
+            <div class="owl-carousel owl-theme">
+                @foreach($article->images as $image)
+                    <div class="item">
+                        <img src="{{ asset('webimages/catalogo/'. $image->name) }}" class="CheckCatalogImg" alt="{{ $article->name }}">
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        {{-- Desktop --}}
+        <div class="article-images">
+            <ul>
+                @foreach($article->images as $image)
+                    <li><img src="{{ asset('webimages/catalogo/'. $image->name) }}" class="CheckCatalogImg" alt="{{ $article->name }}"></li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="article-details">
+            <div class="details-container">
+                <h2 class="title">{{ $article->name }}</h2>
+                {{-- <div class="code"> #{{ $article->code }}</div> --}}
+                <div class="price-container">
+                    {{-- PRICES --}}
+                    @if(Auth::guard('customer')->check())
+                        {{-- Normal Price --}}
+                        @if(Auth::guard('customer')->user()->group == '2')
+                    
+                            @if($article->discount > 0)
+                                <span class="price">
+                                    <del class="original-price">$ {{ $article->price }}</del>
+                                    &nbsp; ${{ calcValuePercentNeg($article->price, $article->discount) }} ss
+                                </span>
+                            @else
+                                <span class="h2 d-block">$ {{ $article->price }}</span>
+                            @endif
+                        @else
+                            {{-- Reseller Price --}}	
+                            @if($article->reseller_discount > 0)
+                                <span class="price">
+                                    <del class="original-price">$ {{ $article->reseller_price }}</del>
+                                    &nbsp; ${{ calcValuePercentNeg($article->reseller_price, $article->reseller_discount) }}
+                                </span>
+                            @else
+                                <span>$ {{ $article->reseller_price }}</span>
+                            @endif
+                    
+                    
+                        @endif
+                    @endif
+                </div>
+                    
+                <p class="description">{{ strip_tags($article->description) }}</p>
+			    <div class="item"><div class="title">Tela: <b>{{ $article->textile }}</b></div> <br></div>
+
+
+                {!! Form::open(['id' => 'AddToCartForm', 'class' => 'form-group price', 'onchange' => 'checkVariantStock()', 
 					'data-route' => (url('tienda/checkVariantStock'))]) !!}
 						<input type="hidden" name="article_id" value="{{ $article->id }}">
 						<div class="row">
@@ -142,60 +119,43 @@
 							</div>
 						</div>
 						@endif
-					{!! Form::close() !!}
-				</div>
-			</div>
-			@else
-			<div class="item"><div class="title">Talles: <b>@foreach($colors as $name) {{ $name }} @if(!$loop->last) | @endif @endforeach</b></div> <br></div>
-			<div class="item"><div class="title">Colores: <b>@foreach($sizes as $name) {{ $name }} @if(!$loop->last) | @endif @endforeach</b></div> <br></div>
-			@endif
-			
-		</div>
-	</div>
+                {!! Form::close() !!}
+                    
+
+
+            </div>
+        </div>
+    </div>
 </div>
-	
-<!-- Photoswipe container // This Shows Big Image Preview -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="pswp__bg"></div>
-	<div class="pswp__scroll-wrap">
-		<div class="pswp__container">
-			<div class="pswp__item"></div>
-			<div class="pswp__item"></div>
-			<div class="pswp__item"></div>
-		</div>
-		<div class="pswp__ui pswp__ui--hidden">
-			<div class="pswp__top-bar">
-				<div class="pswp__counter"></div>
-				<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-				<button class="pswp__button pswp__button--share" title="Share"></button>
-				<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-				<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-				<div class="pswp__preloader">
-					<div class="pswp__preloader__icn">
-						<div class="pswp__preloader__cut">
-							<div class="pswp__preloader__donut"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-				<div class="pswp__share-tooltip"></div>
-			</div>
-			<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-			<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
-			<div class="pswp__caption">
-				<div class="pswp__caption__center"></div>
-			</div>
-		</div>
-	</div>
-</div>
+
 <div id="Error"></div>
 @endsection
 
+
+
 @section('scripts')
 	@include('store.components.bladejs')
-
+    <script type="text/javascript" src="{{ asset('plugins/owl/owl.carousel.min.js') }}" ></script>
 	<script>
+        
+        $(document).ready(function(){
+			$('.owl-carousel').owlCarousel({
+				stagePadding: 0,
+				items: 1,
+				loop: true,
+				margin: 0,
+				singleItem: true,
+				nav: false,
+				dots: false,
+                responsive:{
+                    0:{
+                        items:1
+                    }
+                },
+				dots:true
+			});
+		});
+
 		let sizes = $('.SizesSelector');
 		let colors = $('.ColorsSelector');
 

@@ -55,13 +55,15 @@ class Customer extends Authenticatable
     public function getCartAttribute()
     {
         $cart = $this->carts()->where('status', 'Active')->where('customer_id', $this->id)->orderBy('created_at', 'DESC')->first();
+     
         if($cart){
             return $cart;
         } else {
             $cart = new Cart();
             $cart->status = 'Active';
             $cart->customer_id = $this->id;
-            $cart->save(); 
+            $cart->save();
+
             return $cart;
         }
     }

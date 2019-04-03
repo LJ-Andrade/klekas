@@ -18,7 +18,8 @@
                     </a>
                 </div> --}}
                 <div class="CartResumen cart" onclick="checkoutSidebar();">
-                    <i class="icon-bag"></i><span class="TotalCartItems count">@if($activeCart['totalItems'] == 0) 0 @else {{ $activeCart['totalItems'] }} @endif</span>
+                    <img class="cart-icon" src="{{ asset('images/web/cart-icon.png') }}" alt="">
+                    <span class="TotalCartItems count">@if($activeCart['totalItems'] == 0) 0 @else {{ $activeCart['totalItems'] }} @endif</span>
                     <span class="CartSubTotal subtotal">@if($activeCart['totalItems'] != 0) $ {{ $activeCart['cartSubTotal'] }} @endif</span>
                 </div>
                 {{-- User Avatar --}}

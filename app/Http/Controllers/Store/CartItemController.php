@@ -9,6 +9,7 @@ use App\Cart;
 use App\CatalogArticle;
 use App\CatalogVariant;
 use App\Traits\CartTrait;
+use Session;
 
 class CartItemController extends Controller
 {
@@ -20,22 +21,47 @@ class CartItemController extends Controller
 
         $anonCustomer = !auth()->guard('customer')->check(); 
         // $combination = $request->size_id;
-        // This come from Customer Model getCartAttribute()
         // Find article
         $article = CatalogArticle::where('id', $request->article_id)->first();
         // Find variant
         $variant = CatalogVariant::where('article_id', $request->article_id)->where('color_id', $request->color_id)->where('size_id', $request->size_id)->first();
-
+        
         $existingCartItem = NULL;
+        
+        
+        
         if(!$anonCustomer)
         {
-            $activeCartId = auth()->guard('customer')->user()->cart->id;
+            $activeCartId = auth()->guard('customer')->user()->cart->id; // This comes from Customer Model getCartAttribute()
             $customerGroup = auth()->guard('customer')->user()->group;
             // Check if variant is already stored as cartItem
             $existingCartItem = CartItem::where('cart_id', $activeCartId)->where('variant_id', $variant->id)->first();
+        } 
+        else
+        {
+            
+            // https://www.youtube.com/watch?v=4J939dDUH4M
+            
+            // dd($request->session()->all());
+            $activeCart = NULL;
+            if($request->session()->has('activeCart'))
+                $activeCart = $request->session()->get('activeCart');
+                
+            if($activeCart)
+            {
+                $activeCartId = $activeCart->id;
+            }
+            else
+            {
+                $cart = new Cart();
+                $cart->anon_token = 'test';
+                $cart->save();
+                $request->session()->put('activeCart', $activeCart);
+                $activeCartId = $cart->id;
+            }
         }
-
-        dd("hao");
+        return;
+        
         if(!$existingCartItem)
         {
             // Create New Cart Item

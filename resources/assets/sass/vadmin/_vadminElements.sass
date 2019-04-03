@@ -1052,6 +1052,11 @@ input:checked + .slider:before
 
 .login-page
 	background-color: $dark-detail1
+	background: url(../images/web/vadmin-login-background.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover
+	-moz-background-size: cover
+	-o-background-size: cover
+	background-size: cover
 
 .login-container
 	@include flex-center
@@ -1062,7 +1067,10 @@ input:checked + .slider:before
 		max-width: 100%
 		margin-top: 80px
 		.card
+			background-color: rgba(255,255,255,0.6)
 			border-radius: 2px
+			.line-on-side span
+				padding: 5px
 		.card-header
 			padding: 0
 			background-color: transparent

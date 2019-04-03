@@ -37,11 +37,15 @@
         @component('vadmin.components.list')
             @slot('title')
             Pedido #{{ $order['rawdata']->id }}
+                @if($order['rawdata']->customer)
                     <span class="small"> | <b>Cliente: <a href="" data-toggle="modal" data-target="#CustomerDataModal"></b>
-                        {{ $order['rawdata']->customer->name }} {{ $order['rawdata']->customer->surname }}</a> 
-                <p>
-                    {{ transDateT($order['rawdata']->created_at) }}</span>
-                </p>
+                        {{ $order['rawdata']->customer->name }} {{ $order['rawdata']->customer->surname }}</a></span>
+                    <p>
+                        {{ transDateT($order['rawdata']->created_at) }}
+                    </p>
+                @else
+                    Compra sin registro
+                @endif
             @endslot
             @slot('actions')
             
@@ -213,39 +217,41 @@
             @endslot
         @endcomponent
     </div>
-    <!-- Customer data modal -->
-    <div class="modal fade" id="CustomerDataModal" tabindex="-1" role="dialog" aria-labelledby="CustomerDataModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Cliente: {{ $customer->name }} {{ $customer->surname }}</h4>
-                </div>
-                <div class="modal-body">
-                    <b>Nombre de Usuario:</b> {{ $customer->username }} <br>
-                    <b>E-Mail:</b> {{ $customer->email }} <br>
-                    <b>Dirección:</b> {{ $customer->address }} <br>
-                    <b>Provincia:</b> @if(!is_null($customer->geoprov)) 
-                                        {{ $customer->geoprov->name }}
-                                        @else
-                                        <span class="text-danger">* Debe completar este dato</span>
-                                        @endif <br>
-                    <b>Localidad:</b> @if(!is_null($customer->geoloc)) 
-                                        {{ $customer->geoloc->name }}
-                                        @else
-                                        <span class="text-danger">* Debe completar este dato</span>	
-                                        @endif <br>
-                    <b>C.P:</b> {{ $customer->cp }} <br>
-                    <hr class="softhr">
-                    <b>Teléfono:</b> {{ $customer->phone }} <br>
-                    @if($customer->phone2)
-                    <b>Teléfono 2:</b> {{ $customer->phone2 }}
-                    @endif
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+    @if($customer)
+        <!-- Customer data modal -->
+        <div class="modal fade" id="CustomerDataModal" tabindex="-1" role="dialog" aria-labelledby="CustomerDataModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Cliente: {{ $customer->name }} {{ $customer->surname }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <b>Nombre de Usuario:</b> {{ $customer->username }} <br>
+                        <b>E-Mail:</b> {{ $customer->email }} <br>
+                        <b>Dirección:</b> {{ $customer->address }} <br>
+                        <b>Provincia:</b> @if(!is_null($customer->geoprov)) 
+                                            {{ $customer->geoprov->name }}
+                                            @else
+                                            <span class="text-danger">* Debe completar este dato</span>
+                                            @endif <br>
+                        <b>Localidad:</b> @if(!is_null($customer->geoloc)) 
+                                            {{ $customer->geoloc->name }}
+                                            @else
+                                            <span class="text-danger">* Debe completar este dato</span>	
+                                            @endif <br>
+                        <b>C.P:</b> {{ $customer->cp }} <br>
+                        <hr class="softhr">
+                        <b>Teléfono:</b> {{ $customer->phone }} <br>
+                        @if($customer->phone2)
+                        <b>Teléfono 2:</b> {{ $customer->phone2 }}
+                        @endif
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 @endsection

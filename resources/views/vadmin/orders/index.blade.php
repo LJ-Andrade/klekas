@@ -85,9 +85,13 @@
 								</td>
 								<td class="w-50 show-link"><a href="{{ url('vadmin/orders/'.$item->id) }}">#{{ $item->id }}</a></td>
 								<td class="show-link max-text">
+									@if($item->customer)
 									<a href="{{ url('vadmin/customers/'.$item->customer_id) }}">
 										{{ $item->customer->name }} {{ $item->customer->surname }} ({{ $item->customer->username }})
 									</a>
+									@else
+										Compra sin registro
+									@endif
 								</td>
 								<td class="w-200">
 									<div class="input-group"> 
