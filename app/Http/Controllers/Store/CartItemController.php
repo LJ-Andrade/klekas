@@ -17,7 +17,6 @@ class CartItemController extends Controller
 
     public function store(Request $request)
     {   
-        // dd("CartItem | Store");
 
         $anonCustomer = !auth()->guard('customer')->check(); 
         // $combination = $request->size_id;
@@ -60,7 +59,6 @@ class CartItemController extends Controller
                 $activeCartId = $cart->id;
             }
         }
-        return;
         
         if(!$existingCartItem)
         {

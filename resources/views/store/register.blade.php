@@ -1,5 +1,13 @@
 @extends('store.partials.main')
 
+@section('styles')
+	<style> 
+		body {
+			background-color: #d0b3a7
+		}
+	</style>
+@endsection
+
 @section('content')
 <div class="container padding-bottom-3x">
 	<div class="row centered-form">

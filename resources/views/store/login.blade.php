@@ -1,9 +1,16 @@
 @extends('store.partials.main')
 
+@section('styles')
+	<style> 
+		body {
+			background-color: #d0b3a7
+		}
+	</style>
+@endsection
+
 @section('content')
 <div class="container padding-bottom-3x">
 	<div class="row centered-form">
-
 		<form class="login-box inner" method="POST" action="{{ route('customer.login') }}">
 			{{ csrf_field() }}
 			<h3  class="text-center">Ingresar</h3>

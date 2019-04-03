@@ -91,6 +91,9 @@ Route::get('/', function(){
     return redirect("https://namastetejidos.mitiendanube.com/");
 });
 
+Route::get('test1', function(){ 
+    return view('store.checkout-success');
+});
 
 Route::get('tienda', ['as' => 'store', 'uses' => 'Store\StoreController@index'])->middleware('active-customer');
 Route::get('politica-de-exclusividad', function(){ return view('store.reseller-policy'); });
