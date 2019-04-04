@@ -202,7 +202,7 @@ class UserController extends Controller
         
         $user->fill($request->all());
         $user->avatar = $filename;
-        $user->password = bcrypt($request->password);
+        // $user->password = bcrypt($request->password);
         $user->save();
         return redirect('vadmin/users')->with('Message', 'Usuario '. $user->name .'editado correctamente');
     }
