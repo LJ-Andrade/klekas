@@ -22,7 +22,7 @@
             @slot('content')
                 <div class="centered-content">
                     <div class="round-image-card">
-                        <div class="inner">
+                        <div class="inner ">
                             <div class="image">
                                 @if($user->avatar == '')
                                     <img id="Avatar" class="Image-Container CheckImg" src="{{ asset('images/users/default.jpg') }}" alt="Imágen de Usuario">
@@ -32,11 +32,14 @@
                                 <span class="over-text">Cambiar imágen</span>
                             </div>
                             <div class="card-content">
-                                <span><b>Nombre de Usuario:</b> {{ $user->username }} </span><br>
-                                <span><b>Nombre:</b> {{ $user->name }} </span><br>
-                                <span><b>E-Mail:</b> {{ $user->email }}  </span><br><br>
+                                <span><b>{{ $user->name }} ({{ $user->username }})</b></span><br>
+                                <span> {{ $user->email }}  </span><br><br>
                                 <span class="tag tag-pill btnBlue"><b>Rol:</b> {{ roleTrd($user->role) }}  </span> 
                                 <span class="tag tag-pill btnGreen"><b>Grupo:</b> {{ groupTrd($user->group) }}  </span>   
+                                @if(Auth::guard('user')->user()->id == $user->id)
+                                <br><br>
+                                <a href="{{ url('vadmin/users/1/edit') }}" style="padding: 20px 10px">Editar</a>
+                                @endif
                             </div>
                         </div>
                     </div>
