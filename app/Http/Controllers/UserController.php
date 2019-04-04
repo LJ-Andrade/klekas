@@ -143,11 +143,11 @@ class UserController extends Controller
             $avatar   = $request->file('avatar');
             $filename = $user->username.'.jpg';
             $path = public_path('images/users/');
-            if (!file_exists($path)) {
-                $oldmask = umask(0);
-                mkdir($path, 0777);
-                umask($oldmask);
-            }
+            // if (!file_exists($path)) {
+            //     $oldmask = umask(0);
+            //     mkdir($path, 0777);
+            //     umask($oldmask);
+            // }
             Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save($path.$filename);
             $user->avatar = $filename;
         }
@@ -192,11 +192,11 @@ class UserController extends Controller
         
         if($request->file('avatar') != null){
             $avatar   = $request->file('avatar');
-            if (!file_exists($path)) {
-                $oldmask = umask(0);
-                mkdir($path, 0777);
-                umask($oldmask);
-            }
+            // if (!file_exists($path)) {
+            //     $oldmask = umask(0);
+            //     mkdir($path, 0777);
+            //     umask($oldmask);
+            // }
             Image::make($avatar)->encode('jpg', 80)->fit(300, 300)->save($path.$filename);
         }
         

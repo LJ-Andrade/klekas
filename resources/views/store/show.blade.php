@@ -139,8 +139,8 @@
 						</div> <br></div>
 					<a href="{{ route('customer.login') }}" class="btn input-btn"> Comprar </a>
                 @endif
-
-
+				<br>
+				<a href="{{ url('tienda') }}" class="btn btn-light"><i class="fas fa-long-arrow-alt-left"></i> Volver a la tienda</a>
             </div>
         </div>
     </div>
