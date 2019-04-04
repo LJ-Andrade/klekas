@@ -38,7 +38,7 @@
                                 <span class="tag tag-pill btnGreen"><b>Grupo:</b> {{ groupTrd($user->group) }}  </span>   
                                 @if(Auth::guard('user')->user()->id == $user->id)
                                 <br><br>
-                                <a href="{{ url('vadmin/users/1/edit') }}" style="padding: 20px 10px">Editar</a>
+                                <a href="{{ url('vadmin/users/'.$user->id.'/edit') }}" style="padding: 20px 10px">Editar</a>
                                 @endif
                             </div>
                         </div>
