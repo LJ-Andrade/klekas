@@ -93,12 +93,15 @@
 								<td>{{ groupTrd($item->group) }}</td>
 								<td class="w-50 pad0 centered">
 									@if($item->role != '1')
-									<label class="switch">
-										<input class="UpdateStatus switch-checkbox" type="checkbox" 
-										data-model="User" data-id="{{ $item->id }}"
-										@if($item->status == '1') checked @endif>
-										<span class="slider round"></span>
-									</label>
+									@if($item->id == 1 || $item->id == 2 || $item->username == 'javzero' || $item->username == 'viole')
+									@else
+										<label class="switch">
+											<input class="UpdateStatus switch-checkbox" type="checkbox" 
+											data-model="User" data-id="{{ $item->id }}"
+											@if($item->status == '1') checked @endif>
+											<span class="slider round"></span>
+										</label>
+									@endif
 									@endif
 								</td>
 							</tr>
