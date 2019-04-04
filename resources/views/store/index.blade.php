@@ -21,7 +21,7 @@
 		@include('store.partials.filters-mobile')
 	</div>
 	{{-- @include('store.partials.filterbar') --}}
-	<div id="main" class="main-container container padding-bottom-3x mb-1">
+	<div id="main" class="main-container container-fluid container-fluid-1500 pad-top-0 padding-bottom-3x mb-1">
 		<div class="row">
 			<div class="col-sm-3 col-md-3 col-lg-3 pad0 hide-768">
 				@include('store.partials.filter-sidebar')
@@ -57,7 +57,7 @@
 								{{-- ====================================== --}}
 								@if($article->reseller_discount > 0)
 									<div class="overlay-ribbon top-right-ribbon">
-										<div class="text">	%{{ $article->reseller_discount }} off !!</div>
+										<div class="text">-{{ $article->reseller_discount }}%</div>
 									</div>
 								@endif
 								{{-- Reseller Discount --}}

@@ -1,12 +1,14 @@
 .article-show
     padding: 20px 0
-    margin-top: 80px
+    margin-top: 25px
     position: relative
     .article-images
-        max-width: 60%
+        max-width: 100%
+        width: 43%
         ul li
             margin-bottom: 20px
             img
+                width: 100%
                 max-width: 100%
     .article-images-mobile
         display: none
@@ -19,16 +21,19 @@
         .details-container
             position: fixed
             left: 0
-            top: 115px
-            margin-left: 48%
+            top: 100px
+            margin-left: 46%
+            .before-title
+                margin-bottom: 20px
             .title
                 margin: 0
+                margin-bottom: 20px
                 font-family: $font1
             .code
                 font-size: .8rem
             .price
                 margin-top: 20px
-                font-size: 1.2rem
+                font-size: 1.5rem
                 font-weight: 300
                 .original-price
                     font-size: 1rem
@@ -37,12 +42,32 @@
             .description
                 margin-top: 10px
                 max-width: 550px
+            .attributes
+                label
+                    font-family: $font1
+                    font-size: 0.9rem
+                    font-weight: 400
+                    margin-right: 5px
+                    padding: 10px 18px
+            .input-with-btn
+                .short-input
+                    border: 1px solid $main-color
+                    border-right: 0
+                .input-btn
+                    border: 1px solid $main-color
+                    border-left: 0
+            
 .article-show-top
-
 
 @media (max-width: 1095px)   
     .article-show .article-details .details-container
         margin-left: 520px
+
+@media (max-width: 1100px) and (min-width: 991px)
+    .article-show .article-details .details-container
+        margin-left: 46%
+        padding-right: 25px
+
 
 @media (max-width: 991px)
     .article-show
@@ -52,8 +77,12 @@
             display: block
         .article-details
             text-align: center
+            @include flex-center
+            width: 100%
             .details-container
                 position: relative
                 top: auto
                 left: auto
-                margin-left: auto
+                margin-left: 0
+                .submit-article-actions
+                    @include flex-center

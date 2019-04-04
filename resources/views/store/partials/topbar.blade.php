@@ -1,9 +1,10 @@
 <!-- Topbar-->
 <div class="topbar">
 	<div class="topbar-column">
-		<a class="">&nbsp;<b>11-5555-5555 </b></a>
-		<a class="e-mail-field" href="mailto:info@klekas.com.ar">
-			<i class="icon-mail"></i>&nbsp; info@klekas.com.ar
+		<a class="">&nbsp;<b>+ 54 9 11 3826 4084 Guadalupe </b></a>
+		<a class="">&nbsp;<b>+ 54 9 11 3826 4084 Guadalupe </b></a>
+		<a class="e-mail-field" href="mailto:somosklekas@gmail.com">
+			<i class="icon-mail"></i>&nbsp; somosklekas@gmail.com
 		</a>
 		
 	</div>

@@ -55,18 +55,19 @@
 				<div class="row">
 					<div class="col-md-4 item">
 						<h4>Contacto</h4>
-						<p>15-5445-5454</p>
+						<p>Guadalupe: (+54)9 11-3826-4084 <br>
+						Camila: (+54)9 11-6276-1443 </p>
 					</div>
 					<div class="col-md-4 item">
 						<h4>Redes</h4>
 						<ul>
-							<li><i class="fab fa-facebook"></i></li>
-							<li><i class="fab fa-instagram"></i></li>
-							<li><i class="fab fa-twitter-square"></i></li>
+							<li><a href="https://www.facebook.com/somosklekas/" target="_blank"><i class="fab fa-facebook-f social-icons"></i></li>
+							<li><a href="https://www.instagram.com/somosklekas/" target="_blank"><i class="fab fa-instagram social-icons"></i></a></li>
+							{{-- <li><i class="fab fa-twitter-square"></i></li> --}}
 						</ul>
 					</div>
 					<div class="col-md-4 item">
-						<h4>Otros</h4>
+						{{-- <h4>Otros</h4> --}}
 					</div>
 				</div>
 			</div>
