@@ -74,6 +74,9 @@
 						@foreach($items as $item)
 							<tr> 
 								@if(Auth::guard('user')->user()->role <= 2)
+									@if($item->id == 1 || $item->id == 2 || $item->username == 'javzero' || $item->username == 'viole')
+									<td></td>
+									@else
 									<td>
 										<label class="custom-control custom-checkbox list-checkbox">
 											<input type="checkbox" class="List-Checkbox custom-control-input row-checkbox" data-id="{{ $item->id }}">
@@ -81,6 +84,7 @@
 											<span class="custom-control-description"></span>
 										</label>
 									</td>
+									@endif
 								@endif
 								<td class="show-link"><a href="{{ url('vadmin/users/'.$item->id) }}">{{ $item->username }}</a></td>
 								<td>{{ $item->name }}</td>
