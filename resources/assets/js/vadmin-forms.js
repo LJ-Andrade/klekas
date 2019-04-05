@@ -106,7 +106,6 @@ $('.AddAnotherAddressBtn').click(function(){
     $('.AnotherLoc').append(locInput);
 });
 
-
 //----------------------------------------------
 //     CREATE ARTICLE VARIANTS
 //----------------------------------------------

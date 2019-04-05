@@ -39,7 +39,7 @@
 @section('scripts')
 	<script type="text/javascript" src="{{ asset('plugins/validation/parsley.min.js') }}" ></script>
 	<script type="text/javascript" src="{{ asset('plugins/validation/es/parsley-es.min.js') }}" ></script>
-	@include('store.components.bladejs')
+	@include('vadmin.components.bladejs')
 @endsection
 
 @section('custom_js')
@@ -52,11 +52,6 @@
                 getGeoLocs(prov_id);
             });
         });
-
-		// if(prov.val() != '' || prov.val() != undefined)
-		// {
-
-		// }
 		
 	</script>
 @endsection

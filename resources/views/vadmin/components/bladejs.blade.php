@@ -233,11 +233,10 @@
         }); 
 
     }
-
     
     /*
     |--------------------------------------------------------------------------
-    | UPDATE CUSTOMER GROUP
+    | UPDATE CART STATUS
     |--------------------------------------------------------------------------
     */
 
@@ -270,6 +269,67 @@
             }
         }); 
     }
+
+        
+    //----------------------------------------------
+    //     PROVS And LOCS.
+    //----------------------------------------------
+
+    window.getGeoLocs = function(geoprov_id){
+
+    let route = "{{ url('getGeoLocs') }}/"+geoprov_id+"";
+    $.ajax({
+        url: route,
+        method: 'GET',
+        dataType: 'JSON',
+        success: function(e){
+            // Print Locs
+            var select = $('#GeoLocsSelect');
+            var actuallocid = $('#GeoLocsSelect').data('actuallocid');
+
+            select.html('');
+            for (var i = 0, len = e.geolocs.length; i < len; i++) {
+                if(actuallocid != '' && e.geolocs[i]['id'] == actuallocid){
+                    select.append("<option selected value='"+ e.geolocs[i]['id'] +"'>"+ e.geolocs[i]['name'] +"</option>");
+                } else {
+                    select.append("<option value='"+ e.geolocs[i]['id'] +"'>"+ e.geolocs[i]['name'] +"</option>");
+                }
+            }
+
+        },
+        error: function(e){
+            console.log('ERROR');
+            console.log(e);
+            $('#Error').html(e.responseText);
+        }
+    });
+
+    }
+
+
+    window.checkIfHasProvSelected = function(provs, locs)
+    {
+    let selected_provs = $(provs + ' option:selected');
+    let selected_locs = $(locs + ' option');
+    let selected_prov = $(".GeoProvSelect option:selected");
+
+    // Check if there is provs selectes
+    if(selected_provs.length != 0)
+        // If there is selected provs check if has options (locs)
+        if(selected_prov.index() != 0)
+            if(selected_locs.length == 0)
+                getGeoLocs(selected_prov.index());
+
+    }
+
+    $('.GeoProvSelect, .GeoLocsSelect').on('focus click', function(){
+    checkIfHasProvSelected('.GeoProvSelect', '.GeoLocsSelect');
+    });
+
+    checkIfHasProvSelected('.GeoProvSelect', '.GeoLocsSelect');
+
+
+
 
     /*
     |--------------------------------------------------------------------------
