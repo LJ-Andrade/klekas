@@ -204,7 +204,6 @@ class ArticlesController extends Controller
 
     public function create(Request $request)
     {
-
         $categories = CatalogCategory::orderBy('name', 'ASC')->pluck('name', 'id');
         $sizes = CatalogSize::orderBy('id', 'ASC')->get();
         $colors = CatalogColor::orderBy('name', 'ASC')->get();
@@ -300,13 +299,15 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->discount == null) {
-            $request->discount = '0';
-        }
 
-        if ($request->slug) {
+        if($request->variants == null)
+            return redirect()->back()->withInput()->with('error', 'No se han ingresado variantes'); 
+
+        if ($request->discount == null)
+            $request->discount = '0';
+
+        if ($request->slug)
             $checkSlug = $this->checkSlug($request->slug);
-        }
 
         $article = new CatalogArticle($request->all());
         $article->slug = $checkSlug;
