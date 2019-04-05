@@ -21,11 +21,6 @@
 				<input id="ModelName" type="hidden" value="carts">
 				<button class="DeleteBtn btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
 				<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
-				{{-- If Search --}}
-				@if(isset($_GET['id']) || isset($_GET['status']) || isset($_GET['customer'] ))
-					<a href="{{ route('orders.index', ['status' => 'Process']) }}"><button type="button" class="btn btnGrey">Nuevos</button></a>
-					<a href="{{ route('orders.index', ['status' => 'All']) }}"><button type="button" class="btn btnGrey">Todos</button></a>
-				@endif
 			</div>
 		@endslot
 		@slot('searcher')

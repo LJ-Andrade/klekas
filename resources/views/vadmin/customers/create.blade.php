@@ -45,11 +45,18 @@
 @section('custom_js')
     <script>
         // Check for locality
+		let prov =  $('.GeoProvSelect');
         $(document).ready(function(){            
-            $('.GeoProvSelect').on('change', function(){
+            prov.on('change', function(){
                 let prov_id = $(this).val();
                 getGeoLocs(prov_id);
             });
         });
+
+		// if(prov.val() != '' || prov.val() != undefined)
+		// {
+
+		// }
+		
 	</script>
 @endsection

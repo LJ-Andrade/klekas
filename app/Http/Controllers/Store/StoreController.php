@@ -326,9 +326,8 @@ class StoreController extends Controller
     
     public function checkoutLast()
     {
-        if($this->activeCart() == null){
+        if($this->activeCart() == null)
             return redirect()->route('store')->with('message', 'La página ha expirado');
-        }
 
         $geoprovs = GeoProv::pluck('name','id');
         $shippings = Shipping::orderBy('name', 'ASC')->get();

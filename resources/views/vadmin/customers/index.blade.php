@@ -24,11 +24,6 @@
 				<button class="DeleteBtn btn btnRed Hidden"><i class="icon-bin2"></i> Eliminar</button>
 				<input id="RowsToDeletion" type="hidden" name="rowstodeletion[]" value="">
 				@endif
-				{{-- If Search --}}
-				@if(isset($_GET['name']) || isset($_GET['group']))
-					<a href="{{ url('vadmin/customers') }}"><button type="button" class="btn btnGrey">Mostrar Todos</button></a>
-					{{--  <div class="results">{{ $items->total() }} resultados de búsqueda: </div>  --}}
-				@endif
 			</div>
 		@endslot
 		@slot('searcher')

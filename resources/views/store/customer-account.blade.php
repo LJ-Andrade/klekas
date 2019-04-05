@@ -20,85 +20,69 @@
                 <form class="row small-form" method="POST" action="{{ route('store.updateCustomer') }}">
                 @endif
                     {{ csrf_field() }}
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>E-mail</label>
-                            <input class="form-control" type="email" name="email" value="{{ Auth::guard('customer')->user()->email }}" required>
-                        </div>
+                    <div class="col-md-6 form-group">
+                        <label>E-mail</label>
+                        <input class="form-control" type="email" name="email" value="{{ Auth::guard('customer')->user()->email }}" required>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Nombre de Usuario</label>
-                            <input class="form-control" type="text" name="username" value="{{ Auth::guard('customer')->user()->username }}" required>
-                        </div>
+                    <div class="col-md-6 form-group">
+                        <label>Nombre de Usuario</label>
+                        <input class="form-control" type="text" name="username" value="{{ Auth::guard('customer')->user()->username }}" required>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Nombre</label>
-                            <input class="form-control" type="text" name="name" value="{{ Auth::guard('customer')->user()->name }}" required>
-                        </div>
+                    <div class="col-md-6 form-group">
+                        <label>Nombre</label>
+                        <input class="form-control" type="text" name="name" value="{{ Auth::guard('customer')->user()->name }}" required>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Apellido</label>
-                            <input class="form-control" type="text" name="surname" value="{{ Auth::guard('customer')->user()->surname }}" required>
-                        </div>
+                    <div class="col-md-6 form-group">
+                        <label>Apellido</label>
+                        <input class="form-control" type="text" name="surname" value="{{ Auth::guard('customer')->user()->surname }}" required>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Teléfono</label>
-                            <input class="form-control" type="text" name="phone" value="{{ Auth::guard('customer')->user()->phone }}" required>
-                        </div>
+                    <div class="col-md-6 form-group">
+                        <label>Teléfono</label>
+                        <input class="form-control" type="text" name="phone" value="{{ Auth::guard('customer')->user()->phone }}" required>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Teléfono 2</label>
-                            <input class="form-control" type="text" name="phone2" value="{{ Auth::guard('customer')->user()->phone2 }}">
-                        </div>
+                    <div class="col-md-6 form-group">
+                        <label>Teléfono 2</label>
+                        <input class="form-control" type="text" name="phone2" value="{{ Auth::guard('customer')->user()->phone2 }}">
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Dirección</label>
-                            <input class="form-control" type="text" name="address" value="{{ Auth::guard('customer')->user()->address }}" required>
-                        </div>
+                    <div class="col-md-6 form-group">
+                        <label>Dirección</label>
+                        <input class="form-control" type="text" name="address" value="{{ Auth::guard('customer')->user()->address }}" required>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Código Postal</label>
-                            <input class="form-control" type="text" name="cp" value="{{ Auth::guard('customer')->user()->cp }}" required>
-                        </div>
+                    <div class="col-md-6 form-group">
+                        <label>Código Postal</label>
+                        <input class="form-control" type="text" name="cp" value="{{ Auth::guard('customer')->user()->cp }}" required>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
+                    <div class="col-md-6 form-group">
                             <label>Provincia</label>
-                            {!! Form::select('geoprov_id', $geoprovs, Auth::guard('customer')->user()->geoprov_id,
-                            ['class' => 'GeoProvSelect form-control', 'placeholder' => 'Seleccione una opción']) !!}
-                        </div>
+                        {!! Form::select('geoprov_id', $geoprovs, Auth::guard('customer')->user()->geoprov_id,
+                        ['class' => 'GeoProvSelect form-control', 'placeholder' => 'Seleccione una opción']) !!}
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Localidad</label>
-                            @if(Auth::guard('customer')->user()->geoloc)
-                            <select id='GeoLocsSelect' name="geoloc_id" 
-                                data-actualloc="{{ Auth::guard('customer')->user()->geoloc->name }}" 
-                                data-actuallocid="{{ Auth::guard('customer')->user()->geoloc->id }}" 
-                                class="form-control GeoLocsSelect" required>
-                            </select>
-                            @else
-                            <select id='GeoLocsSelect' name="geoloc_id" 
-                                data-actualloc="" 
-                                data-actuallocid="" 
-                                class="form-control GeoLocsSelect" required>
-                            </select>
-                            @endif
-                        </div>
+                    <div class="col-md-6 form-group">
+                        <label>Localidad</label>
+                        @if(Auth::guard('customer')->user()->geoloc)
+                        <select id='GeoLocsSelect' name="geoloc_id" 
+                            data-actualloc="{{ Auth::guard('customer')->user()->geoloc->name }}" 
+                            data-actuallocid="{{ Auth::guard('customer')->user()->geoloc->id }}" 
+                            class="form-control GeoLocsSelect" required>
+                        </select>
+                        @else
+                        <select id='GeoLocsSelect' name="geoloc_id" 
+                            data-actualloc="" 
+                            data-actuallocid="" 
+                            class="form-control GeoLocsSelect" required>
+                        </select>
+                        @endif
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>CUIT</label>
-                            <input class="form-control" type="text" name="cuit" value="{{ Auth::guard('customer')->user()->cuit }}" placeholder="Ingrese su número de CUIT"
-                             @if(Auth::guard('customer')->user()->group == '3') required @endif/>
-                        </div>
+                    <div class="col-sm-6 form-group">
+                        <label>Tipo de Negocio</label>
+                        {!! Form::select('business_type', ['Local' => 'Local', 'ShowRoom' => 'ShowRoom', 'Revendedora' => 'Revendedora'], 
+                        Auth::guard('customer')->user()->business_type,
+                        ['class' => 'form-control', 'placeholder' => 'Seleccione una opción', 'required' => '']) !!}
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label>CUIT</label>
+                        <input class="form-control" type="text" name="cuit" value="{{ Auth::guard('customer')->user()->cuit }}" placeholder="Ingrese su número de CUIT"
+                            @if(Auth::guard('customer')->user()->group == '3') required @endif/>
                     </div>
                     <div class="col-12">
                         <div class="d-flex flex-wrap justify-content-between align-items-center">
