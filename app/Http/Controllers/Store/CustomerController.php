@@ -10,21 +10,24 @@ class CustomerController extends Controller
 {
     public function update(Request $request)
     {
-        $user = auth()->guard('customer')->user();
-        $item = Customer::find($user->id);
+        $customer = auth()->guard('customer')->user();
+        $item = Customer::find($customer->id);
 
         if($request->cuit != null )
         {
             $this->validate($request,[
-                'cuit' => 'max:11|unique:customers,cuit,'.$user->id
+                'cuit' => 'required|int|digits:11|unique:customers,cuit,'.$customer->id
+            ],[
+                'cuit.digits' => 'El CUIT debe tener 11 números, no incluya guiones.',
+                'cuit.unique' => 'El CUIT ingresado ya existe en el sistema'
             ]);
         }
         
         $this->validate($request,[
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
-            'username' => 'required|string|max:20|unique:customers,username,'.$user->id,
-            'email' => 'required|string|email|max:255|unique:customers,email,'.$user->id,
+            'username' => 'required|string|max:20|unique:customers,username,'.$customer->id,
+            'email' => 'required|string|email|max:255|unique:customers,email,'.$customer->id,
             'phone' => 'required|max:255',
             'address' => 'required|max:255',
             'cp' => 'required|max:255',
@@ -36,7 +39,8 @@ class CustomerController extends Controller
             'addres.required' => 'Debe ingresar su dirección',
             'geoprov_id.required' => 'Debe ingresar su provincia',
             'geoloc_id.required' => 'Debe ingresar su localidad',
-            'cp.required' => 'Debe ingresar su código postal'
+            'cp.required' => 'Debe ingresar su código postal',
+            
         ]);
             
         $item->fill($request->all());

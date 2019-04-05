@@ -206,7 +206,6 @@ class CustomerController extends Controller
 
     public function update(Request $request, $id)
     {
-             // dd($request->all());
              if($request->dni != NULL)
              {
                  $this->validate($request,[
@@ -221,8 +220,8 @@ class CustomerController extends Controller
                  ]);
              }
                  
-             
              $customer = Customer::findOrFail($id);
+
              $this->validate($request,[
                  'name' => 'required|max:255',
                  'username' => 'required|max:20|unique:customers,username,'.$customer->id,

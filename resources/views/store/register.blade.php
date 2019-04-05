@@ -27,59 +27,87 @@
                 {{-- Username --}}
                 <div class="col-sm-6 form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                     <label for="reg-fn">Nombre de Usuario (Apodo)</label>
-                    <input id="username" type="text" name="username" class="form-control round" placeholder="Ingrese su nombre de usuario" value="{{ old('username') }}" required>
+                    <input id="username" type="text" name="username" class="form-control round" 
+                    placeholder="Ingrese su nombre de usuario" value="{{ old('username') }}" required>
                     @if ($errors->has('username'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('username') }}</strong>
-                        </span>
+                        <span class="help-block"><strong>{{ $errors->first('username') }}</strong></span>
                     @endif
                 </div> 	
                 {{-- E-mail --}}
                 <div class="col-sm-6 form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <label for="reg-fn">E-Mail</label>
-                    <input type="text" name="email" class="form-control round" placeholder="Ingrese su email" value="{{ old('email') }}" required>
+                    <input type="text" name="email" class="form-control round" 
+                    placeholder="Ingrese su email" value="{{ old('email') }}" required>
                     @if ($errors->has('email'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
+                        <span class="help-block"><strong>{{ $errors->first('email') }}</strong></span>
                     @endif
                 </div> 
             </div>
             <div class="row">
                 {{-- Name --}}
-                <div class="col-sm-6 form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                <div class="col-sm-6 form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <label>Nombre</label>
-                    <input  type="text" name="name" class="form-control round" placeholder="Ingrese su nombre" value="{{ old('name') }}" required>
+                    <input  type="text" name="name" class="form-control round" 
+                    placeholder="Ingrese su nombre" value="{{ old('name') }}" required>
                     @if ($errors->has('name'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('username') }}</strong>
-                        </span>
+                        <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
                     @endif
                 </div> 	
                 {{-- Surname --}}
                 <div class="col-sm-6 form-group{{ $errors->has('surname') ? ' has-error' : '' }}">
                     <label for="reg-fn">Apellido</label>
-                    <input type="text" name="surname" class="form-control round" placeholder="Ingrese su email" value="{{ old('surname') }}" required>
+                    <input type="text" name="surname" class="form-control round" 
+                    placeholder="Ingrese su email" value="{{ old('surname') }}" required>
                     @if ($errors->has('surname'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('surname') }}</strong>
-                        </span>
+                        <span class="help-block"><strong>{{ $errors->first('surname') }}</strong></span>
                     @endif
                 </div> 
             </div>
             <div class="row">
-                {{-- Name --}}
-                <div class="col-sm-12 form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                <div class="col-md-6 form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                    <label>Dirección</label>
+                    <input class="form-control" type="text" value="{{ old('address') }}" name="address">
+                </div>
+                <div class="col-md-6 form-group{{ $errors->has('cp') ? ' has-error' : '' }}">
+                    <label>Código Postal</label>
+                    <input class="form-control" type="text" value="{{ old('cp') }}" name="cp">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Provincia</label>
+                        {!! Form::select('geoprov_id', $geoprovs, null,
+                        ['class' => 'GeoProvSelect form-control', 'placeholder' => 'Seleccione una opción']) !!}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Localidad</label>
+                        <select id='GeoLocsSelect' name="geoloc_id" 
+                            data-actualloc="" data-actuallocid="" class="form-control GeoLocsSelect" required>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {{-- Phone --}}
+                <div class="col-sm-6 form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                     <label>Teléfono</label>
-                    <input  type="text" name="phone" class="form-control round" placeholder="Ingrese su número telefónico" value="{{ old('phone') }}" required>
+                    <input  type="text" name="phone" class="form-control round" 
+                    placeholder="Ingrese su número telefónico" value="{{ old('phone') }}" required>
                     @if ($errors->has('name'))
                         <span class="help-block">
                             <strong>{{ $errors->first('phone') }}</strong>
                         </span>
                     @endif
-                </div> 	
+                </div> 
+                {{-- CUIT --}}
+                <div class="col-sm-6 form-group{{ $errors->has('cuit') ? ' has-error' : '' }}">
+                    <label>CUIT</label>
+                    <input class="form-control" type="text" name="cuit" placeholder="Ingrese su número de CUIT" value="{{ old('cuit') }}" required />
+                </div>
             </div>
-
             <div class="row">
                 {{-- Password --}}
                 <div class="col-sm-6 form-group{{ $errors->has('password') ? ' has-error' : '' }} position-relative has-icon-left">
@@ -92,7 +120,7 @@
                     @endif
                 </div> 	
                 {{-- Password Confirmation --}}
-                <div class="col-sm-6 form-group{{ $errors->has('password') ? ' has-error' : '' }} position-relative has-icon-left">
+                <div class="col-sm-6 form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }} position-relative has-icon-left">
                     <label for="reg-fn">Confirmar Contraseña</label>
                     <input id="password-confirm" type="password" name="password_confirmation" class="form-control round" placeholder="Confirme Contraseña" required>
                     @if ($errors->has('name'))
@@ -102,8 +130,8 @@
                     @endif
                 </div>
             </div>
-            <input type="hidden" value="null" name="cuit">
-            <input type="hidden" value="null" name="dni">
+
+
             <input type="hidden" value="3" name="group">
             {{-- Submit --}}
             <button type="submit" class="btn btn-primary btn-block"><i class="icon-unlock"></i> Registrarse</button>
@@ -112,7 +140,16 @@
     </div>
 </div>
 @endsection
-{{--     
+    
 @section('scripts')
-    @include('store.components.bladejs')
-@endsection --}}
+@include('store.components.bladejs')
+    <script>
+        // Check for locality
+        $(document).ready(function(){
+            $('.GeoProvSelect').on('change', function(){
+                let prov_id = $(this).val();
+                getGeoLocs(prov_id);
+            });
+        });
+    </script>
+@endsection
