@@ -91,6 +91,11 @@ Route::get('/', function(){
     return redirect("https://namastetejidos.mitiendanube.com/");
 });
 
+Route::get('tienda/quienes-somos', function(){ 
+    return view('store.section-about-us');
+});
+
+
 Route::get('test1', function(){ 
     return view('store.checkout-success');
 });

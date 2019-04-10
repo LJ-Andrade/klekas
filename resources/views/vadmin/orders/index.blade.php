@@ -61,7 +61,9 @@
 						</th>
 						<th>N°</th>
 						<th>Cliente</th>
-						<th>Estado</th>
+						<th>Método de Pago</th>
+						<th>Estado de pago</th>
+						<th>Estado de pedido</th>
 						<th>Items</th>
 						<th>Totals</th>
 						<th>Fecha</th>
@@ -88,31 +90,23 @@
 										Compra sin registro
 									@endif
 								</td>
+								<td>
+									@if($item->payment_method_id != null)
+									{{ $item->payment->name }}
+									@else
+									No seleccionado
+									@endif
+								</td>
+								<td>
+									<div class="input-group"> 
+										{!! Form::select('group', 
+										[ '0' => 'Pendiente', '1' => 'Acreditado', '2' => 'En proceso', '3' => 'Rechazado'], 
+										$item->payment_status, ['class' => 'form-control custom-select minWidth150', 
+										'onChange' => "updateCartStatus(this, this.dataset.id, this.dataset.field)", 'data-field' => 'payment_status', 'data-id' => $item->id]) !!}
+									</div>
+								</td>
 								<td class="w-200">
 									<div class="input-group"> 
-										{{-- <span class="input-group-btn">
-											<span class="btn btnSquare grey-back">
-												@switch($item->status)
-													@case('Active')
-														<i class="icon-download"></i>
-														@break
-													@case('Process')
-														<i class="icon-cog"></i>
-														@break
-													@case('Approved')
-														<i class="icon-forward2"></i>
-														@break
-													@case('Canceled')
-														<i class="icon-cancel-circle"></i>
-														@break
-													@case('Finished')
-														<i class="icon-checkmark2"></i>
-														@break
-													@default
-														<i class="icon-close"></i>
-												@endswitch
-											</span>
-										</span> --}}
 										{!! Form::select('group', 
 										[ 'Active' => 'Activo', 'Process' => 'Esperando Acción', 'Approved' => 'Aprobado', 'Canceled' => 'Cancelado', 'Finished' => 'Finalizado'], 
 										$item->status, ['class' => 'form-control custom-select minWidth150', 'onChange' => 'updateCartStatus(this, this.dataset.id)', 'data-id' => $item->id]) !!}

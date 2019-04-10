@@ -64,9 +64,10 @@
                 </div> 
             </div>
             <div class="row">
-                <div class="col-md-6 form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                    <label>Dirección</label>
-                    <input class="form-control" type="text" value="{{ old('address') }}" name="address">
+                <div class="col-sm-6 form-group">
+                    <label>Tipo de Negocio</label>
+                    {!! Form::select('business_type', ['Local' => 'Local', 'ShowRoom' => 'ShowRoom', 'Revendedora' => 'Revendedora'], null,
+                    ['class' => 'form-control', 'placeholder' => 'Seleccione una opción', 'required' => '']) !!}
                 </div>
                 <div class="col-md-6 form-group{{ $errors->has('cp') ? ' has-error' : '' }}">
                     <label>Código Postal</label>

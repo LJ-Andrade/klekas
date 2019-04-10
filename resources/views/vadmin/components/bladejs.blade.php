@@ -179,7 +179,6 @@
                 $('#Error').html(data.responseText);
             }
         }); 
-
     }
 
     function updateStatusMultiple(id, model, status, action){
@@ -204,7 +203,6 @@
                 //$('#Error').html(data.responseText);
             }
         }); 
-
     }
 
     /*
@@ -231,7 +229,6 @@
                 //$('#Error').html(data.responseText);
             }
         }); 
-
     }
     
     /*
@@ -240,26 +237,23 @@
     |--------------------------------------------------------------------------
     */
 
-    function updateCartStatus(status, cartid){
+
+    function updateCartStatus(status, cartid, field){
         
         var route  = "{{ url('vadmin/updateCartStatus') }}";
-        var data = { id: cartid, status: status.value};
+        var data = { id: cartid, status: status.value, field: field};
         $.ajax({
             url: route,
             type: 'POST',
-            data: data,
             dataType: 'JSON',
+            data: data,
             success: function(data){
-                console.log(data);
-                $('#Error').html(data.responseText);
                 if(data.response == true){
                     location.reload();
-                } 
-                else if(data.response == false)
-                {
-                    alert_error('Mmm...', data.message);
                 } else {
-                    $('#Error').html(data.responseText);
+                    // $('#Error').html(data.responseText);
+                    alert_error('Ups.', data.message);
+                    console.log(data);
                 }
             },
             error: function(data){
@@ -269,6 +263,7 @@
             }
         }); 
     }
+    
 
         
     //----------------------------------------------
@@ -277,35 +272,34 @@
 
     window.getGeoLocs = function(geoprov_id){
 
-    let route = "{{ url('getGeoLocs') }}/"+geoprov_id+"";
-    $.ajax({
-        url: route,
-        method: 'GET',
-        dataType: 'JSON',
-        success: function(e){
-            // Print Locs
-            var select = $('#GeoLocsSelect');
-            var actuallocid = $('#GeoLocsSelect').data('actuallocid');
+        let route = "{{ url('getGeoLocs') }}/"+geoprov_id+"";
+        $.ajax({
+            url: route,
+            method: 'GET',
+            dataType: 'JSON',
+            success: function(e){
+                // Print Locs
+                var select = $('#GeoLocsSelect');
+                var actuallocid = $('#GeoLocsSelect').data('actuallocid');
 
-            select.html('');
-            for (var i = 0, len = e.geolocs.length; i < len; i++) {
-                if(actuallocid != '' && e.geolocs[i]['id'] == actuallocid){
-                    select.append("<option selected value='"+ e.geolocs[i]['id'] +"'>"+ e.geolocs[i]['name'] +"</option>");
-                } else {
-                    select.append("<option value='"+ e.geolocs[i]['id'] +"'>"+ e.geolocs[i]['name'] +"</option>");
+                select.html('');
+                for (var i = 0, len = e.geolocs.length; i < len; i++) {
+                    if(actuallocid != '' && e.geolocs[i]['id'] == actuallocid){
+                        select.append("<option selected value='"+ e.geolocs[i]['id'] +"'>"+ e.geolocs[i]['name'] +"</option>");
+                    } else {
+                        select.append("<option value='"+ e.geolocs[i]['id'] +"'>"+ e.geolocs[i]['name'] +"</option>");
+                    }
                 }
-            }
 
-        },
-        error: function(e){
-            console.log('ERROR');
-            console.log(e);
-            $('#Error').html(e.responseText);
-        }
-    });
+            },
+            error: function(e){
+                console.log('ERROR');
+                console.log(e);
+                $('#Error').html(e.responseText);
+            }
+        });
 
     }
-
 
     window.checkIfHasProvSelected = function(provs, locs)
     {
@@ -327,9 +321,6 @@
     });
 
     checkIfHasProvSelected('.GeoProvSelect', '.GeoLocsSelect');
-
-
-
 
     /*
     |--------------------------------------------------------------------------

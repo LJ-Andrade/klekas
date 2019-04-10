@@ -29,6 +29,7 @@ use App\Cart;
 use Cookie;
 use Mail;
 use PDF;
+use MP;
 
 
 class StoreController extends Controller
@@ -345,9 +346,7 @@ class StoreController extends Controller
         $checkCustomer = $this->checkAndUpdateCustomerData(auth()->guard('customer')->user()->id, $request);
         
         if($checkCustomer['response'] == 'error')
-        {
             return redirect()->route('store.checkout-last')->with('message', $checkCustomer['message']);
-        }
         
         $cart = Cart::findOrFail($request->cart_id);  
         // Check if customer choose payment method
@@ -378,6 +377,25 @@ class StoreController extends Controller
             }
         }
 
+         // MercadoPago
+        //-----------------------------------------
+        if($cart->payment_method_id == 7 && env('MP_APP_REAL_MP'))
+        {
+            // dd("Elijo MP REAL");
+            // Check if MercadoPago API is ON and proccess.
+            try
+            {
+                $mpUrl = $this->processMpPayment($cart);
+                $cart->status = 'Active';
+                $cart->save();
+                return redirect($mpUrl);
+            } catch (\Exception $e) {   
+                // header("Refresh:0");
+                echo "Se produjo un error (". $e->getMessage().")";
+                die();
+            }
+        }
+
         $cart->status = 'Process';
         
         try {
@@ -403,6 +421,61 @@ class StoreController extends Controller
         return view('store.checkout-success')
             ->with('cart', $cart);
     }
+
+    
+    /*
+    |--------------------------------------------------------------------------
+    | MERCADOPAGO
+    |--------------------------------------------------------------------------
+    */
+
+    public function processMpPayment($order)
+    {
+
+        $order = $this->calcCartData($order);
+        // dd($order['total']);
+        // dd($order);
+        $preference_data = [
+            "external_reference" => $order['rawdata']->id,
+            "items" => [
+                [
+                    'id' => 0,
+                    'title' => env('APP_BUSINESS_NAME'),
+                    'description' => '',
+                    'picture_url' => 'http://localhost/bruna/public/images/web/mp-logo.jpg',
+                    'quantity' => 1,
+                    'currency_id' => "ARS",
+                    'unit_price' => $order['total']
+                ]
+            ],
+            "payer" => [
+                'name' => 'John',
+                'surname' => 'Snow',
+                'email' => 'snow@bastard.com.ar',
+                'date_created' => Carbon::now()
+            ],
+            'back_urls' => [
+                'success' => url('tienda/mp-success'),
+                'pending' => url('tienda/mp-pending'),
+                'failure' => url('tienda/mp-failure')
+            ],
+            "auto_return" => "approved"
+        ];
+    
+        $preference = MP::post("/checkout/preferences", $preference_data);
+        // return dd($preference);
+        if(env('MP_APP_RODUCTION'))
+            $initPoint = $preference['response']['init_point'];
+        else
+            $initPoint = $preference['response']['sandbox_init_point'];
+        // dd($initPoint);
+        return $initPoint;
+    }
+    
+    
+
+
+
     
     public function updateItemsQuantities($data)
     {

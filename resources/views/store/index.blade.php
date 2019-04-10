@@ -10,11 +10,7 @@
 		<img src="{{ asset('images/web/home-banner.jpg')}}" alt="Klekas Home Banner">
 		<img src="{{ asset('images/web/home-banner2.jpg')}}" alt="Klekas Home Banner">
 	</div>
-	{{-- Fixed Banner --}}
-	{{-- <img src="{{ asset('images/web/home-banner.jpg')}}" alt="Klekas Banner">		 --}}
-	{{-- <div class="index-header">	
-	</div> --}}
-	@endsection
+@endsection
 	
 	@section('content')
 	<div class="mobile-filters">

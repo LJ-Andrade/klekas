@@ -10,7 +10,6 @@ $.ajaxSetup({
 |--------------------------------------------------------------------------
 */
 
-
 // Select checkbox to deletion
 $(document).on("click", ".List-Checkbox", function(e)
 {

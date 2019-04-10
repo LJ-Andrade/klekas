@@ -52,6 +52,5 @@
                 getGeoLocs(prov_id);
             });
         });
-		
 	</script>
 @endsection

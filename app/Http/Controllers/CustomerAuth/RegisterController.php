@@ -97,19 +97,19 @@ class RegisterController extends Controller
             $group = '3'; 
 
         return Customer::create([
-            'name'       => $data['name'],
-            'surname'    => $data['surname'],
-            'username'   => $data['username'],
-            'email'      => $data['email'],
-            'phone'      => $data['phone'],
-            'geoprov_id' => $data['geoprov_id'],
-            'geoloc_id'  => $data['geoloc_id'],
-            'cuit'       => $data['cuit'],
-            'address'    => $data['address'],
-            'cp'         => $data['cp'],
-            'password'   => bcrypt($data['password']),
-            'group'      => $group,
-            'status'     => $status
+            'name'          => $data['name'],
+            'surname'       => $data['surname'],
+            'username'      => $data['username'],
+            'email'         => $data['email'],
+            'phone'         => $data['phone'],
+            'geoprov_id'    => $data['geoprov_id'],
+            'geoloc_id'     => $data['geoloc_id'],
+            'cuit'          => $data['cuit'],
+            'business_type' => $data['business_type'],
+            'cp'            => $data['cp'],
+            'password'      => bcrypt($data['password']),
+            'group'         => $group,
+            'status'        => $status
         ]);
     }
 

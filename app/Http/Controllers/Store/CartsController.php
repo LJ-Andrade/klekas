@@ -81,42 +81,62 @@ class CartsController extends Controller
     public function updateStatus(Request $request)
     {
         $cart = Cart::findOrFail($request->id);
-        $oldStatus = $cart->status;
-
-        if($oldStatus == 'Canceled')
+        if($request->field == 'payment_status')
         {
-            return response()->json([
-                'response' => false,
-                'message' => 'Estás tratando de revivir una órden cancelada. Esta función aún no ha sido diseñada.'
-            ]); 
-        }
-
-        if($request->status == "Canceled")
-        {
-            foreach($cart->items as $item)
+            try 
             {
-                $this->updateVariantStock($item->variant->id, $item->quantity);
-            }
+                $cart->payment_status = $request->status;
+                $cart->save();
+                return response()->json([
+                    'response' => true,
+                    'newstatus' => $cart->payment_status
+                ]); 
+            }  
+            catch (\Exception $e) 
+            {
+                return response()->json([
+                    'response'   => false,
+                    'error'    => 'Error: '.$e->getMessage()
+                ]);    
+            }    
         }
-        
-        try 
+        else
         {
-            $cart->status = $request->status;
-            $cart->save();
-            return response()->json([
-                'response' => true,
-                'newstatus' => $cart->status
-            ]); 
-        }  
-
-        catch (\Exception $e) 
-        {
-            return response()->json([
-                'response'   => false,
-                'error'    => 'Error: '.$e->getMessage()
-            ]);    
-        } 
+            $oldStatus = $cart->status;
+            // dd($cart->items);
+            
+            if($oldStatus == 'Canceled')
+            {
+                return response()->json([
+                    'response' => false,
+                    'message' => 'Estás tratando de revivir una órden cancelada. Esta función aún no ha sido diseñada.'
+                ]); 
+            }
+    
+            try {
+                if($request->status == "Canceled")
+                {
+                    foreach($cart->items as $item)
+                    {
+                        $this->updateCartItemStock($item->article_id, $item->quantity);
+                    }
+                }
+                         
+                $cart->status = $request->status;
+                $cart->save();
+                return response()->json([
+                    'response' => true,
+                    'newstatus' => $cart->status
+                ]); 
+            }  catch (\Exception $e) {
+                return response()->json([
+                    'response'   => false,
+                    'error'    => 'Error: '.$e->getMessage()
+                ]);    
+            } 
+        }
     }
+
     
     /*
     |--------------------------------------------------------------------------

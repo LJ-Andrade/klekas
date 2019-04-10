@@ -1,5 +1,5 @@
 @extends('vadmin.partials.main')
-@section('title', 'Vadmin | Editar Usuario')
+@section('title', 'Vadmin | Editar Cliente')
 
 @section('header')
 	@component('vadmin.components.header')

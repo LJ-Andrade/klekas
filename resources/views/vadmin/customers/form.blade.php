@@ -15,7 +15,7 @@
                 </div>
                 <div class="form-group">
                     {!! Form::label('email', 'E-mail') !!}
-                    {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el e-mail', 'required' => '']) !!}
+                    {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el e-mail', 'required' => '']) !!}
                 </div>
                 <div class="form-group">
                     <label>Tipo de Negocio</label>
