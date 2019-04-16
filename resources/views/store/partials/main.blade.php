@@ -33,11 +33,8 @@
 		<div class="main-wrapper">
 			{{-- <div id="MainOverlay" class="main-overlay"></div> --}}
 			<div id="full-loader" class="full-loader Hidden">
-				<div class="inner">
-					<img src="{{ asset('store-ui/images/loader.gif') }}" alt="Loader">
-				</div>
+				<div class="inner"><img src="{{ asset('store-ui/images/loader.gif') }}" alt="Loader"></div>
 			</div>
-			
 			@yield('modal')
 			{{-- @include('store.partials.topbar') --}}
 			@include('store.partials.nav') {{-- ToolBar is inside this nav include --}}
@@ -46,66 +43,90 @@
 			{{-- Checkout Sidebar --}}
 			@include('store.partials.cart-sidebar')
 			<div class="container-fluid custom-page-title pad0"> @yield('header-image') </div>
-			
+
+
 			{{-- Site Content --}}
-			<div class="content"> @yield('content') </div>
+			<div class="content"> @yield('content')</div>
 		</div>	
-			<!-- Site Footer-->
-			<div class="container-fluid widgets-footer">
-				<div class="row">
-					<div class="col-md-4 item">
-						<h4>Contacto</h4>
-						<p>Guadalupe: (+54)9 11-3826-4084 <br>
-						Camila: (+54)9 11-6276-1443 </p>
-					</div>
-					<div class="col-md-4 item">
-						<h4>Redes</h4>
-						<ul>
-							<li><a href="https://www.facebook.com/somosklekas/" target="_blank"><i class="fab fa-facebook-f social-icons"></i></li>
-							<li><a href="https://www.instagram.com/somosklekas/" target="_blank"><i class="fab fa-instagram social-icons"></i></a></li>
-							{{-- <li><i class="fab fa-twitter-square"></i></li> --}}
-						</ul>
-					</div>
-					<div class="col-md-4 item">
-						{{-- <h4>Otros</h4> --}}
-					</div>
+		<!-- Site Footer-->
+		<div class="container-fluid widgets-footer">
+			<div class="row">
+				<div class="col-md-6 item">
+					<h4>Contacto</h4>
+					<p>Guadalupe: (+54)9 11-3826-4084 <br>
+					Camila: (+54)9 11-6276-1443 </p>
 				</div>
+				<div class="col-md-6 item">
+					<h4>Redes</h4>
+					<ul>
+						<li><a href="https://www.facebook.com/somosklekas/" target="_blank"><i class="fab fa-facebook-f social-icons"></i></li>
+						<li><a href="https://www.instagram.com/somosklekas/" target="_blank"><i class="fab fa-instagram social-icons"></i></a></li>
+						{{-- <li><i class="fab fa-twitter-square"></i></li> --}}
+					</ul>
+				</div>
+				{{-- <div class="col-md-4 item">
+				</div> --}}
 			</div>
-			<footer class="site-footer">
-				<div class="container">
-					<p class="footer-copyright">
-						© {{ date('Y') }} - Desarrollado por <a href="https://vimana.studio/es" target="_blank">&nbsp; Vimana Studio </a>
-					</p>
-				</div>
-			</footer>
+		</div>
+		<footer class="site-footer">
+			<div class="container">
+				<p class="footer-copyright">
+					© {{ date('Y') }} - Desarrollado por <a href="https://vimana.studio/es" target="_blank">&nbsp; Vimana Studio </a>
+				</p>
+			</div>
+		</footer>
 
-			{{-- Whats App Cta--}}
-			<div class="floating-bottom-cta">
-				<div class="inner">
-					<a href="https://wa.me/54912121212" target="_blank"><i class="fab fa-whatsapp"></i></a>
-				</div>
+		{{-- Whats App Cta--}}
+		<div class="floating-bottom-cta">
+			<div class="inner">
+				<a href="https://wa.me/54912121212" target="_blank"><i class="fab fa-whatsapp"></i></a>
 			</div>
+		</div>
+	
+		{{-- Back To Top Button --}}
+		<a class="scroll-to-top-btn" href="#"> <i class="icon-arrow-up"></i> </a>
+
+		{{-- Backdrop --}}
+		<div class="site-backdrop"></div>
+
+		{{-- JavaScript (jQuery) libraries, vendor and custom scripts --}}
+		<script src="{{ asset('store-ui/js/vendor.min.js') }}"></script>
+		<script src="{{ asset('store-ui/js/iziToast.min.js') }}"></script>
+		<script src="{{ asset('store-ui/js/scripts.min.js') }}"></script>
+		<script src="{{ asset('plugins/jquery/jquery-3.3.1.min.js') }}"></script>
+		{{-- Instafeed Docs --}}
+		{{-- https://github.com/stevenschobert/instafeed.js --}}
+		<script src="{{ asset('plugins/instafeed/instafeed.js') }}"></script> 
 		
-			{{-- Back To Top Button --}}
-			<a class="scroll-to-top-btn" href="#"> <i class="icon-arrow-up"></i> </a>
-
-			{{-- Backdrop --}}
-			<div class="site-backdrop"></div>
-
-			{{-- JavaScript (jQuery) libraries, vendor and custom scripts --}}
-			<script src="{{ asset('store-ui/js/vendor.min.js') }}"></script>
-			<script src="{{ asset('store-ui/js/iziToast.min.js') }}"></script>
-			<script src="{{ asset('store-ui/js/scripts.min.js') }}"></script>
-			<script src="{{ asset('plugins/jquery/jquery-3.3.1.min.js') }}"></script>
-			<script src="{{ asset('js/scripts.js') }}"></script>
-			@include('store.partials.scripts')
-			@yield('scripts')
+		<script src="{{ asset('js/scripts.js') }}"></script>
+		@include('store.partials.scripts')
+		@yield('scripts')
+		<script>
 			@if(isset($_GET['checkout-on']))
-				<script>
-					checkoutSidebar('show');
-				</script>
+				checkoutSidebar('show');
 			@endif
-		
+
+			// Instagram Feed (User ID klekas: 1138178064)
+			// Plugin URL 
+
+			// Other options:
+			// sortBy : none (default) - most-recent - least-recent - most-liked - least-liked - most-commented - least-commented - random
+			// resolution: thumbnail (default) - low_resolution - standard_resolution
+			var feed = new Instafeed({
+				get: 'user',
+				userId: '1138178064',
+				tagName: 'tagged',
+				target: 'Instafeed',
+				clientId: '1cdec271dcfc4b288b9079464a27d3da',
+				accessToken: '1138178064.ba4c844.c6190ae40e6940b8a9abb541b2ad1e2e',
+				limit: '8',
+				resolution: 'low_resolution',
+				error: function(err){
+					// $('#error').text(err);
+				}
+			});
+			feed.run();
+		</script>
 	</body>
 </html>
 

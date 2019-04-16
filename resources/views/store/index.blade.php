@@ -132,6 +132,10 @@
 			</div>
 		</div>
 	</div>
+	<div class="instagram-feed">
+		<h4>Seguinos en Instagram</h4>
+		<div id="Instafeed" class="instagram-images"></div>
+	</div>
 	<div id="Error"></div>
 @endsection
 

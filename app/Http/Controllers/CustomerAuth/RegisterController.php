@@ -94,19 +94,11 @@ class RegisterController extends Controller
         $group = '2'; // Min 
         // Reseller
         if ($data['group'] == '3')
-            $group = '3'; 
+            $group = '3'; // Reseller 
 
         return Customer::create([
-            'name'          => $data['name'],
-            'surname'       => $data['surname'],
             'username'      => $data['username'],
             'email'         => $data['email'],
-            'phone'         => $data['phone'],
-            'geoprov_id'    => $data['geoprov_id'],
-            'geoloc_id'     => $data['geoloc_id'],
-            'cuit'          => $data['cuit'],
-            'business_type' => $data['business_type'],
-            'cp'            => $data['cp'],
             'password'      => bcrypt($data['password']),
             'group'         => $group,
             'status'        => $status
@@ -144,15 +136,15 @@ class RegisterController extends Controller
 
         $this->guard()->login($user);
 
-        try {
-            $subject = 'Nuevo usuario registrado';
-            $message = 'Un usuario se ha registrado en la tienda';
-            // Mail::to(APP_EMAIL_1)->send(new SendMail($subject, 'SimpleMail', $message));
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-        }
+        // try {
+        // //     $subject = 'Nuevo usuario registrado';
+        // //     $message = 'Un usuario se ha registrado en la tienda';
+        //     // Mail::to(APP_EMAIL_1)->send(new SendMail($subject, 'SimpleMail', $message));
+        // } catch (\Exception $e) {
+        //     dd($e->getMessage());
+        // }
 
         return $this->registered($request, $user)
-            ? : redirect($this->redirectPath())->with("message", "Bienvenid@! Gracias por registrarte!");; 
+            ? : redirect($this->redirectPath())->with("message", "Bienvenid@! Gracias por registrarte!");
     }
 }
