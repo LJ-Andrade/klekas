@@ -91,14 +91,22 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $status = '1'; // Active
-        $group = '2'; // Min 
+        $group = '2'; // Min
         // Reseller
         if ($data['group'] == '3')
             $group = '3'; // Reseller 
 
         return Customer::create([
+            'name'          => $data['name'],
+            'surname'       => $data['surname'],
             'username'      => $data['username'],
             'email'         => $data['email'],
+            'phone'         => $data['phone'],
+            'geoprov_id'    => $data['geoprov_id'],
+            'geoloc_id'     => $data['geoloc_id'],
+            'cuit'          => $data['cuit'],
+            'business_type' => $data['business_type'],
+            'cp'            => $data['cp'],
             'password'      => bcrypt($data['password']),
             'group'         => $group,
             'status'        => $status
@@ -129,7 +137,6 @@ class RegisterController extends Controller
     {
         if ($request->group != '2' && $request->group != '3')
             return back()->withErrors('No se ha seleccionado un tipo de usuario');   
-
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
