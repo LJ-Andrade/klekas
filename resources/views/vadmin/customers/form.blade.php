@@ -63,7 +63,7 @@
                 </div>
                 <div class="form-group">
                     <label>Localidad</label>
-                    @if(isset($customer))
+                    @if(isset($customer) && $customer->geoloc)
                         <select id='GeoLocsSelect' name="geoloc_id" 
                             data-actualloc="{{ $customer->geoloc->name }}" 
                             data-actuallocid="{{ $customer->geoloc->id }}" 
