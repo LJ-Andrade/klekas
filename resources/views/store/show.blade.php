@@ -71,7 +71,7 @@
 				<p class="description">{{ strip_tags($article->description) }}</p>
 				<div class="item"><div class="title">Tela: <b>{{ $article->textile }}</b></div></div>
 				
-				@if(Auth::guard('customer')->check())
+				@if(Auth::guard('customer')->check() || env('ALLOW_ANON_CHECKOUT'))
 				
 					{!! Form::open(['id' => 'AddToCartForm', 'class' => 'form-group price', 'onchange' => 'checkVariantStock()', 
 						'data-route' => (url('tienda/checkVariantStock'))]) !!}

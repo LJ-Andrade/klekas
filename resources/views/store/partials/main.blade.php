@@ -5,7 +5,7 @@
 		<title>{{ APP_BUSSINESS_NAME }} | Tienda</title>
 		<!-- SEO Meta Tags-->
 		<meta name="description" content="{{ APP_BUSSINESS_NAME }} | Tienda">
-		<meta name="keywords" content="bruna, indumentaria, ropa, vestidos, ropa interior, lenceria, bombachas, tangas">
+		<meta name="keywords" content="indumentaria, ropa, vestidos, ropa interior, lenceria, bombachas, tangas">
 		<meta name="author" content="Vimana Studio">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<!-- Mobile Specific Meta Tag-->

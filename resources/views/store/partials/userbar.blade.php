@@ -44,6 +44,23 @@
                         </li> 
                     </ul>
                 </div>
+            @elseif(env('ALLOW_ANON_CHECKOUT'))
+                <div class="access-buttons">
+                    <a href="{{ route('customer.login') }}" class="btn btn-main-sm-hollow">Ingresar</a>
+                    <a href="{{ url('tienda/registro') }}" style="margin-left: -4px" class="btn btn-main-sm">Registrarse</a>
+                </div>
+                <div class="CartResumen cart cart-anon" onclick="checkoutSidebar();">
+                    <img class="cart-icon" src="{{ asset('images/web/cart-icon.png') }}" alt="">
+                    <span class="TotalCartItems count">@if($activeCart['totalItems'] == 0) 0 @else {{ $activeCart['totalItems'] }} @endif</span>
+                    <span class="CartSubTotal subtotal">@if($activeCart['totalItems'] != 0) $ {{ $activeCart['cartSubTotal'] }} @endif</span>
+                    {{-- <div id="ShowCartItems">
+                        Items
+                    </div> --}}
+                </div>
+                {{-- User Avatar --}}
+                {{-- <div class="account"><a href="#" onclick="event.preventDefault();"></a>
+                    <img src="{{ asset('webimages/customers/default.jpg' ) }}" class="CheckImg" alt="Anon Avatar">
+                </div> --}}
             @else
                 <div class="access-buttons">
                     <a href="{{ route('customer.login') }}" class="btn btn-main-sm-hollow">Ingresar</a>

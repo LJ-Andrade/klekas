@@ -57,7 +57,7 @@
                 <div class="col-sm-6 form-group{{ $errors->has('surname') ? ' has-error' : '' }}">
                     <label for="reg-fn">Apellido</label>
                     <input type="text" name="surname" class="form-control round" 
-                    placeholder="Ingrese su email" value="{{ old('surname') }}" required>
+                    placeholder="Ingrese su apellido" value="{{ old('surname') }}" required>
                     @if ($errors->has('surname'))
                         <span class="help-block"><strong>{{ $errors->first('surname') }}</strong></span>
                     @endif

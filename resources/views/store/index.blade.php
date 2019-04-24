@@ -98,8 +98,6 @@
 									</a>
 								</div>
 								{{-- ============== Content =============== --}}
-								{{-- ====================================== --}}
-								{{-- =============== Footer =============== --}}
 								<div class="content">
 									<div class="title">
 										<a class="product-title max-text"href="{{ url('tienda/articulo/'.$article->id) }}">{{ $article->name }}</a>	
@@ -111,7 +109,7 @@
 													$ {{ showPrice($article->reseller_price, $article->reseller_discount + 0) }}
 												@endif
 											@else
-												$ {{ showPrice($article->price, $article->discount + 0) }}
+												{{-- $ {{ showPrice($article->price, $article->discount + 0) }} --}}
 											@endif
 										</span>
 									</div>

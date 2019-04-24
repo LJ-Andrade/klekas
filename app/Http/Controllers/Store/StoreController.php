@@ -442,7 +442,7 @@ class StoreController extends Controller
                     'id' => 0,
                     'title' => env('APP_BUSINESS_NAME'),
                     'description' => '',
-                    'picture_url' => 'http://localhost/bruna/public/images/web/mp-logo.jpg',
+                    'picture_url' => 'http://localhost/klekas/public/images/web/mp-logo.jpg',
                     'quantity' => 1,
                     'currency_id' => "ARS",
                     'unit_price' => $order['total']
