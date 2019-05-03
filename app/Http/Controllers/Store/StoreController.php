@@ -490,7 +490,7 @@ class StoreController extends Controller
     {
         $message = '';
 
-        if($data['data'] == null)
+        if(!isset($data['data']))
         {
             $response = ['response' => 'error', 'message' => 'Error data'];
         }
