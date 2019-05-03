@@ -489,6 +489,13 @@ class StoreController extends Controller
     public function updateItemsQuantities($data)
     {
         $message = '';
+
+        if($data['data'] == null)
+        {
+            $response = ['response' => 'error', 'message' => 'Error data'];
+        }
+
+
         foreach($data['data'] as $item)
         {
             $cartItem = CartItem::findOrFail($item['id']);

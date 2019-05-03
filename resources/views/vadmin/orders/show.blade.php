@@ -38,11 +38,11 @@
             @slot('title')
             Pedido #{{ $order['rawdata']->id }}
                 @if($order['rawdata']->customer)
-                    <span class="small"> | <b>Cliente: <a href="" data-toggle="modal" data-target="#CustomerDataModal"></b>
+                    <span class="small"> | <b>Cliente: <a href="" data-toggle="modal" data-target="#CustomerDataModal"> </b>
                     {{ $order['rawdata']->customer->name }} {{ $order['rawdata']->customer->surname }}</a>
                     </span>
                     @else
-                    <span class="small"> | <b>Cliente: <a href="" data-toggle="modal" data-target="#AnonCustomerDataModal"></b>
+                    <span class="small"> | <b>Cliente: <a href="" data-toggle="modal" data-target="#AnonCustomerDataModal"> </b>
                     {{ $anonCustomer['name'] }} {{ $anonCustomer['surname'] }}</a>
                     </span>
                     @endif
@@ -145,7 +145,7 @@
                     </tr>
                     @endif
                     <tr>
-			<td></td><td></td><td></td>
+			    <td></td><td></td><td></td>
                         @if($order['rawdata']->shipping_id && $order['rawdata']->shipping)
                         <td><b>Envío:</b> {{ $order['rawdata']->shipping->name }}</td>
                         <td>$ {{ $order['shippingCost'] }}</td>
