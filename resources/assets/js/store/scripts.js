@@ -328,11 +328,10 @@ window.submitCartToCheckout = function (route, target, data, action) {
             // $('#Error').html(data.responseText);
         },
         error: function (data) {
-            $('#Error').html(data.responseText);
+            //$('#Error').html(data.responseText);
             console.log("Error en submitForm()");
-            // location.reload();
             console.log(data);
-            // location.reload();
+            location.reload();
         }
     });
 }
