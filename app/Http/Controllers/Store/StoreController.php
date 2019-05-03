@@ -351,7 +351,7 @@ class StoreController extends Controller
         if(auth()->guard('customer')->check())
         {
             $checkCustomer = $this->checkAndUpdateCustomerData(auth()->guard('customer')->user()->id, $request);
-            $customerMpEmail = auth()->guard('customer')->email;
+            $customerMpEmail = auth()->guard('customer')->user()->email;
             if($checkCustomer['response'] == 'error')
                 return redirect()->route('store.checkout-last')->with('message', $checkCustomer['message']);
         }
