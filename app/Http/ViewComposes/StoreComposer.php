@@ -15,7 +15,7 @@ class StoreComposer
         $settings = Settings::findOrFail(1);
         $google_analytics = $settings->google_analytics;
         $favs = $this->getCustomerFavs();
-        $activeCart = $this->activeCart();
+        $activeCart = $this->activeCart(app('session')->getId());
         $view
             ->with('activeCart', $activeCart)
             ->with('favs', $favs)

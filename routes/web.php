@@ -110,6 +110,32 @@ Route::get('tienda/talle/{name}', ['as' => 'store.search.size', 'uses' => 'Store
 Route::get('tienda/etiqueta/{name}', ['as' => 'store.search.tag', 'uses' => 'Store\StoreController@searchTag']);
 Route::get('tienda/color/{name}', ['as' => 'store.search.color', 'uses' => 'Store\StoreController@searchColor']);
 
+
+Route::post('removeFromCart', ['as' => 'store.removeFromCart', 'uses' => 'Store\CartItemController@destroy']);
+
+    // Checkout
+    // ===============
+    Route::group(['prefix'=> 'tienda'], function() {  
+    // Go to Review Items
+    Route::get('checkout', ['as' => 'store.checkout', 'uses' => 'Store\StoreController@checkoutItems']);
+    // Review Items
+    Route::post('checkout-items', ['as' => 'store.checkout-set-items', 'uses' => 'Store\StoreController@checkoutSetItems']);
+    // Go to Checkout Last
+    Route::get('finalizando-compra', ['as' => 'store.checkoutLast', 'uses' => 'Store\StoreController@checkoutLast']);
+    // Process Checkout
+    Route::post('finalizando-compra', ['as' => 'store.processCheckout', 'uses' => 'Store\StoreController@processCheckout']);
+    // Update Cart Payment and Shipping Methods
+    Route::post('updateCartPayment', ['as' => 'store.updatePaymentAndShipping', 'uses' => 'Store\CartsController@updatePaymentAndShipping']);
+    // Check discount coupon
+    Route::post('checkear-cupon', ['as' => 'store.validateAndSetCoupon', 'uses' => 'Store\StoreController@validateAndSetCoupon']);
+    // Get Invoice
+    Route::get('descargar-comprobante/{id}/{action}', 'Store\StoreController@downloadInvoice');
+    // Mercado Pago
+    Route::post('mp-connect', ['as' => 'store.getCreatePreference', 'uses' => 'Store\StoreController@mpConnect']);
+
+});
+
+
 Route::group(['prefix'=> 'tienda', 'middleware' => 'active-customer'], function() {    
     Route::get('articulo/{id}', 'Store\StoreController@show');
     
@@ -123,7 +149,7 @@ Route::group(['prefix'=> 'tienda', 'middleware' => 'active-customer'], function(
         // Cart
         Route::post('addtocart', ['as' => 'store.addtocart', 'uses' => 'Store\CartItemController@store']);
         Route::post('addQtoCart', ['as' => 'store.addQtoCartItem', 'uses' => 'Store\CartItemController@addQtoCartItem']);
-        Route::post('removeFromCart', ['as' => 'store.removeFromCart', 'uses' => 'Store\CartItemController@destroy']);
+        // Route::post('removeFromCart', ['as' => 'store.removeFromCart', 'uses' => 'Store\CartItemController@destroy']);
         Route::post('removeFromCartLive', ['as' => 'store.removeFromCartLive', 'uses' => 'Store\CartItemController@liveDestroy']);
         
         Route::post('eliminar-carro', ['as' => 'store.removeCartReturnStock', 'uses' => 'Store\CartsController@removeCartReturnStock']);
@@ -137,25 +163,7 @@ Route::group(['prefix'=> 'tienda', 'middleware' => 'active-customer'], function(
         Route::get('updatePassword', ['as' => 'store.updatePassword', 'uses' => 'Store\StoreController@updatePassword']);
         Route::post('updatePassword', ['as' => 'store.updatePassword', 'uses' => 'Store\CustomerController@updatePassword']);
 
-        // Checkout
-        // ===============
-        // Go to Review Items
-        Route::get('checkout', ['as' => 'store.checkout', 'uses' => 'Store\StoreController@checkoutItems']);
-        // Review Items
-        Route::post('checkout-items', ['as' => 'store.checkout-set-items', 'uses' => 'Store\StoreController@checkoutSetItems']);
-        // Go to Checkout Last
-        Route::get('finalizando-compra', ['as' => 'store.checkoutLast', 'uses' => 'Store\StoreController@checkoutLast']);
-        // Process Checkout
-        Route::post('finalizando-compra', ['as' => 'store.processCheckout', 'uses' => 'Store\StoreController@processCheckout']);
-        // Update Cart Payment and Shipping Methods
-        Route::post('updateCartPayment', ['as' => 'store.updatePaymentAndShipping', 'uses' => 'Store\CartsController@updatePaymentAndShipping']);
-        // Check discount coupon
-        Route::post('checkear-cupon', ['as' => 'store.validateAndSetCoupon', 'uses' => 'Store\StoreController@validateAndSetCoupon']);
-        // Get Invoice
-        Route::get('descargar-comprobante/{id}/{action}', 'Store\StoreController@downloadInvoice');
-        // Online Payments Api
-        Route::post('mp-connect', ['as' => 'store.getCreatePreference', 'uses' => 'Store\StoreController@mpConnect']);
-        // Route::post('mp-connect', ['as' => 'store.getCreatePreference', 'uses' => 'MercadoPagoController@getCreatePreference']);
+        // Aca estaba el checkout
     });
     
     Route::post('addArticleToFavs', ['as' => 'customer.addArticleToFavs', 'uses' => 'Store\StoreController@addArticleToFavs']);

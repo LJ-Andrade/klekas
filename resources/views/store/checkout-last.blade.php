@@ -56,7 +56,7 @@
 			</div>{{-- / col-md-12 --}}
 		</div> {{-- / Row --}}
 		{{-- Data & Sidebar --}}
-		<div class="row ">
+		<div class="row">
 			<div class="col-sm-8">
 				{!! Form::open(['route' => 'store.updatePaymentAndShipping', 'class' => 'row small-form loader-on-submit dont-submit-on-enter', 'method' => 'POST']) !!}
 					<div class="col-md-6">
@@ -65,20 +65,14 @@
 						{{-- {!! Form::label('payment_method', 'Seleccione un medio de pago') !!} --}}
 						<select onchange="submit()" name="payment_method_id" class="Select-Atribute form-control mb-3" placeholder="Seleccionar forma de pago">
 							@if($activeCart['rawdata']->payment_method_id == null)
-							<option selected disabled>Seleccione una forma de pago</option>
+								<option selected disabled>Seleccione una forma de pago</option>
 							@endif
 							@foreach($payment_methods as $payment)
-							<option  value="{{ $payment->id }}" @if($payment->id == $activeCart['rawdata']->payment_method_id ) selected @endif>
+								<option  value="{{ $payment->id }}" @if($payment->id == $activeCart['rawdata']->payment_method_id ) selected @endif>
 									{{ $payment->name }} @if($payment->percent > 0) - (Recargo %{{ $payment->percent }})@endif
-							</option>
+								</option>
 							@endforeach
 						</select>
-						{{-- RADIO BTN STYLE --}}
-						{{-- @foreach($payment_methods as $payment)
-							<input type="radio" name="payment_method_id" onclick="submit()" value="{{ $payment->id }}"
-							@if($payment->id == $activeCart['rawdata']->payment_method_id ) checked @endif>
-							{{ $payment->name }} @if($payment->percent > 0) - (Recargo %{{ $payment->percent }})@endif<br>
-						@endforeach --}}
 					</div>
 					<div class="col-md-6">
 						<div class="sub-title"><i class="fas fa-truck"></i> Forma de envío</div>
@@ -93,21 +87,20 @@
 								</option>
 							@endforeach
 						</select>
-						{{-- RADIO BTN STYLE --}}
-						{{-- @foreach($shippings as $shipping)
-							<input type="radio" name="shipping_id" onclick="submit()" value="{{ $shipping->id }}"
-							@if($shipping->id == $activeCart['rawdata']->shipping_id ) checked @endif>
-							{{ $shipping->name }} @if($shipping->price > 0) - (Costo ${{ $shipping->price }})@endif<br>
-						@endforeach --}}
 					</div>
 				{!! Form::close() !!}
 				<br>
 			{{-- Proccess Checkout --}}
 			{!! Form::open(['id' => 'CheckoutForm', 'route' => 'store.processCheckout', 'method' => 'POST', 'class' => 'loader-on-submit']) !!}
-				<div class="row small-form">
-					<div class="col-md-12">
-						<div class="sub-title"><i class="far fa-address-card"></i> Datos de entrega</div>
-					</div>
+			<div class="row small-form">
+				<div class="col-md-12">
+					<div class="sub-title"><i class="far fa-address-card"></i> Datos de entrega</div>
+				</div>
+				@if(Auth::guard('customer')->check())
+					{{-- -------------------------------- --}}
+					{{-- Regirsteres user data collection --}}
+					{{-- -------------------------------- --}}
+					<input type="hidden" name="customer_type" value="registered">
 					<div class="col-md-4 form-group">
 						<label>Nombre de Usuario</label>
 						<input class="form-control dson" type="text" name="username" value="{{ Auth::guard('customer')->user()->username }}" required>
@@ -161,6 +154,7 @@
 						</select>
 						@endif
 					</div>
+					
 					@if(Auth::guard('customer')->user()->group == '3')
 						<div class="col-sm-6 form-group">
 							<label>CUIT</label>
@@ -172,8 +166,51 @@
 							{!! Form::select('business_type', ['Local' => 'Local', 'ShowRoom' => 'ShowRoom', 'Revendedora' => 'Revendedora'], 
                         Auth::guard('customer')->user()->business_type,
                         ['class' => 'form-control', 'placeholder' => 'Seleccione una opción', 'required' => '']) !!}
-                    </div>
+						</div>
 					@endif
+				@else
+					{{-- ------------------------- --}}
+					{{-- Anon user data collection --}}
+					{{-- ------------------------- --}}
+					<input type="hidden" name="customer_type" value="anon">
+					<div class="col-md-4 form-group">
+						<label>Nombre</label>
+						<input class="form-control dson" type="text" name="name" value="" required>
+					</div>
+					<div class="col-md-4 form-group">
+						<label>Apellido</label>
+						<input class="form-control dson" type="text" name="surname" value="" required>
+					</div>
+					<div class="col-md-4 form-group">
+						<label>E-mail</label>
+						<input class="form-control dson" type="email" name="email" value="" required>
+					</div>
+					<div class="col-md-4 form-group">
+						<label>Teléfono</label>
+						<input class="form-control dson" type="text" name="phone" value="" required>
+					</div>
+					<div class="col-md-4 form-group">
+						<label>Dirección</label>
+						<input class="form-control dson" type="text" name="address" value="" required>
+					</div>
+					<div class="col-md-4 form-group">
+						<label>Código Postal</label>
+						<input class="form-control dson" type="text" name="cp" value="" required>
+					</div>
+					<div class="col-md-6 form-group">
+						<label>Provincia</label>
+						{!! Form::select('geoprov_id', $geoprovs, null,
+						['class' => 'GeoProvSelect form-control dson', 'placeholder' => 'Seleccione una opción']) !!}
+					</div>
+					<div class="col-md-6 form-group">
+						<label>Localidad</label>
+						<select id='GeoLocsSelect' name="geoloc_id"
+							data-actualloc=""
+							data-actuallocid=""
+							class="form-control GeoLocsSelect dson" required>
+						</select>
+					</div>
+				@endif
 				</div><br>
 				<div class="row">
 					<div class="col-md-12">
@@ -230,19 +267,20 @@
 		{
 			$('#CheckoutForm').submit();
 		}
+		@if(Auth::guard('customer')->check())
+			// Check for locality
+			$(document).ready(function(){
+				var actualGeoProv = "{{ Auth::guard('customer')->user()->geoprov_id }}";
 
-		// Check for locality
-		$(document).ready(function(){
-			var actualGeoProv = "{{ Auth::guard('customer')->user()->geoprov_id }}";
+				if(actualGeoProv != ''){
+					getGeoLocs(actualGeoProv);
+				}
 
-			if(actualGeoProv != ''){
-				getGeoLocs(actualGeoProv);
-			}
-
-			$('.GeoProvSelect').on('change', function(){
-				let prov_id = $(this).val();
-				getGeoLocs(prov_id);
+				$('.GeoProvSelect').on('change', function(){
+					let prov_id = $(this).val();
+					getGeoLocs(prov_id);
+				});
 			});
-		});
+		@endif
 	</script>
 @endsection

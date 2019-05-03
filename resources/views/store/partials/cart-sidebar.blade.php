@@ -1,6 +1,9 @@
 <div class="CheckoutCart cart-sidebar">
     <div id="SideContainerItemsFixed" class="inner">
         <div class="close" onclick="checkoutSidebar('hide')">X</div>
+        {{-- @if(Session::get())
+             --}}
+        
         @if(isset($activeCart))
             <div class="top row">
                 <div class="col-md-12 title">
@@ -17,6 +20,7 @@
                     </div>
                 </div> --}}
             </div>
+         
             @foreach($activeCart['rawdata']->items as $item)
                 @if($item->article != null)
                     <div id="Item{{ $item->id }}" class="row item">
@@ -37,7 +41,7 @@
                             <div class="column-1 price">
                                 {{-- PRICE --}}
                             @php($articlePrice = '0')
-                            @if(Auth::guard('customer')->user()->group == '3')
+                            @if(Auth::guard('customer')->check() && Auth::guard('customer')->user()->group == '3')
                                 @php($articlePrice = $item->article->reseller_price)
 
                                 $ {{ showPrice($articlePrice, $item->article->reseller_discount) }}
@@ -48,6 +52,7 @@
                                 @endif
                                 $ {{ $articlePrice }} --}}
                             @else
+                                @php($articlePrice = $item->article->reseller_price)
                                 $ {{ showPrice($articlePrice, $item->article->discount) }}
                                 {{-- Estandar Item Prices --}}
                                 {{-- @if($item->article->discount > 0)
@@ -65,7 +70,7 @@
                             {{-- Send this data to JSON via js with .Item-Data class --}}
                             <input class="Item-Data small-input under-element" name="data" type="number"  
                             min="1" max="{{ $item->quantity + $item->article->stock }}" value="{{ $item->quantity }}" required="" 
-                            data-price="{{$articlePrice}}" data-id="{{ $item->id }}" data-variant="{{ $item->variant_id }}" data-toggle="tooltip" data-placement="top" title="Stock máximo {{ $item->article->stock }}">
+                            data-price="{{ $articlePrice }}" data-id="{{ $item->id }}" data-variant="{{ $item->variant_id }}" data-toggle="tooltip" data-placement="top" title="Stock máximo {{ $item->article->stock }}">
                         </div>
                         <div class="delete-item">
                             <a onclick="removeFromCart('{{ route('store.removeFromCart') }}', {{$item->id}}, {{ $item->variant_id }}, {{ $item->quantity }}, '#Item'+{{ $item->id }}, 'reload');"><i class="far fa-trash-alt"></i></a>
@@ -73,7 +78,6 @@
                     </div>{{-- / .item --}}
                 @endif
             @endforeach
-        
         <hr>
         <div class="total-price-bottom row">
             <div class="col-xs-6 col-md-6 text-left inner-text" class="">
@@ -84,7 +88,8 @@
             </div>
         </div>
         <div class="bottom-actions">
-            <button type="buttton" class="UpdateDataBtn btn cart-btn"><i class="fas fa-sync"></i> Actualizar</button>
+            {{-- <button type="buttton" class="UpdateDataBtn btn cart-btn"><i class="fas fa-sync"></i> Actualizar</button> --}}
+            <button type="buttton" class="btn cart-btn" onclick="checkoutSidebar('hide')"><i class="fa fa-arrow-left"></i> Ir a tienda</button>
             <button type="button" class="SubmitDataBtn btn cart-btn">Continuar <i class="fa fa-arrow-right"></i></button>
             {{-- <a href="{{ route('store.checkout')}}" class="main-btn-sm">Continuar <i class="fa fa-arrow-right"></i></a> --}}
         </div>

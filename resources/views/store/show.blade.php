@@ -39,10 +39,10 @@
 					<span class="text-medium">Categoría:&nbsp;</span>
 					<a class="navi-link" href="#">{{ $article->category->name }}</a>
 				</div>
-                <h2 class="title">{{ $article->name }}</h2>
+				<h2 class="title">{{ $article->name }}</h2>
                 {{-- <div class="code"> #{{ $article->code }}</div> --}}
                 <div class="price-container">
-                    {{-- PRICES --}}
+					{{-- PRICES --}}
                     @if(Auth::guard('customer')->check())
 						@if(Auth::guard('customer')->user()->group == '3')
 						{{-- Reseller Price --}}	
@@ -66,15 +66,13 @@
 							@endif
                         @endif
                     @endif
-                </div>
+				</div>
                     
 				<p class="description">{{ strip_tags($article->description) }}</p>
 				<div class="item"><div class="title">Tela: <b>{{ $article->textile }}</b></div></div>
-				
-				@if(Auth::guard('customer')->check() || env('ALLOW_ANON_CHECKOUT'))
-				
-					{!! Form::open(['id' => 'AddToCartForm', 'class' => 'form-group price', 'onchange' => 'checkVariantStock()', 
-						'data-route' => (url('tienda/checkVariantStock'))]) !!}
+					@if(Auth::guard('customer')->check() || env('ALLOW_ANON_CHECKOUT'))
+						{!! Form::open(['id' => 'AddToCartForm', 'class' => 'form-group price', 'onchange' => 'checkVariantStock()', 
+							'data-route' => (url('tienda/checkVariantStock'))]) !!}
 							<input type="hidden" name="article_id" value="{{ $article->id }}">
 							<div class="row">
 								{{-- SIZES --}}
@@ -104,42 +102,49 @@
 								</div>
 							</div>
 							@if($article->status != 1)
-							<div class="row">
-								<span class="action-info-container">
-									Este artículo no está disponible al momento
-								</span>
-							</div>
+								<div class="row">
+									<span class="action-info-container">
+										Este artículo no está disponible al momento
+									</span>
+								</div>
 							@else
-							<div class="row">
-								{{-- Display Remaining Stock --}}
-								<span class="AvailableStock action-info-container"></span>
-							</div>
-							<br>
-							<div class="row">
-								<div class="col-md-12 submit-article-actions">
-									<div class="input-with-btn">
-										<input id="MaxQuantity" class="form-control input-field short-input" name="quantity" type="number" 
-										min="1" max="{{ $article->stock }}" value="1" placeholder="1" required>
-										<input type="submit" id="AddToCartFormBtn" class="btn input-btn"" value="Agregar al carro" disabled>
+								<div class="row">
+									{{-- Display Remaining Stock --}}
+									<span class="AvailableStock action-info-container"></span>
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-md-12 submit-article-actions">
+										<div class="input-with-btn">
+											@if(env('ALLOW_ANON_CHECKOUT'))
+												<input id="MaxQuantity" class="form-control input-field short-input" name="quantity" type="number" 
+												min="1" max="{{ $article->stock }}" value="1" placeholder="1" required>
+												<input type="submit" id="AddToCartFormBtn" class="btn input-btn"" value="Agregar al carro" disabled>
+											@else
+												{{-- Registered customers --}}
+												<input id="MaxQuantity" class="form-control input-field short-input" name="quantity" type="number" 
+												min="1" max="{{ $article->stock }}" value="1" placeholder="1" required>
+												<input type="submit" id="AddToCartFormBtn" class="btn input-btn"" value="Agregar al carro" disabled>
+											@endif
+										</div>
 									</div>
 								</div>
-							</div>
 							@endif
-					{!! Form::close() !!}
-				@else
-					<div class="item"><div class="title">Colores: 
-					@foreach($colors as $id => $name)
-						<b>{{ $name }}</b> @if(!$loop->last) | @endif
-					@endforeach
-					</div> <br></div>
-					<div class="item"><div class="title">Talles: 
-						@foreach($sizes as $id => $name)
+						{!! Form::close() !!}
+					@else
+						<div class="item"><div class="title">Colores: 
+						@foreach($colors as $id => $name)
 							<b>{{ $name }}</b> @if(!$loop->last) | @endif
 						@endforeach
 						</div> <br></div>
-					<a href="{{ route('customer.login') }}" class="btn input-btn"> Comprar </a>
-                @endif
-				<br>
+						<div class="item"><div class="title">Talles: 
+							@foreach($sizes as $id => $name)
+								<b>{{ $name }}</b> @if(!$loop->last) | @endif
+							@endforeach
+							</div> <br></div>
+						<a href="{{ route('customer.login') }}" class="btn input-btn"> Comprar </a>
+					@endif
+					<br>
 				<a href="{{ url('tienda') }}" class="btn btn-light"><i class="fas fa-long-arrow-alt-left"></i> Volver a la tienda</a>
             </div>
         </div>

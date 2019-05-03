@@ -62,7 +62,7 @@ trait CartTrait {
 
     // Return ActiveCart
     // ----------------------------------------------------------
-    public function activeCart()
+    public function activeCart($anonUserToken = null)
     {
         $cartTotal = 0;
         $cartSubTotal = 0;
@@ -72,12 +72,26 @@ trait CartTrait {
         $minQuantity = $this->settings->reseller_min;
         $minMoney = $this->settings->reseller_money_min;
 
-        if(auth()->guard('customer')->check())
+        if(auth()->guard('customer')->check() || env('ALLOW_ANON_CHECKOUT'))
         {
-            $cart = Cart::where('status', '=', 'Active')->where('customer_id', auth()->guard('customer')->user()->id)->first();
+            if(auth()->guard('customer')->check())
+            {
+                $cart = Cart::where('status', '=', 'Active')->where('customer_id', auth()->guard('customer')->user()->id)->first();
+                $customerGroup = auth()->guard('customer')->user()->group;
+            }
+            else if($anonUserToken != null)
+            {
+                $cart = Cart::where('status', '=', 'Active')->where('anon_token', $anonUserToken)->first();
+                $customerGroup = '2';
+            }
+            else
+            {
+                return $activeCart;
+            }
+
             if($cart != null) 
             {
-                $cartSubTotal = $this->calcSubtotal($cart->items, auth()->guard('customer')->user()->group);
+                $cartSubTotal = $this->calcSubtotal($cart->items, $customerGroup);
                 $orderDiscount = calcPercent($cartSubTotal, $cart->order_discount);
                 $cartTotal = $cartSubTotal + calcPercent($cartSubTotal, $cart->payment_percent) + $cart->shipping_price - $orderDiscount;
                 $totalItems = '0';

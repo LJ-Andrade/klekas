@@ -9,6 +9,8 @@ use App\Traits\CartTrait;
 use App\Shipping;
 use App\Payment;
 use App\User;
+use App\GeoProv;
+use App\GeoLoc;
 use App\Cart;
 use App\CartItem;
 use App\CatalogArticle;
@@ -62,12 +64,18 @@ class OrdersController extends Controller
         {
             return redirect()->back()->with('message', 'Error: '.$e->getMessage());
         }
+
         $customer = Customer::find($cart->customer_id);
-        
+        $anonCustomer = null;
+        if($customer == null)
+            $anonCustomer = $this->getAnonCustomerData($cart);
+
         $order = $this->calcCartData($cart);
+
         return view('vadmin.orders.show')
             ->with('order', $order)
-            ->with('customer', $customer);
+            ->with('customer', $customer)
+            ->with('anonCustomer', $anonCustomer);
     }
 
     /*
@@ -76,17 +84,43 @@ class OrdersController extends Controller
     |--------------------------------------------------------------------------
     */
 
+    public function getAnonCustomerData($order)
+    {
+        $anonCustomerData = json_decode($order->anon_data);
+        $geoProv = GeoProv::where('id', $anonCustomerData->geoprov_id)->pluck('name');
+        $geoLoc = GeoLoc::where('id', $anonCustomerData->geoloc_id)->pluck('name');
+
+        $anonCustomer['name'] = $anonCustomerData->name;
+        $anonCustomer['surname'] = $anonCustomerData->surname;
+        $anonCustomer['email'] = $anonCustomerData->email;
+        $anonCustomer['phone'] = $anonCustomerData->phone;
+        $anonCustomer['address'] = $anonCustomerData->address;
+        $anonCustomer['cp'] = $anonCustomerData->cp;
+        $anonCustomer['geoprov'] = $geoProv[0];
+        $anonCustomer['geoloc'] = $geoLoc[0];
+
+        return $anonCustomer;
+    }
+
     // DOWNLOAD INVOICE PDF
     public function downloadInvoice($id, $action)
     {
+        
         $view = 'vadmin.orders.invoicePdf';
         // Return Options
         // return $pdf->dowload($filename.'.pdf');
         // return $pdf->stream($filename.'.pdf');
         $order = Cart::find($id);
-        if($order != null){
+        if($order != null) 
+        {
+            $anonCustomer = [];
+            
+            if($order->customer_id == null)
+                $anonCustomer = $this->getAnonCustomerData($order);
+
+
             $cart = $this->calcCartData($order);
-            $pdf = PDF::loadView($view, compact('order', 'cart'))->setPaper('a4', 'portrait');
+            $pdf = PDF::loadView($view, compact('order', 'cart', 'anonCustomer'))->setPaper('a4', 'portrait');
             $filename = 'Comprobante-Pedido-N-'.$order->id;
             if($action == 'stream')
             {
@@ -95,7 +129,6 @@ class OrdersController extends Controller
                 return $pdf->download($filename.'.pdf');
             }
             die();
-
         } else {
             return redirect()->route('store')->with('message','Estás intentando una acción ilegal...');
         }
@@ -104,14 +137,25 @@ class OrdersController extends Controller
 
     public function exportOrderXls($id)
     {   
+        
         $order = $this->calcCartData(Cart::find($id));
+        if($order['rawdata']->customer_id == null)
+        {
+            $anonCustomer = $this->getAnonCustomerData($order['rawdata']);
+            $filename = 'Klekas-Pedido-'.$id.'-'.$anonCustomer['email'];
+        }
+        else
+        {
+            $filename = 'Klekas-Pedido-'.$id.'-Cliente-'.$order['rawdata']->customer->name.' '.$order['rawdata']->customer->surname;
+        }
+
         Excel::create('Klekas-Pedido-'.$id, function($excel) use($order){
             $excel->sheet('Listado', function($sheet) use($order) { 
                 $sheet->getDefaultStyle()->getFont()->setName('Arial');
                 $sheet->getDefaultStyle()->getFont()->setSize(12);
                 $sheet->getColumnDimension()->setAutoSize(true);
                 $sheet->loadView('vadmin.orders.invoiceXls', 
-                compact('order'));
+                compact('order', 'anonCustomer'));
             });
         })->export('xls');         
     }
@@ -119,7 +163,16 @@ class OrdersController extends Controller
     public function exportOrderCsv($id)
     {   
         $order = $this->calcCartData(Cart::find($id));
-        $filename = 'Klekas-Pedido-'.$id.'-Cliente-'.$order['rawdata']->customer->name.' '.$order['rawdata']->customer->surname;
+        if($order['rawdata']->customer_id == null)
+        {
+            $anonCustomer = $this->getAnonCustomerData($order['rawdata']);
+            $filename = 'Klekas-Pedido-'.$id.'-'.$anonCustomer['email'];
+        }
+        else
+        {
+            $filename = 'Klekas-Pedido-'.$id.'-Cliente-'.$order['rawdata']->customer->name.' '.$order['rawdata']->customer->surname;
+        }
+
         Excel::create($filename, function($excel) use($order){
             $excel->sheet('Listado', function($sheet) use($order) { 
                 $sheet->getDefaultStyle()->getFont()->setName('Arial');
@@ -127,7 +180,7 @@ class OrdersController extends Controller
                 $sheet->getColumnDimension()->setAutoSize(true);
                 $sheet->getRowDimension(2)->setRowHeight(20);
                 $sheet->loadView('vadmin.orders.invoiceXls', 
-                compact('order'));
+                compact('order', 'anonCustomer'));
             });
         })->export('csv');         
     }

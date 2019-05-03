@@ -11,10 +11,17 @@
         </div>
         <div class="content">
                 <div class="top-text">
-                    <b>Nombre y Apellido:</b> {{ $order->customer->name }} {{ $order->customer->surname }} | <b>Usuario:</b> {{ $order->customer->username }} <br>
-                    <b>Dirección: </b> {{ $order->customer->address }} | {{ $order->customer->geoprov->name }} | {{ $order->customer->geoloc->name }} <br>
-                    <b>Teléfonos: </b> {{ $order->customer->phone }} @if($order->customer->phone2) | {{ $order->customer->phone2 }} @endif<br>
-                    <b>E-mail: </b> {{ $order->customer->email }} <br>
+                    @if($order->customer)
+                        <b>Nombre y Apellido:</b> {{ $order->customer->name }} {{ $order->customer->surname }} | <b>Usuario:</b> {{ $order->customer->username }} <br>
+                        <b>Dirección: </b> {{ $order->customer->address }} | {{ $order->customer->geoprov->name }} | {{ $order->customer->geoloc->name }} <br>
+                        <b>Teléfonos: </b> {{ $order->customer->phone }} @if($order->customer->phone2) | {{ $order->customer->phone2 }} @endif<br>
+                        <b>E-mail: </b> {{ $order->customer->email }} <br>
+                    @else
+                        <b>Nombre y Apellido:</b> {{ $anonCustomer['name'] }} {{ $anonCustomer['surname'] }} (Compra sin registro)<br>
+                        <b>Dirección: </b> {{ $anonCustomer['address'] }} | {{ $anonCustomer['geoloc'] }} | {{ $anonCustomer['geoprov'] }} <br>
+                        <b>Teléfonos: </b> {{ $anonCustomer['phone'] }} <br>
+                        <b>E-mail: </b> {{ $anonCustomer['email'] }} <br>
+                    @endif
                 </div>
                 <table class="table">
                     <thead>

@@ -17,20 +17,18 @@ class CartItemController extends Controller
 
     public function store(Request $request)
     {   
-
+        
         $anonCustomer = !auth()->guard('customer')->check(); 
         // $combination = $request->size_id;
         // Find article
         $article = CatalogArticle::where('id', $request->article_id)->first();
         // Find variant
         $variant = CatalogVariant::where('article_id', $request->article_id)->where('color_id', $request->color_id)->where('size_id', $request->size_id)->first();
-        
-        $existingCartItem = NULL;
-        
-        
+        $existingCartItem = NULL;      
         
         if(!$anonCustomer)
-        {
+        {   
+            // REGISTERED CUSTOMER
             $activeCartId = auth()->guard('customer')->user()->cart->id; // This comes from Customer Model getCartAttribute()
             $customerGroup = auth()->guard('customer')->user()->group;
             // Check if variant is already stored as cartItem
@@ -38,24 +36,26 @@ class CartItemController extends Controller
         } 
         else
         {
+            // ANON CUSTOMER
+            $customerGroup = '2';
+            $sessionId = $request->session()->getId();
             
-            // https://www.youtube.com/watch?v=4J939dDUH4M
-            
-            // dd($request->session()->all());
-            $activeCart = NULL;
-            if($request->session()->has('activeCart'))
-                $activeCart = $request->session()->get('activeCart');
-                
+            // Check if an active anon cart exist with session Id
+            $activeCart = Cart::where('anon_token', $sessionId)->where('status', 'Active')->first();
             if($activeCart)
             {
                 $activeCartId = $activeCart->id;
+                $existingCartItem = CartItem::where('cart_id', $activeCartId)->where('variant_id', $variant->id)->first();
             }
+            // If not create a new anon cart
             else
             {
                 $cart = new Cart();
-                $cart->anon_token = 'test';
+                $cart->status = 'Active';
+                $cart->customer_id = NULL;
+                $cart->anon_token = $request->session()->getId();
                 $cart->save();
-                $request->session()->put('activeCart', $activeCart);
+                $request->session()->put('activeCart', $cart);
                 $activeCartId = $cart->id;
             }
         }

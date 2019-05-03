@@ -87,7 +87,7 @@
 										{{ $item->customer->name }} {{ $item->customer->surname }} ({{ $item->customer->username }})
 									</a>
 									@else
-										Compra sin registro
+										{{ json_decode($item->anon_data)->email }}
 									@endif
 								</td>
 								<td>

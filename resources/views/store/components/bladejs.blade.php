@@ -48,6 +48,7 @@
         e.preventDefault();
         let data = $(this).serialize();
         const route = "{{ route('store.addToCartLive') }}";
+
         if(checkVariantStock())
         {
             addToCart(route, data);

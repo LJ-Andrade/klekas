@@ -8,7 +8,7 @@ class StoreServiceProvider extends ServiceProvider
     
     public function boot(View $view)
     {
-        //View::composer(['store'], 'App\Http\ViewComposers\ShowCatTagsAtrib');
+        //View::composer(['store'], 'App\Http\ViewComposers\ShowCatTagsAtrib');  
     }
     
     public function register()

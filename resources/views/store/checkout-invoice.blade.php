@@ -10,12 +10,21 @@
             <div class="right">{{ transDateT($order->created_at) }}</div>
         </div>
         <div class="content">
+            @if($order->customer)
             <div class="top-text">
                 <b>Nombre y Apellido:</b> {{ $order->customer->name }} {{ $order->customer->surname }} | <b>Usuario:</b> {{ $order->customer->username }} <br>
                 <b>Dirección: </b> {{ $order->customer->address }} | {{ $order->customer->geoprov->name }} | {{ $order->customer->geoloc->name }} <br>
                 <b>Teléfonos: </b> {{ $order->customer->phone }} @if($order->customer->phone2) | {{ $order->customer->phone2 }} @endif<br>
                 <b>E-mail: </b> {{ $order->customer->email }} <br>
             </div>
+            @else
+            <div class="top-text">
+                <b>Nombre y Apellido:</b> {{ $anonCustomer['name'] }} {{ $anonCustomer['surname'] }}<br>
+                <b>Dirección: </b> {{ $anonCustomer['address'] }} | {{ $anonCustomer['geoloc'] }} | {{ $anonCustomer['geoprov'] }} <br>
+                <b>Teléfonos: </b> {{ $anonCustomer['phone'] }} <br>
+                <b>E-mail: </b> {{ $anonCustomer['email'] }} <br>
+            </div>
+            @endif
             <table class="table">
                 <thead>
                     <tr>

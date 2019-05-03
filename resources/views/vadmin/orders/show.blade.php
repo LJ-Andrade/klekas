@@ -39,13 +39,14 @@
             Pedido #{{ $order['rawdata']->id }}
                 @if($order['rawdata']->customer)
                     <span class="small"> | <b>Cliente: <a href="" data-toggle="modal" data-target="#CustomerDataModal"></b>
-                        {{ $order['rawdata']->customer->name }} {{ $order['rawdata']->customer->surname }}</a></span>
-                    <p>
-                        {{ transDateT($order['rawdata']->created_at) }}
-                    </p>
-                @else
-                    Compra sin registro
-                @endif
+                    {{ $order['rawdata']->customer->name }} {{ $order['rawdata']->customer->surname }}</a>
+                    </span>
+                    @else
+                    <span class="small"> | <b>Cliente: <a href="" data-toggle="modal" data-target="#AnonCustomerDataModal"></b>
+                    {{ $anonCustomer['name'] }} {{ $anonCustomer['surname'] }}</a>
+                    </span>
+                    @endif
+                <p>{{ transDateT($order['rawdata']->created_at) }}</p>
             @endslot
             @slot('actions')
             
@@ -217,8 +218,34 @@
             @endslot
         @endcomponent
     </div>
+    {{-- Anon Customer Data Model--}}
+    @if($anonCustomer)
+        <div class="modal fade" id="AnonCustomerDataModal" tabindex="-1" role="dialog" aria-labelledby="CustomerDataModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Cliente: {{ $anonCustomer['name'] }} {{ $anonCustomer['surname'] }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <b>Usuario:</b> Compra sin registro <br>
+                        <b>E-Mail:</b> {{ $anonCustomer['email'] }} <br>
+                        <b>Dirección:</b> {{ $anonCustomer['address'] }} <br>
+                        <b>Provincia:</b> {{ $anonCustomer['geoloc']}} <br>
+                        <b>Localidad:</b> {{ $anonCustomer['geoprov'] }} <br>
+                        <b>C.P.:</b> {{ $anonCustomer['cp'] }} <br>
+                        <hr class="softhr">
+                        <b>Teléfono:</b> {{ $anonCustomer['phone'] }} <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+    {{-- Customer Data Model --}}
     @if($customer)
-        <!-- Customer data modal -->
         <div class="modal fade" id="CustomerDataModal" tabindex="-1" role="dialog" aria-labelledby="CustomerDataModal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -254,4 +281,5 @@
             </div>
         </div>
     @endif
+
 @endsection

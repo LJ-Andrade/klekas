@@ -87,6 +87,8 @@ id // Id del carro de comprar
 payment_method_id // Id del método de pago elegido
 shipping_id // Id del método de envío elegido
 
+# Session
+app('session')->getId()
 
 
 # Helpers

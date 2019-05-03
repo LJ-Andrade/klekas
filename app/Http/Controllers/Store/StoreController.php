@@ -20,6 +20,7 @@ use App\Customer;
 use App\Shipping;
 use App\Payment;
 use App\GeoProv;
+use App\GeoLoc;
 use App\Traits\CartTrait;
 use App\Mail\SendMail;
 use Carbon\Carbon;
@@ -290,7 +291,7 @@ class StoreController extends Controller
     public function checkoutItems(Request $request)
     {
         $activeCart = Cart::where('customer_id', auth()->guard('customer')->user()->id)->where('status', 'active')->get();
-
+        dd('checkoutItems');
         $activeCart = $this->activeCart();
         if($activeCart == null || count($activeCart) == 0)
         {
@@ -302,7 +303,10 @@ class StoreController extends Controller
     public function checkoutSetItems(Request $request)
     {
         $updateQuantities = $this->updateItemsQuantities($request->all());
-        $activeCart = $this->activeCart();
+        if(auth()->guard('customer')->check())
+            $activeCart = $this->activeCart();
+        else
+            $activeCart = $this->activeCart(app('session')->getId());
         
         if($activeCart == null)
             return response()->json(['response' => 'error', 'message' => 'La página solicitada no existe o ha expirado']);
@@ -314,8 +318,7 @@ class StoreController extends Controller
             // return redirect()->route('store')->with('message', 'La página solicitada no existe o ha expirado');
         }
         // Check minimun quantity - reseller
-        if(auth()->guard('customer')->user()->group == '3' && $request->action == 'continue') {
-
+        if(auth()->guard('customer')->check() && auth()->guard('customer')->user()->group == '3' && $request->action == 'continue') {
             if($activeCart['minQuantityNeeded'])
                 return response()->json(['response' => 'error', 'message' => 'Debe incluír al menos '. $this->settings->reseller_min.' prendas']);
             if($activeCart['minMoneyNeeded'])
@@ -327,7 +330,7 @@ class StoreController extends Controller
     
     public function checkoutLast()
     {
-        if($this->activeCart() == null)
+        if($this->activeCart(app('session')->getId()) == null)
             return redirect()->route('store')->with('message', 'La página ha expirado');
 
         $geoprovs = GeoProv::pluck('name','id');
@@ -342,13 +345,27 @@ class StoreController extends Controller
 
     public function processCheckout(Request $request)
     {
-        // Check if customer has required data completed
-        $checkCustomer = $this->checkAndUpdateCustomerData(auth()->guard('customer')->user()->id, $request);
-        
-        if($checkCustomer['response'] == 'error')
-            return redirect()->route('store.checkout-last')->with('message', $checkCustomer['message']);
-        
         $cart = Cart::findOrFail($request->cart_id);  
+
+        // Check if customer has required data completed
+        if(auth()->guard('customer')->check())
+        {
+            $checkCustomer = $this->checkAndUpdateCustomerData(auth()->guard('customer')->user()->id, $request);
+            $customerMpEmail = auth()->guard('customer')->email;
+            if($checkCustomer['response'] == 'error')
+                return redirect()->route('store.checkout-last')->with('message', $checkCustomer['message']);
+        }
+        else if(app('session')->getId() != null)
+        {
+            $anon_data = json_encode($request->all()); 
+            // Collect email to send to MP api
+            $customerMpEmail = $request->email;
+            // dd($anon_data);
+            $cart->anon_data = $anon_data;
+            $cart->save();
+            // dd("Done");            
+        }
+        
         // Check if customer choose payment method
         if($cart->payment_method_id == null)
             return back()->with('error', 'missing-payment');
@@ -361,7 +378,7 @@ class StoreController extends Controller
             $order = CartItem::find($item->id);
             if($item->article != null && $item->article->status == 1)
             {
-                if(auth()->guard('customer')->user()->group == '3'){
+                if(auth()->guard('customer')->check() && auth()->guard('customer')->user()->group == '3'){
                     $order->final_price = calcValuePercentNeg($item->article->reseller_price, $item->article->reseller_discount);
                 } else {
                     $order->final_price = calcValuePercentNeg($item->article->price, $item->article->discount);
@@ -381,11 +398,10 @@ class StoreController extends Controller
         //-----------------------------------------
         if($cart->payment_method_id == 7 && env('MP_APP_REAL_MP'))
         {
-            // dd("Elijo MP REAL");
             // Check if MercadoPago API is ON and proccess.
             try
             {
-                $mpUrl = $this->processMpPayment($cart);
+                $mpUrl = $this->processMpPayment($cart, $customerMpEmail);
                 $cart->status = 'Active';
                 $cart->save();
                 return redirect($mpUrl);
@@ -429,10 +445,10 @@ class StoreController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    public function processMpPayment($order)
+    public function processMpPayment($order, $customerEmail)
     {
-
         $order = $this->calcCartData($order);
+        // dd($order);
         // dd($order['total']);
         // dd($order);
         $preference_data = [
@@ -442,16 +458,14 @@ class StoreController extends Controller
                     'id' => 0,
                     'title' => env('APP_BUSINESS_NAME'),
                     'description' => '',
-                    'picture_url' => 'http://localhost/klekas/public/images/web/mp-logo.jpg',
+                    'picture_url' => 'http://localhost/klekas/public/images/web/mp-logo.png',
                     'quantity' => 1,
                     'currency_id' => "ARS",
                     'unit_price' => $order['total']
                 ]
             ],
             "payer" => [
-                'name' => 'John',
-                'surname' => 'Snow',
-                'email' => 'snow@bastard.com.ar',
+                'email' => $customerEmail,
                 'date_created' => Carbon::now()
             ],
             'back_urls' => [
@@ -471,12 +485,7 @@ class StoreController extends Controller
         // dd($initPoint);
         return $initPoint;
     }
-    
-    
-
-
-
-    
+        
     public function updateItemsQuantities($data)
     {
         $message = '';
@@ -634,7 +643,7 @@ class StoreController extends Controller
                 [
                     'id' => 'ORD#'.$cart->id,
                     'category_id' => '-',
-                    'title' => 'Compra Vadmin',
+                    'title' => 'Compra en Klekas',
                     'description' => '-',
                     'picture_url' => '-',
                     'quantity' => 1,
@@ -665,25 +674,58 @@ class StoreController extends Controller
     // DOWNLOAD INVOICE PDF
     public function downloadInvoice($id, $action)
     {
-        
         // Return Options
         // return $pdf->dowload($filename.'.pdf');
         // return $pdf->stream($filename.'.pdf');
         $order = Cart::find($id);
-        if($order != null && $order->customer->id == auth()->guard('customer')->user()->id){
-            $cart = $this->calcCartData($order);
-            $pdf = PDF::loadView('store.checkout-invoice', compact('order', 'cart'))->setPaper('a4', 'portrait');
-            $filename = 'Comprobante-Pedido-N-'.$order->id;
-            if($action == 'stream')
+        if($order != null)
+        {
+            if($order->customer && $order->customer->id == auth()->guard('customer')->user()->id)
             {
-                return $pdf->stream($filename.'.pdf');
-            } else {
-                return $pdf->download($filename.'.pdf');
-            }
-            die();
+                $cart = $this->calcCartData($order);
+                $pdf = PDF::loadView('store.checkout-invoice', compact('order', 'cart'))->setPaper('a4', 'portrait');
+                $filename = 'Comprobante-Pedido-N-'.$order->id;
+                if($action == 'stream')
+                {
+                    return $pdf->stream($filename.'.pdf');
+                } else {
+                    return $pdf->download($filename.'.pdf');
+                }
+                die();
 
-        } else {
-            return redirect()->route('store')->with('message','Estás intentando una acción ilegal...');
+            } 
+            else if($order->anon_token == app('session')->getId())
+            {
+                $anonCustomerData = json_decode($order->anon_data);
+                $anonCustomer = [];
+                $geoProv = GeoProv::where('id', $anonCustomerData->geoprov_id)->pluck('name');
+                $geoLoc = GeoLoc::where('id', $anonCustomerData->geoloc_id)->pluck('name');
+
+                $anonCustomer['name'] = $anonCustomerData->name;
+                $anonCustomer['surname'] = $anonCustomerData->surname;
+                $anonCustomer['email'] = $anonCustomerData->email;
+                $anonCustomer['phone'] = $anonCustomerData->phone;
+                $anonCustomer['address'] = $anonCustomerData->address;
+                $anonCustomer['cp'] = $anonCustomerData->cp;
+                $anonCustomer['geoprov'] = $geoProv[0];
+                $anonCustomer['geoloc'] = $geoLoc[0];
+                
+                // dd($customerAnonData);
+                $cart = $this->calcCartData($order);
+                $pdf = PDF::loadView('store.checkout-invoice', compact('order', 'cart', 'anonCustomer'))->setPaper('a4', 'portrait');
+                $filename = 'Comprobante-Pedido-N-'.$order->id;
+                if($action == 'stream')
+                {
+                    return $pdf->stream($filename.'.pdf');
+                } else {
+                    return $pdf->download($filename.'.pdf');
+                }
+                die();
+            }  
+        }
+        else
+        {
+            return redirect()->route('store')->with('message','Lo que está intentanto no está permitido.');
         }
     }
     

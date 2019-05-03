@@ -639,6 +639,7 @@ ul.pagination
 					height: 100%
 
 
+
 @media screen and (min-width: 1200px) and (max-width: 1640px)
 	.fix-column
 		.articles-container
@@ -677,10 +678,6 @@ ul.pagination
 			flex: 0 0 50%
 			max-width: 50%
 
-@media (max-width: 768px)
-	.articles-container
-		.article
-			min-width: 250px
 
 @media (max-width: 520px)
 	.articles-container
@@ -695,10 +692,24 @@ ul.pagination
 			padding: 1px 5px
 			font-size: 0.7rem
 
-@media (max-width: 400px)
-	.articles-container
+@media (max-width: 620px)
+	.articles-container 
 		.article
-			min-width: 100%
+			max-width: 50%
+			.inner .content
+				padding: 0
+				white-space: normal
+				.title
+					padding: 0
+					width: 100%
+					max-width: 100%
+					white-space: nowrap
+					overflow: hidden
+					text-overflow: ellipsis
+					color: $main-color
+				.price
+					position: relative
+					white-space: nowrap
 
 .top-right-ribbon
 	position: absolute
