@@ -87,7 +87,11 @@
 										{{ $item->customer->name }} {{ $item->customer->surname }} ({{ $item->customer->username }})
 									</a>
 									@else
-										{{ json_decode($item->anon_data)->email }}
+										@if($item->anon_data)
+											{{ json_decode($item->anon_data)->email }}
+										@else
+											Cliente anónimo
+										@endif
 									@endif
 								</td>
 								<td>
