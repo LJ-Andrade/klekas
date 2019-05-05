@@ -43,31 +43,30 @@
                 {{-- <div class="code"> #{{ $article->code }}</div> --}}
                 <div class="price-container">
 					{{-- PRICES --}}
-                    @if(Auth::guard('customer')->check())
-						@if(Auth::guard('customer')->user()->group == '3')
+                    @if(Auth::guard('customer')->check() && Auth::guard('customer')->user()->group == '3')
 						{{-- Reseller Price --}}	
-							@if($article->reseller_discount > 0)
-								<span class="price">
-									<del class="original-price">$ {{ $article->reseller_price }}</del>
-									&nbsp; ${{ calcValuePercentNeg($article->reseller_price, $article->reseller_discount) }}
-								</span>
-							@else
-								<span>$ {{ $article->reseller_price }}</span>
-							@endif	
+						@if($article->reseller_discount > 0)
+							<span class="price">
+								<del class="original-price">$ {{ $article->reseller_price }}</del>
+								&nbsp; ${{ calcValuePercentNeg($article->reseller_price, $article->reseller_discount) }}
+							</span>
 						@else
-							{{-- Normal Price --}}
-							@if($article->discount > 0)
-								<span class="price">
-									<del class="original-price">$ {{ $article->price }}</del>
-									&nbsp; ${{ calcValuePercentNeg($article->price, $article->discount) }} ss
-								</span>
-							@else
-								<span class="h2 d-block">$ {{ $article->price }}</span>
-							@endif
-                        @endif
-                    @endif
+							<span>$ {{ $article->reseller_price }}</span>
+						@endif	
+						
+					@else
+						{{-- Normal Price --}}
+						@if($article->discount > 0)
+							<span class="price">
+								<del class="original-price">$ {{ $article->price }}</del>
+								&nbsp; ${{ calcValuePercentNeg($article->price, $article->discount) }}
+							</span>
+						@else
+							<span class="h2 d-block">$ {{ $article->price }}</span>
+						@endif
+					@endif
 				</div>
-                    
+						
 				<p class="description">{{ strip_tags($article->description) }}</p>
 				<div class="item"><div class="title">Tela: <b>{{ $article->textile }}</b></div></div>
 					@if(Auth::guard('customer')->check() || env('ALLOW_ANON_CHECKOUT'))
