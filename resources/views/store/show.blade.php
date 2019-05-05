@@ -51,7 +51,7 @@
 								&nbsp; ${{ calcValuePercentNeg($article->reseller_price, $article->reseller_discount) }}
 							</span>
 						@else
-							<span>$ {{ $article->reseller_price }}</span>
+							<span class="h2 d-block">$ {{ $article->reseller_price }}</span>
 						@endif	
 						
 					@else
