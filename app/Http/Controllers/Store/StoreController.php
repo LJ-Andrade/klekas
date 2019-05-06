@@ -351,7 +351,7 @@ class StoreController extends Controller
         if(auth()->guard('customer')->check())
         {
             $checkCustomer = $this->checkAndUpdateCustomerData(auth()->guard('customer')->user()->id, $request);
-            $customerMpEmail = auth()->guard('customer')->user()->email;
+            $customerEmail = auth()->guard('customer')->user()->email;
             if($checkCustomer['response'] == 'error')
                 return redirect()->route('store.checkout-last')->with('message', $checkCustomer['message']);
         }
@@ -359,7 +359,7 @@ class StoreController extends Controller
         {
             $anon_data = json_encode($request->all()); 
             // Collect email to send to MP api
-            $customerMpEmail = $request->email;
+            $customerEmail = $request->email;
             // dd($anon_data);
             $cart->anon_data = $anon_data;
             $cart->save();
@@ -368,10 +368,10 @@ class StoreController extends Controller
         
         // Check if customer choose payment method
         if($cart->payment_method_id == null)
-            return back()->with('error', 'missing-payment');
+            return back()->withInput()->with('error', 'missing-payment');
         // Check if customer choose payment method and shipping
         if($cart->shipping_id == null)
-            return back()->with('error', 'missing-shipping');
+            return back()->withInput()->with('error', 'missing-shipping');
         
         // Set fixed prices on checkout confirmation
         foreach($cart->items as $key => $item){
@@ -401,7 +401,7 @@ class StoreController extends Controller
             // Check if MercadoPago API is ON and proccess.
             try
             {
-                $mpUrl = $this->processMpPayment($cart, $customerMpEmail);
+                $mpUrl = $this->processMpPayment($cart, $customerEmail);
                 $cart->status = 'Active';
                 $cart->save();
                 return redirect($mpUrl);
@@ -413,17 +413,15 @@ class StoreController extends Controller
         }
 
         $cart->status = 'Process';
-        
+    
         try {
             $cart->save();
             try
             {
                 // Notify Bussiness
-                // Mail::to(APP_EMAIL_1)->send(new SendMail('Compra Recibida', 'Checkout', $cart));
+                Mail::to(APP_EMAIL_1)->send(new SendMail('Compra Recibida', 'Checkout', $cart));
                 // Notify Customer
-                $customerEmail = auth()->guard('customer')->user()->email;
-                //$customerEmail = 'javzero1@gmail.com';
-                // Mail::to($customerEmail)->send(new SendMail('Bruna Indumentaria - Compra recibida !', 'CustomerCheckout', ''));
+                Mail::to($customerEmail)->send(new SendMail('Klekas - Compra recibida !', 'CustomerCheckout', ''));
             } catch (\Exception $e) {
                 //
             }
