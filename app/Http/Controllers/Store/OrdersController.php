@@ -194,12 +194,18 @@ class OrdersController extends Controller
     public function create(Request $request)
     {
         $shippings = Shipping::orderBy('name', 'ASC')->pluck('name', 'id');
+        $shippingData = Shipping::orderBy('name', 'ASC')->get();
+        $paymentData = Payment::orderBy('name', 'ASC')->get();
         $payment_methods = Payment::orderBy('name', 'ASC')->pluck('name', 'id');
         $sellers = User::pluck('name', 'id');
-
+        $existingOrder = [];
+        
         return view('vadmin.orders.create')
+            ->with('existingOrder', $existingOrder)
             ->with('sellers', $sellers)
             ->with('shippings', $shippings)
+            ->with('shippingData', $shippingData)
+            ->with('paymentData', $paymentData)
             ->with('payment_methods', $payment_methods);
     }
     
@@ -254,25 +260,115 @@ class OrdersController extends Controller
 
     public function edit($id)
     {
-        $order = Cart::find($id);
-        return view('vadmin.orders.edit')->with('order', $order);
+        dd("Test");
+        $existingOrder = Cart::find($id);
+
+        $shippings = Shipping::orderBy('name', 'ASC')->pluck('name', 'id');
+        $shippingData = Shipping::orderBy('name', 'ASC')->get();
+        $paymentData = Payment::orderBy('name', 'ASC')->get();
+        $payment_methods = Payment::orderBy('name', 'ASC')->pluck('name', 'id');
+        $sellers = User::pluck('name', 'id');
+
+        return view('vadmin.orders.create')
+            ->with('existingOrder', $existingOrder)
+            ->with('sellers', $sellers)
+            ->with('shippings', $shippings)
+            ->with('shippingData', $shippingData)
+            ->with('paymentData', $paymentData)
+            ->with('payment_methods', $payment_methods);
+
+        // return view('vadmin.orders.edit')->with('order', $order);
     }
 
     public function update(Request $request, $id)
     {
-        $category = Category::find($id);
+        if($request->payment_method_id == null || $request->shipping_id == null)
+            return back()->with('message', 'Debe ingresar método de pago y envío');
 
-        $this->validate($request,[
-            'name' => 'required|min:4|max:250|unique:categories,name,'.$category->id,
-        ],[
-            'name.required' => 'Debe ingresar un nombre a la categoría',
-            'name.unique'   => 'La categoría ya existe'
-        ]);
+        // dd($request->all());
+        $order = Cart::find($id);
+        $order_id = $order->id;
         
-        $category->fill($request->all());
-        $category->save();
-
-        return redirect()->route('categories.index')->with('message','Categoría editada');
+        try
+        {
+            $order->fill($request->all());
+            $order->save();
+        }
+        catch (\Exception $e) 
+        {
+            dd("Error editando pedido." . $e->getMessage());
+        }
+            
+        foreach($request->item as $item)
+        {
+            // dd($item);
+            // dd("Order id: " . $order_id . ' | Item id: ' . $item['id']);
+            $existingItem = CartItem::where('id', $item['id'])->first();
+            if($existingItem)
+            {
+                $existingItem->fill($item);
+                $existingItem->save();
+                try
+                {
+                    $existingItem->save(); 
+                    $this->updateVariantStock($item['variant_id'], -$item['quantity']); 
+                }
+                catch (\Exception $e) 
+                {
+                    dd("Error editando item existente: " . $e->getMessage());
+                }
+            }
+            else
+            {
+                $cartItem = new CartItem();
+                $cartItem->cart_id = $order_id;
+                $cartItem->article_name = $item['name'];
+                $cartItem->article_id = $item['id'];
+                $cartItem->variant_id = $item['variant_id'];
+                $cartItem->quantity = $item['quantity'];
+                $cartItem->combination = $item['combination'];
+                $cartItem->color = $item['color'];
+                $cartItem->size = $item['size'];
+                $cartItem->textile = $item['textile'];
+                $cartItem->final_price = $item['final_price'];
+                
+                try
+                {
+                    $cartItem->save(); 
+                    $this->updateVariantStock($item['variant_id'], -$item['quantity']); 
+                }
+                catch (\Exception $e) 
+                {
+                    dd("Error agregando item." . $e->getMessage());
+                }
+            }
+        }
+            
+        return redirect()->back()->with('message','Pedido editado');
     } 
+
+
+    // public function edit($id)
+    // {
+    //     $order = Cart::find($id);
+    //     return view('vadmin.orders.edit')->with('order', $order);
+    // }
+
+    // public function update(Request $request, $id)
+    // {
+    //     $category = Category::find($id);
+
+    //     $this->validate($request,[
+    //         'name' => 'required|min:4|max:250|unique:categories,name,'.$category->id,
+    //     ],[
+    //         'name.required' => 'Debe ingresar un nombre a la categoría',
+    //         'name.unique'   => 'La categoría ya existe'
+    //     ]);
+        
+    //     $category->fill($request->all());
+    //     $category->save();
+
+    //     return redirect()->route('categories.index')->with('message','Categoría editada');
+    // } 
 
 }

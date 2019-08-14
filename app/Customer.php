@@ -68,6 +68,11 @@ class Customer extends Authenticatable
         }
     }
 
+    public function hasActiveCart()
+    {
+        dd("OK");
+    }
+
     // Search Scopes 
     public function scopeSearchname($query, $name)
     {

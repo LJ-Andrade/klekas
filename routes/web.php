@@ -197,6 +197,9 @@ Route::group(['prefix' => 'vadmin', 'middleware' => 'active-user'], function(){
 
     Route::post('updateAvatar', 'UserController@updateAvatar');
     Route::post('updateCustomerAvatar', 'CustomerController@updateCustomerAvatar');
+
+    // Orders
+    Route::post('removeFromOrder', ['as' => 'vadmin.removeFromOrder', 'uses' => 'Store\OrdersController@destroy']);
     
     // Route::post('actualizar-avatar', ['as' => 'vadmin.updateCustomerAvatar', 'uses' => 'CustomerController@updateCustomerAvatar']);
     // Exports
